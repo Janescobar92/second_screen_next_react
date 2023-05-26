@@ -1,9 +1,19 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+import React from "react";
+import Image from "next/image";
+import styles from "./page.module.css";
 
 export default function Home() {
+  React.useEffect(() => {
+    // require("../public/manifest.json");
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js");
+    }
+  }, []);
+
   return (
     <main className={styles.main}>
+      {/* <link rel="manifest" href="/manifest.json" /> */}
       <div className={styles.description}>
         <p>
           Get started by editing&nbsp;
@@ -15,7 +25,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            By{' '}
+            By{" "}
             <Image
               src="/vercel.svg"
               alt="Vercel Logo"
@@ -91,5 +101,5 @@ export default function Home() {
         </a>
       </div>
     </main>
-  )
+  );
 }

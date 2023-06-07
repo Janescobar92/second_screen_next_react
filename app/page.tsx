@@ -5,7 +5,6 @@ import styles from "./page.module.css";
 
 export default function Home() {
   React.useEffect(() => {
-    // require("../public/manifest.json");
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.register("/sw.js");
     }
@@ -13,8 +12,7 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      {/* <link rel="manifest" href="/manifest.json" /> */}
-      <div className={styles.description}>
+      <div className={styles.description}>crbug
         <p>
           Get started by editing&nbsp;
           <code className={styles.code}>app/page.tsx</code>

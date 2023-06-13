@@ -1,18 +1,12 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
-import { WebSocketComponent } from "./components";
+import { ServiceWorkerComponent, WebSocketComponent } from "./components";
 
 export default function Home() {
-  React.useEffect(() => {
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/sw.js");
-    }
-  }, []);
-
   return (
     <main className={styles.main}>
+      <ServiceWorkerComponent />
       <WebSocketComponent />
       <div className={styles.description}>
         <p>

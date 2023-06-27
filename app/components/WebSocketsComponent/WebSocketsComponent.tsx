@@ -1,5 +1,6 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+
+import { useEffect, useRef } from "react";
 import { Socket, io } from "socket.io-client";
 
 const ENDPOINT = "http://127.0.0.1:8080";
@@ -16,11 +17,11 @@ function WebSocketComponent() {
     });
   };
 
-  const handleSendMsg = () => {
-    if (ws.current) {
-      ws.current.emit("restart_server", { data: "data test" });
-    }
-  };
+  // const handleSendMsg = () => {
+  //   if (ws.current) {
+  //     ws.current.emit("restart_server", { data: "data test" });
+  //   }
+  // };
 
   const handleReadMsg = () => {
     console.log("INSIDE READ");
@@ -40,7 +41,6 @@ function WebSocketComponent() {
     return () => {
       ws.current?.disconnect();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <></>;

@@ -1,8 +1,9 @@
 "use client";
-import React from "react";
+
+import { useEffect } from "react";
 
 function ServiceWorkerComponent() {
-  React.useEffect(() => {
+  useEffect(() => {
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.register("/sw.js");
     }

@@ -1,0 +1,27 @@
+.logo {
+    position: sticky;
+    top: 0;
+    margin: 2rem 0;
+}
+
+@media (max-width: 700px) {
+    .logo {
+        height: 7rem;
+        width: 100%;
+    }
+}
+
+@media (min-width: 701px) and (max-width: 1023px) {
+    .logo {
+        height: 12rem;
+        width: 100%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .logo {
+        position: relative;
+        height: 20rem;
+        width: 100%;
+    }
+}

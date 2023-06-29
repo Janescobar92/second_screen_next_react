@@ -1,5 +1,10 @@
+"use client";
 import "./globals.css";
 import { Inter } from "next/font/google";
+
+import { ThemeProvider, CssBaseline } from "@mui/material";
+
+import theme from "./theme";
 
 import {
   Background,
@@ -25,10 +30,13 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className={inter.className}>
-        <ServiceWorkerComponent />
-        <WebSocketComponent />
-        <Background />
-        {children}
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <ServiceWorkerComponent />
+          <WebSocketComponent />
+          <Background />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

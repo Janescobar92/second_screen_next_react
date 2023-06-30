@@ -1,5 +1,6 @@
 "use client";
 
+import useCompanyAssets from "@/app/Hooks/useCompanyAssets";
 import { styled } from "@mui/material";
 
 const StyledBackground = styled("div", {
@@ -18,12 +19,9 @@ const StyledBackground = styled("div", {
 }));
 
 function Background() {
-  // TODO: add hook and use client, to render dynamicly the background.
+  const { backgroundImage } = useCompanyAssets();
 
-  const smallDevices = "/img/backgrounds/aurgi/mobile_2@3x.webp";
-  const mediumDevices = "/img/backgrounds/aurgi/tablet_2@3x.webp 2x";
-
-  return <StyledBackground imageUrl={smallDevices} />;
+  return <StyledBackground imageUrl={backgroundImage} />;
 }
 
 export default Background;

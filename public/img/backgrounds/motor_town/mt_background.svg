@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="834" height="1194" viewBox="0 0 834 1194">
+    <defs>
+        <filter id="lm3eledmoc" x="-206.435" y="841.791" width="1361.937" height="788.418" filterUnits="userSpaceOnUse">
+            <feOffset dy="3"/>
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feFlood flood-opacity=".353"/>
+            <feComposite operator="in" in2="blur"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="u9t02sjgpd" x="378" y="-347.739" width="1327.266" height="1107.478" filterUnits="userSpaceOnUse">
+            <feOffset dy="3"/>
+            <feGaussianBlur stdDeviation="13" result="blur-2"/>
+            <feFlood flood-opacity=".353"/>
+            <feComposite operator="in" in2="blur-2"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="6tnuzofmxe" x="-512.67" y="89" width="855.203" height="707.911" filterUnits="userSpaceOnUse">
+            <feOffset dy="3"/>
+            <feGaussianBlur stdDeviation="3" result="blur-3"/>
+            <feFlood flood-opacity=".353"/>
+            <feComposite operator="in" in2="blur-3"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <clipPath id="m0hghm8lca">
+            <path data-name="Rectangle 4" style="stroke:#707070;fill:#fff" d="M0 0h834v1194H0z"/>
+        </clipPath>
+        <clipPath id="6eaz6fuycb">
+            <path data-name="Rectangle 2" style="fill:#89000c;stroke:#707070" d="M0 0h834v1194H0z"/>
+        </clipPath>
+    </defs>
+    <g data-name="Mask Group 3" style="clip-path:url(#m0hghm8lca)">
+        <g data-name="Mask Group 1" style="clip-path:url(#6eaz6fuycb)">
+            <g data-name="Group 4220">
+                <path data-name="Rectangle 1" style="fill:#89000c" d="M0 0h834v1194H0z"/>
+            </g>
+        </g>
+        <g style="filter:url(#lm3eledmoc)">
+            <path data-name="Path 695" d="M459.6 61.18a197.469 197.469 0 0 0-135.653 11.056 193.325 193.325 0 0 0-95.191 95.871L74.615 531.189c-36.493 85.977 8.93 138.642 100.925 117.06l1089.607-255.828c92-21.583 93.189-61.471 2.792-88.6z" transform="rotate(8 -5737.858 -804.24)" style="fill:#d80013"/>
+        </g>
+        <g style="filter:url(#u9t02sjgpd)" data-name="logo-MT-corte-ingles">
+            <path data-name="Path 695" d="M416.3 60.4a175.963 175.963 0 0 0-120.88 9.852 172.27 172.27 0 0 0-84.82 85.428L73.241 479.219C40.723 555.833 81.2 602.762 163.174 583.53l970.94-227.967c81.976-19.232 83.04-54.776 2.488-78.955z" transform="matrix(-.87 -.5 .5 -.87 1429.37 801.072)" style="fill:#d80013"/>
+        </g>
+        <g style="filter:url(#6tnuzofmxe)" data-name="logo-MT-corte-ingles">
+            <path data-name="Path 695" d="M299.436 58.288a117.923 117.923 0 0 0-81.009 6.6 115.448 115.448 0 0 0-56.845 57.251L69.533 338.964c-21.792 51.343 5.333 82.793 60.27 69.9L780.484 256.1c54.937-12.888 55.65-36.709 1.667-52.912z" transform="matrix(-.87 -.5 .5 -.87 180.262 866.006)" style="fill:#d80013"/>
+        </g>
+    </g>
+</svg>

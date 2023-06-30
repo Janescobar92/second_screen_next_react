@@ -1,14 +1,15 @@
 import Image from "next/image";
 
 import styles from "./logo.module.css";
+import useCompanyAssets from "@/app/Hooks/useCompanyAssets";
 
 function CompanyLogo() {
-  // TODO: add hook and use client, to render dynamicly the company logo.
+  const { companyLogo } = useCompanyAssets();
 
   return (
     <Image
       className={styles.logo}
-      src="/img/logos/aurgi_logo.svg"
+      src={companyLogo}
       alt="Logo"
       width={180}
       height={37}

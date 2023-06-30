@@ -21,7 +21,7 @@
 @media (min-width: 1024px) {
     .logo {
         position: relative;
-        height: 20rem;
+        height: 100%;
         width: 100%;
     }
 }

@@ -1,7 +1,8 @@
 "use client";
+import { styled, useTheme } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
 
 import useCompanyAssets from "@/app/Hooks/useCompanyAssets";
-import { styled } from "@mui/material";
 
 const StyledBackground = styled("div", {
   shouldForwardProp: (prop) => prop !== "imageUrl",
@@ -19,9 +20,14 @@ const StyledBackground = styled("div", {
 }));
 
 function Background() {
+  const theme = useTheme();
   const { backgroundImage } = useCompanyAssets();
 
-  return <StyledBackground imageUrl={backgroundImage} />;
+  return (
+    <ThemeProvider theme={theme}>
+      <StyledBackground imageUrl={backgroundImage} />
+    </ThemeProvider>
+  );
 }
 
 export default Background;

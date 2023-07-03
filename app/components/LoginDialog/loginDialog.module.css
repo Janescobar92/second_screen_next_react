@@ -1,0 +1,15 @@
+.inputsContainer {
+    padding: 0.2rem 1rem;
+}
+
+.actionsContainer {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0.5rem;
+}
+
+.button {
+    min-width: 10rem;
+    height: 3rem;
+    border-radius: var(--border-radius);
+}

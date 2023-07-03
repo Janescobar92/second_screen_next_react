@@ -1,11 +1,24 @@
 "use client";
+
 import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
-} from "@mui/material";
+  Formik,
+  Form,
+  Field,
+  FieldProps,
+  FieldInputProps,
+  FormikProps,
+} from "formik";
+
+import { Dialog, DialogTitle, Button, TextField } from "@mui/material";
+
+import styles from "./loginDialog.module.css";
+import {
+  FORM_FIELD_PASSWORD,
+  FORM_FIELD_USER,
+  loginFields,
+  validationSchema,
+} from "./constants";
+import { LoginFormFields } from "./interfaces";
 
 interface Props {
   open: boolean;
@@ -19,18 +32,97 @@ function LoginDialog(props: Props) {
     onShow(false);
   };
 
+  const handleSubmit = (formValues: { user: string; password: string }) => {
+    console.log({ formValues });
+  };
+
   return (
     <Dialog id="login-dialog" open={open} onClose={handleClose}>
       <DialogTitle id="login-dialog-title">
-        {"Use Google's location service?"}
+        Introduzca sus credenciales
       </DialogTitle>
-      <DialogContent id="login-dialog-content-container"></DialogContent>
-      <DialogActions id="login-dialog-actions-container">
-        <Button onClick={handleClose}>Disagree</Button>
-        <Button onClick={handleClose} autoFocus>
-          Agree
-        </Button>
-      </DialogActions>
+      <Formik
+        initialValues={{
+          [FORM_FIELD_USER]: "",
+          [FORM_FIELD_PASSWORD]: "",
+        }}
+        validationSchema={validationSchema}
+        onSubmit={(values, { setSubmitting }) => {
+          console.log({ values });
+          handleSubmit(values);
+          setSubmitting(false);
+        }}
+      >
+        <Form>
+          <>
+            <div id="form-inputs-container" className={styles.inputsContainer}>
+              {loginFields.map((f) => {
+                return (
+                  <Field name={f.name} key={f.name}>
+                    {({
+                      field,
+                      form,
+                    }: FieldProps<{
+                      field: FieldInputProps<{ [x: string]: string }>;
+                      form: FormikProps<LoginFormFields>;
+                    }>) => {
+                      const fieldName = field.name;
+                      return (
+                        <TextField
+                          autoFocus={f.autofocus}
+                          error={
+                            !!form.touched[fieldName] &&
+                            !!form.errors[fieldName]
+                          }
+                          fullWidth
+                          helperText={
+                            (!!form.touched[fieldName] &&
+                              (form.errors[fieldName] as string)) ||
+                            " "
+                          }
+                          label={f.label}
+                          name={fieldName}
+                          spellCheck={false}
+                          value={field.value}
+                          onChange={({ target }) => {
+                            form.setFieldValue(fieldName, target.value);
+                          }}
+                        />
+                      );
+                    }}
+                  </Field>
+                );
+              })}
+            </div>
+            <div
+              id="login-dialog-actions-container"
+              className={styles.actionsContainer}
+            >
+              <Button
+                className={styles.button}
+                color="secondary"
+                disableElevation
+                id="submit-login-button"
+                type="submit"
+                variant="contained"
+                autoFocus
+              >
+                Aceptar
+              </Button>
+              <Button
+                className={styles.button}
+                color="primary"
+                disableElevation
+                id="cancel-login-button"
+                variant="contained"
+                onClick={handleClose}
+              >
+                cancelar
+              </Button>
+            </div>
+          </>
+        </Form>
+      </Formik>
     </Dialog>
   );
 }

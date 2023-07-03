@@ -6,7 +6,6 @@ import {
   ServiceWorkerComponent,
   WebSocketComponent,
 } from "./components";
-import { Footer } from "./components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,7 +29,6 @@ export default function RootLayout({
         <ServiceWorkerComponent />
         <WebSocketComponent />
         {children}
-        <Footer />
       </body>
     </html>
   );

@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import {
   Formik,
   Form,
@@ -16,8 +18,10 @@ import {
   TextField,
   IconButton,
 } from "@mui/material";
+import { VisibilityOff, Visibility } from "@mui/icons-material";
 
 import styles from "./loginDialog.module.css";
+import { ROUTES } from "@/app/constants";
 import {
   FORM_FIELD_PASSWORD,
   FORM_FIELD_USER,
@@ -25,8 +29,6 @@ import {
   validationSchema,
 } from "./constants";
 import { LoginFormFields } from "./interfaces";
-import { VisibilityOff, Visibility } from "@mui/icons-material";
-import { useState } from "react";
 
 interface Props {
   open: boolean;
@@ -35,14 +37,17 @@ interface Props {
 
 function LoginDialog(props: Props) {
   const { open, onShow } = props;
+  const router = useRouter();
+
   const [showPassword, setShowPassWord] = useState<boolean>(false);
 
   const handleClose = () => {
     onShow(false);
   };
 
-  const handleSubmit = (formValues: { user: string; password: string }) => {
-    console.log({ formValues });
+  const handleSubmit = () => {
+    router.push(ROUTES.settings);
+    handleClose();
   };
 
   const EndAdorment = (
@@ -68,9 +73,8 @@ function LoginDialog(props: Props) {
           [FORM_FIELD_PASSWORD]: "",
         }}
         validationSchema={validationSchema}
-        onSubmit={(values, { setSubmitting }) => {
-          console.log({ values });
-          handleSubmit(values);
+        onSubmit={(_values, { setSubmitting }) => {
+          handleSubmit();
           setSubmitting(false);
         }}
       >

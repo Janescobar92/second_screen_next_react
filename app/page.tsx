@@ -1,6 +1,6 @@
 import styles from "./page.module.css";
 
-import { CompanyLogo, MessageBox } from "./components";
+import { CompanyLogo, Footer, MessageBox } from "./components";
 
 export default function Root() {
   return (
@@ -9,6 +9,7 @@ export default function Root() {
         <CompanyLogo />
         <MessageBox content="HOLA MUNDO" />
       </div>
+      <Footer />
     </main>
   );
 }

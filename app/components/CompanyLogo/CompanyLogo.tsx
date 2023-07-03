@@ -9,6 +9,7 @@ function CompanyLogo() {
 
   return (
     <Image
+      id="logo-container"
       className={styles.logo}
       src={companyLogo}
       alt="Logo"

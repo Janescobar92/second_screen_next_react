@@ -9,7 +9,7 @@ function ServiceWorkerComponent() {
     }
   }, []);
 
-  return <></>;
+  return <div id="service-worker-component" />;
 }
 
 export default ServiceWorkerComponent;

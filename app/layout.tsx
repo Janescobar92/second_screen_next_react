@@ -6,6 +6,7 @@ import {
   ServiceWorkerComponent,
   WebSocketComponent,
 } from "./components";
+import { Footer } from "./components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,11 +25,12 @@ export default function RootLayout({
       <head>
         <link rel="manifest" href="/manifest.json" />
       </head>
-      <body className={inter.className}>
+      <body id="app-body" className={inter.className}>
         <Background />
         <ServiceWorkerComponent />
         <WebSocketComponent />
         {children}
+        <Footer />
       </body>
     </html>
   );

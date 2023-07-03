@@ -43,7 +43,7 @@ function WebSocketComponent() {
     };
   }, []);
 
-  return <></>;
+  return <div id="web-sockets-component" />;
 }
 
 export default WebSocketComponent;

@@ -1,14 +1,15 @@
 "use client";
 import { useState } from "react";
 
-import { ThemeProvider, useTheme } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
 
 import { LoginDialog } from "../../LoginDialog";
 import { ContainedIconButton } from "../../ContainedIconButton";
+import useAppTheme from "@/app/Hooks/useAppTheme";
 
 function SettingsButton() {
-  const theme = useTheme();
+  const theme = useAppTheme();
   const [open, setOpen] = useState<boolean>(false);
 
   const handleClick = () => {

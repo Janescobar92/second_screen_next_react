@@ -1,10 +1,11 @@
 import { useMemo } from "react";
-import { useTheme, useMediaQuery } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
+import useAppTheme from "./useAppTheme";
 /**
  * Custom hook used to get current app device breakpoints.
  */
 const useBreakpoints = () => {
-  const theme = useTheme();
+  const theme = useAppTheme();
 
   // true if sm devices
   const isSmallDevice = useMediaQuery(theme.breakpoints.down("sm"));

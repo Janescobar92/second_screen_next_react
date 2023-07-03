@@ -4,7 +4,7 @@ import useCompany from "./useCompany";
 import { AURGI, MOTORTOWN } from "../constants";
 
 /**
- * Custom hook used to get current app background.
+ * Custom hook used to get current app background and company logo.
  */
 const useCompanyAssets = (tpvCompany = AURGI) => {
   const { isAurgiApp, isMTApp } = useCompany(tpvCompany);

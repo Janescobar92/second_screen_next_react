@@ -6,6 +6,7 @@ import {
   ServiceWorkerComponent,
   WebSocketComponent,
 } from "./components";
+import { getGlobalConfig } from "./utils/config";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,11 +15,13 @@ export const metadata = {
   description: "Anjana TPV pantalla interactiva",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const config = await getGlobalConfig();
+
   return (
     <html lang="en">
       <head>
@@ -27,7 +30,7 @@ export default function RootLayout({
       <body id="app-body" className={inter.className}>
         <Background />
         <ServiceWorkerComponent />
-        <WebSocketComponent />
+        <WebSocketComponent config={config} />
         {children}
       </body>
     </html>

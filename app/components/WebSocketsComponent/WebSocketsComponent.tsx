@@ -1,19 +1,23 @@
 "use client";
 
+import { Config } from "@/app/interfaces";
 import { useEffect, useRef } from "react";
 import { Socket, io } from "socket.io-client";
 
-const ENDPOINT = "http://127.0.0.1:8080";
-const ROOM = "second_screen";
+interface Props {
+  config: Config;
+}
 
-function WebSocketComponent() {
+function WebSocketComponent(props: Props) {
+  const { config } = props;
+  const { WS_SERVER_PORT: endpoint, WS_ROOM: room } = config;
   const ws = useRef<null | Socket>(null);
 
   const handleConnect = (s: Socket) => {
     ws.current = s;
     ws.current?.on("connect", () => {
       console.log("Connected to WebSocket server");
-      ws.current?.emit("register_client_in_room", ROOM);
+      ws.current?.emit("register_client_in_room", room);
     });
   };
 
@@ -34,7 +38,7 @@ function WebSocketComponent() {
   };
 
   useEffect(() => {
-    const socket = io(ENDPOINT, { autoConnect: true });
+    const socket = io(endpoint, { autoConnect: true });
     handleConnect(socket);
     handleReadMsg();
 

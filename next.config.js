@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 
+const withPlugins = require("next-compose-plugins");
+
 const runtimeCaching = require("next-pwa/cache");
 
 const withPWA = require("next-pwa")({
@@ -10,6 +12,7 @@ const withPWA = require("next-pwa")({
   runtimeCaching,
 });
 
-const nextConfig = withPWA({});
-
-module.exports = nextConfig;
+module.exports = withPlugins([
+  //  plugins here
+  [withPWA],
+]);

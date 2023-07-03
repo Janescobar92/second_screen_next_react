@@ -9,7 +9,13 @@ import {
   FormikProps,
 } from "formik";
 
-import { Dialog, DialogTitle, Button, TextField } from "@mui/material";
+import {
+  Dialog,
+  DialogTitle,
+  Button,
+  TextField,
+  IconButton,
+} from "@mui/material";
 
 import styles from "./loginDialog.module.css";
 import {
@@ -19,6 +25,8 @@ import {
   validationSchema,
 } from "./constants";
 import { LoginFormFields } from "./interfaces";
+import { VisibilityOff, Visibility } from "@mui/icons-material";
+import { useState } from "react";
 
 interface Props {
   open: boolean;
@@ -27,6 +35,7 @@ interface Props {
 
 function LoginDialog(props: Props) {
   const { open, onShow } = props;
+  const [showPassword, setShowPassWord] = useState<boolean>(false);
 
   const handleClose = () => {
     onShow(false);
@@ -35,6 +44,18 @@ function LoginDialog(props: Props) {
   const handleSubmit = (formValues: { user: string; password: string }) => {
     console.log({ formValues });
   };
+
+  const EndAdorment = (
+    <>
+      <IconButton
+        id="login-see-password-data-end-adornment"
+        size="small"
+        onClick={() => setShowPassWord(!showPassword)}
+      >
+        {showPassword ? <VisibilityOff /> : <Visibility />}
+      </IconButton>
+    </>
+  );
 
   return (
     <Dialog id="login-dialog" open={open} onClose={handleClose}>
@@ -67,6 +88,10 @@ function LoginDialog(props: Props) {
                       form: FormikProps<LoginFormFields>;
                     }>) => {
                       const fieldName = field.name;
+                      const isPassField = fieldName === FORM_FIELD_PASSWORD;
+                      const fieldType =
+                        !showPassword && isPassField ? "password" : "text";
+
                       return (
                         <TextField
                           autoFocus={f.autofocus}
@@ -83,9 +108,15 @@ function LoginDialog(props: Props) {
                           label={f.label}
                           name={fieldName}
                           spellCheck={false}
+                          type={fieldType}
                           value={field.value}
                           onChange={({ target }) => {
                             form.setFieldValue(fieldName, target.value);
+                          }}
+                          InputProps={{
+                            ...(isPassField && {
+                              endAdornment: EndAdorment,
+                            }),
                           }}
                         />
                       );

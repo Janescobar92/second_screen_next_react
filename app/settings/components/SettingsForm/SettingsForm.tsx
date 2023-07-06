@@ -9,13 +9,13 @@ import {
   FormikProps,
 } from "formik";
 
-import { validationSchema } from "@/app/components/LoginDialog/constants";
-import { LoginFormFields } from "@/app/components/LoginDialog/interfaces";
 import { TextField, Button } from "@mui/material";
 import { Config } from "@/app/interfaces";
 import { AppThemeProvider } from "@/app/providers";
 
 import styles from "./settingsForm.module.css";
+import { validationSchema } from "./constants";
+import { SettingsFormFields } from "./interfaces";
 
 interface Props {
   config: Config;
@@ -59,7 +59,7 @@ function SettingsForm(props: Props) {
                         form,
                       }: FieldProps<{
                         field: FieldInputProps<{ [x: string]: string }>;
-                        form: FormikProps<LoginFormFields>;
+                        form: FormikProps<SettingsFormFields>;
                       }>) => {
                         const fieldName = field.name;
 

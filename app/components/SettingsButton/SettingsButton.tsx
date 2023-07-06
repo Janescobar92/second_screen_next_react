@@ -3,8 +3,8 @@ import { useState } from "react";
 
 import SettingsIcon from "@mui/icons-material/Settings";
 
-import { LoginDialog } from "../../LoginDialog";
-import { ContainedIconButton } from "../../ContainedIconButton";
+import { LoginDialog } from "../LoginDialog";
+import { ContainedIconButton } from "../ContainedIconButton";
 import { AppThemeProvider } from "@/app/providers";
 
 function SettingsButton() {

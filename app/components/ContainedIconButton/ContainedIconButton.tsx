@@ -10,8 +10,6 @@ interface Props {
 }
 
 const StyledIconButton = styled(IconButton)(({ theme }) => ({
-  width: "4rem",
-  minHeight: "3 rem",
   borderRadius: 20,
   background: theme.palette.background.paper,
 }));

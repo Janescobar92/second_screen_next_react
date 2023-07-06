@@ -1,0 +1,35 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  height: 100vh;
+}
+
+.titleContainer {
+  background-color: var(--background-paper);
+  color: black;
+  width: 100%;
+  padding: 1rem;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  border-bottom: 1px solid rgba(94, 93, 93, 0.507);
+}
+
+@media (max-width: 1023px) {
+
+  .main {
+    padding: 1rem;
+  }
+
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}

@@ -1,15 +1,14 @@
 import styles from "./page.module.css";
 
-import { CompanyLogo, Footer, MessageBox } from "./components";
+import { CompanyLogo, MessageBox } from "./components";
 
-export default function Root() {
+export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.grid}>
         <CompanyLogo />
         <MessageBox content="HOLA MUNDO" />
       </div>
-      <Footer />
     </main>
   );
 }

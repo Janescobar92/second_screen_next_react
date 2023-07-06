@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 
 import {
   Background,
+  NavBar,
   ServiceWorkerComponent,
   WebSocketComponent,
 } from "./components";
@@ -28,6 +29,11 @@ export default async function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body id="app-body" className={inter.className}>
+        <header>
+          <nav>
+            <NavBar />
+          </nav>
+        </header>
         <Background />
         <ServiceWorkerComponent />
         <WebSocketComponent config={config} />

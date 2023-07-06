@@ -28,7 +28,6 @@ function WebSocketComponent(props: Props) {
   // };
 
   const handleReadMsg = () => {
-    console.log("INSIDE READ");
     if (ws.current) {
       ws.current.on("second_screen_sample_event", (data) => {
         const payload = JSON.parse(data);

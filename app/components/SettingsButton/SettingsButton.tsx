@@ -7,13 +7,26 @@ import { LoginDialog } from "../LoginDialog";
 import { ContainedIconButton } from "../ContainedIconButton";
 import { AppThemeProvider } from "@/app/providers";
 
-function SettingsButton() {
+/**
+ * SettingsButton is a React component that displays a settings button.
+ * It opens a login dialog when clicked.
+ * @returns {JSX.Element} - The rendered component.
+ */
+function SettingsButton(): JSX.Element {
   const [open, setOpen] = useState<boolean>(false);
 
+  /**
+   * Handles the click event of the settings button.
+   * Toggles the state of `open`.
+   */
   const handleClick = () => {
     setOpen(!open);
   };
 
+  /**
+   * Handles the show event of the login dialog.
+   * @param {boolean} show - The flag indicating whether to show or hide the dialog.
+   */
   const handleShow = (show: boolean) => {
     setOpen(show);
   };

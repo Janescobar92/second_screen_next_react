@@ -7,7 +7,6 @@ import {
   ServiceWorkerComponent,
   WebSocketComponent,
 } from "./components";
-import { getGlobalConfig } from "./utils/config";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,8 +20,6 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const config = await getGlobalConfig();
-
   return (
     <html lang="en">
       <head>
@@ -36,7 +33,7 @@ export default async function RootLayout({
         </header>
         <Background />
         <ServiceWorkerComponent />
-        <WebSocketComponent config={config} />
+        <WebSocketComponent />
         {children}
       </body>
     </html>

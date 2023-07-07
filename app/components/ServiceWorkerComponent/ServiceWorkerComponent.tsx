@@ -1,10 +1,15 @@
 "use client";
+import React, { useEffect } from "react";
 
-import { useEffect } from "react";
-
+/**
+ * ServiceWorkerComponent is a React component that registers a service worker in production environment.
+ * The service worker file should be located at the root directory with the name "sw.js".
+ * @returns {JSX.Element} - The rendered component.
+ */
 function ServiceWorkerComponent() {
   useEffect(() => {
-    if ("serviceWorker" in navigator) {
+    // Register service worker in production environment
+    if ("serviceWorker" in navigator && process.env.NODE_ENV === "production") {
       navigator.serviceWorker.register("/sw.js");
     }
   }, []);

@@ -1,5 +1,6 @@
 "use client";
 
+import useSWR from "swr";
 import {
   Formik,
   Form,
@@ -8,23 +9,58 @@ import {
   FieldInputProps,
   FormikProps,
 } from "formik";
-
 import { TextField, Button } from "@mui/material";
 import { Config } from "@/app/interfaces";
 import { AppThemeProvider } from "@/app/providers";
 
 import styles from "./settingsForm.module.css";
+
+import { CONFIG_API_URL } from "@/app/constants/config";
 import { validationSchema } from "./constants";
 import { SettingsFormFields } from "./interfaces";
 
-interface Props {
-  config: Config;
-}
+/**
+ * Fetcher function for useSWR.
+ * @param {string} url - The URL to fetch.
+ * @param {string} [method] - The HTTP method to use.
+ * @param {string} [body] - The body of the request.
+ * @returns {Promise<any>} - The data from the response.
+ */
+const fetcher = async (url: string, method?: string, body?: string) => {
+  const res = await fetch(url, { method, body });
+  return await res.json();
+};
 
-function SettingsForm(props: Props) {
-  const { config } = props;
+/**
+ * SettingsForm is a React component that displays a form to manage settings.
+ * It uses the useSWR hook to fetch the configuration data,
+ * and displays the form with the retrieved configuration values.
+ * @returns {JSX.Element} - The rendered component.
+ */
+function SettingsForm() {
+  const { data: config, error, isLoading } = useSWR(CONFIG_API_URL, fetcher);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  /**
+   * Handles form submission.
+   * @param {Config} values - The form values.
+   */
+  const handleSubmit = async (values: Config) => {
+    const resp = await fetcher(CONFIG_API_URL, "POST", JSON.stringify(values));
+    console.log({ resp });
+  };
+
+  // Handle the error state
+  if (error) {
+    console.error("Error getting configuration:", { error });
+    return <div>Failed to load</div>;
+  }
+
+  // Show loading state
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  // Create form fields based on configuration data
   const formFields = Object.entries(config).map(([key, _value], i) => {
     return {
       name: key,
@@ -32,10 +68,6 @@ function SettingsForm(props: Props) {
       autofocus: i === 0,
     };
   });
-
-  const handleSubmit = (values: Config) => {
-    console.log({ values });
-  };
 
   return (
     <AppThemeProvider>
@@ -104,7 +136,7 @@ function SettingsForm(props: Props) {
                   variant="contained"
                   autoFocus
                 >
-                  Guardar
+                  Save
                 </Button>
               </div>
             </>

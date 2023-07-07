@@ -1,15 +1,25 @@
 "use client";
-
 import { useRouter } from "next/navigation";
 
 import { AppBar, Toolbar, IconButton } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+
 import { AppThemeProvider } from "@/app/providers";
 import { SettingsButton } from "../SettingsButton";
 
-function NavBar() {
+/**
+ * Navigation bar component.
+ * Renders a responsive navigation bar with a back button and a settings button.
+ * Uses Next.js useRouter hook to handle navigation.
+ * @returns {JSX.Element} - The rendered component.
+ */
+function NavBar(): JSX.Element {
   const router = useRouter();
 
+  /**
+   * Handles the go back action.
+   * Navigates back to the previous page using Next.js router.
+   */
   const handleGoBack = () => {
     router.back();
   };

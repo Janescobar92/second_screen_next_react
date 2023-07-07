@@ -1,3 +1,5 @@
+export const CONFIG_API_URL = "/api/config";
+
 export const DEFAULT_CONFIG = {
   fileName: "config.json",
   settings: {

@@ -4,7 +4,12 @@ import Image from "next/image";
 import styles from "./logo.module.css";
 import useCompanyAssets from "@/app/Hooks/useCompanyAssets";
 
-function CompanyLogo() {
+/**
+ * Component for displaying the company logo.
+ * Uses the `useCompanyAssets` hook to retrieve the company logo image.
+ * @returns {JSX.Element} - The rendered component.
+ */
+function CompanyLogo(): JSX.Element {
   const { companyLogo } = useCompanyAssets();
 
   return (

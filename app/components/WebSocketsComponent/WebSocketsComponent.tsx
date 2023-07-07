@@ -1,24 +1,93 @@
 "use client";
-
-import { Config } from "@/app/interfaces";
-import { useEffect, useRef } from "react";
+import useSWR from "swr";
+import { useEffect, useRef, useState } from "react";
 import { Socket, io } from "socket.io-client";
 
-interface Props {
-  config: Config;
-}
+import { CONFIG_API_URL } from "@/app/constants/config";
+import { Config } from "@/app/interfaces";
 
-function WebSocketComponent(props: Props) {
-  const { config } = props;
-  const { WS_SERVER_PORT: endpoint, WS_ROOM: room } = config;
+/**
+ * Fetcher function for useSWR.
+ * @param {string} url - The URL to fetch.
+ * @param {string} [method] - The HTTP method to use.
+ * @param {string} [body] - The body of the request.
+ * @returns {Promise<Config>} - The data from the response.
+ */
+const fetcher = async (
+  url: string,
+  method?: string,
+  body?: string
+): Promise<Config> => {
+  const res = await fetch(url, { method, body });
+  return await res.json();
+};
+
+/**
+ * WebSocketComponent is a React component that connects to a WebSocket server.
+ * It uses the useSWR hook to fetch the configuration for the WebSocket server,
+ * and then connects to the server. If the configuration changes, it will
+ * disconnect from the current server and connect to the new one.
+ * @returns {JSX.Element} - The rendered component.
+ */
+function WebSocketComponent(): JSX.Element {
+  // Fetch the configuration data.
+  const { data: config, error } = useSWR(CONFIG_API_URL, fetcher);
+
+  // Create a ref to hold the WebSocket connection.
   const ws = useRef<null | Socket>(null);
 
-  const handleConnect = (s: Socket) => {
-    ws.current = s;
-    ws.current?.on("connect", () => {
-      console.log("Connected to WebSocket server");
-      ws.current?.emit("register_client_in_room", room);
-    });
+  // State to hold the number of connection attempts.
+  const [attempts, setAttempts] = useState(0);
+
+  /**
+   * Create a new socket connection.
+   * @returns {Socket | null} - The new socket connection, or null if the server port is not defined.
+   */
+  const createSocket = (): Socket | null => {
+    if (config?.WS_SERVER_PORT) {
+      return io(config.WS_SERVER_PORT, {
+        autoConnect: true,
+        reconnection: false,
+      });
+    } else {
+      console.error("Server port is not defined");
+      return null;
+    }
+  };
+
+  /**
+   * Connect to the WebSocket server.
+   * @param {Socket} s - The socket to connect.
+   */
+  const handleConnect = (s: Socket | null) => {
+    if (s) {
+      ws.current = s;
+
+      ws.current?.on("connect", () => {
+        console.log("Connected to WS Server.");
+        ws.current?.emit("register_client_in_room", config?.WS_ROOM);
+        setAttempts(0); // Reset the attempts count on successful connection.
+      });
+
+      ws.current?.on("connect_error", () => {
+        console.log("WS Connection failed.");
+        setAttempts((prevAttempts) => {
+          if (prevAttempts < 3) {
+            setTimeout(() => handleConnect(createSocket()), 2000); // Retry after 2 seconds
+            return prevAttempts + 1;
+          } else {
+            console.log(
+              "Waiting 1 minute before reattempting connection to WS server."
+            );
+            setTimeout(() => {
+              setAttempts(0);
+              handleConnect(createSocket());
+            }, 60000);
+            return prevAttempts;
+          }
+        });
+      });
+    }
   };
 
   // const handleSendMsg = () => {
@@ -27,26 +96,37 @@ function WebSocketComponent(props: Props) {
   //   }
   // };
 
+  /**
+   * Listen for messages from the WebSocket server.
+   */
   const handleReadMsg = () => {
     if (ws.current) {
       ws.current.on("second_screen_sample_event", (data) => {
         const payload = JSON.parse(data);
-        console.log(`Recived data from ${payload.transmitter}`, { payload });
+        console.log(`Received data from ${payload.transmitter}`, { payload });
       });
     }
   };
 
+  // When the component mounts or the config changes, connect to the WebSocket server.
   useEffect(() => {
-    const socket = io(endpoint, { autoConnect: true });
-    handleConnect(socket);
-    handleReadMsg();
+    if (!error && config) {
+      // If the socket is already connected, disconnect it before creating a new one.
+      if (ws.current) {
+        ws.current.disconnect();
+      }
 
+      handleConnect(createSocket());
+      handleReadMsg();
+    }
+
+    // When the component unmounts, disconnect the socket.
     return () => {
       ws.current?.disconnect();
     };
-  }, []);
+  }, [config]); // Add config as dependencies of useEffect.
 
-  return <div id="web-sockets-component" />;
+  return <div id="web-sockets-component">{`WS Server conection attemps: ${attempts}`}</div>;
 }
 
 export default WebSocketComponent;

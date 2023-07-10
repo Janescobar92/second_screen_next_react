@@ -7,12 +7,18 @@ import { LoginDialog } from "../LoginDialog";
 import { ContainedIconButton } from "../ContainedIconButton";
 import { AppThemeProvider } from "@/app/providers";
 
+interface Props {
+  hide?: boolean;
+}
+
 /**
  * SettingsButton is a React component that displays a settings button.
  * It opens a login dialog when clicked.
+ * @param {Props} props - The component props.
  * @returns {JSX.Element} - The rendered component.
  */
-function SettingsButton(): JSX.Element {
+function SettingsButton(props: Props): JSX.Element {
+  const { hide } = props;
   const [open, setOpen] = useState<boolean>(false);
 
   /**
@@ -34,7 +40,11 @@ function SettingsButton(): JSX.Element {
   return (
     <AppThemeProvider>
       <div id="settings-container">
-        <ContainedIconButton id="settings-button" onClick={handleClick}>
+        <ContainedIconButton
+          hide={hide}
+          id="settings-button"
+          onClick={handleClick}
+        >
           <SettingsIcon id="settings-button-icon" />
         </ContainedIconButton>
         <LoginDialog open={open} onShow={handleShow} />

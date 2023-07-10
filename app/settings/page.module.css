@@ -10,11 +10,10 @@
 
 .titleContainer {
   background-color: var(--background-paper);
-  color: black;
+  color: #a3a8ad;
   width: 100%;
-  padding: 1rem;
+  padding: 2rem;
   border-radius: var(--border-radius) var(--border-radius) 0 0;
-  border-bottom: 1px solid rgba(94, 93, 93, 0.507);
 }
 
 @media (max-width: 1023px) {

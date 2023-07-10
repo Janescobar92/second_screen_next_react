@@ -46,7 +46,7 @@ function NavBar(): JSX.Element {
           >
             <ArrowBackIosIcon sx={{ ml: 1 }} />
           </ContainedIconButton>
-          <SettingsButton />
+          <SettingsButton hide={pathname === ROUTES.settings} />
         </Toolbar>
       </AppBar>
     </AppThemeProvider>

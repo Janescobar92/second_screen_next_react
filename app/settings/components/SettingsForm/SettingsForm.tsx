@@ -52,7 +52,7 @@ function SettingsForm() {
   // Handle the error state
   if (error) {
     console.error("Error getting configuration:", { error });
-    return <div>Failed to load</div>;
+    return <div>Error de carga de datos</div>;
   }
 
   // Show loading state
@@ -61,6 +61,7 @@ function SettingsForm() {
   }
 
   // Create form fields based on configuration data
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const formFields = Object.entries(config).map(([key, _value], i) => {
     return {
       name: key,
@@ -129,14 +130,13 @@ function SettingsForm() {
               >
                 <Button
                   className={styles.button}
-                  color="secondary"
-                  disableElevation
+                  color="primary"
                   id="submit-settings-button"
                   type="submit"
                   variant="contained"
                   autoFocus
                 >
-                  Save
+                  Guardar
                 </Button>
               </div>
             </>

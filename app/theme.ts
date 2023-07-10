@@ -49,6 +49,7 @@ const DEFAULT_THEME = createTheme({
           "& .MuiOutlinedInput-root": {
             backgroundColor: "#f5f5f5", // Background color
             borderRadius: "6px", // Border radius
+            color: "#002a5f", // Text color
             "& fieldset": {
               borderColor: "transparent", // Border color
             },
@@ -106,6 +107,7 @@ export const AURGI_THEME = createTheme({
           "& .MuiOutlinedInput-root": {
             backgroundColor: "#f5f5f5", // Background color
             borderRadius: "6px", // Border radius
+            color: "#002a5f", // Text color
             "& fieldset": {
               borderColor: "transparent", // Border color
             },
@@ -163,6 +165,7 @@ export const MOTORTOWN_THEME = createTheme({
           "& .MuiOutlinedInput-root": {
             backgroundColor: "#f5f5f5", // Background color
             borderRadius: "6px", // Border radius
+            color: "#002a5f", // Text color
             "& fieldset": {
               borderColor: "transparent", // Border color
             },

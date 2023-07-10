@@ -18,6 +18,7 @@ import styles from "./settingsForm.module.css";
 import { CONFIG_API_URL } from "@/app/constants/config";
 import { validationSchema } from "./constants";
 import { SettingsFormFields } from "./interfaces";
+import { Loader } from "@/app/components";
 
 /**
  * Fetcher function for useSWR.
@@ -57,7 +58,11 @@ function SettingsForm() {
 
   // Show loading state
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className={styles.formContainer}>
+        <Loader fontSize="5rem" color="#a3a8ad" showText />
+      </div>
+    );
   }
 
   // Create form fields based on configuration data

@@ -42,6 +42,30 @@ const DEFAULT_THEME = createTheme({
       main: "#9cc32c",
     },
   },
+  components: {
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          "& .MuiOutlinedInput-root": {
+            backgroundColor: "#f5f5f5", // Background color
+            borderRadius: "6px", // Border radius
+            "& fieldset": {
+              borderColor: "transparent", // Border color
+            },
+            "&:hover fieldset": {
+              borderColor: "transparent", // Border color on hover
+            },
+            "&.Mui-focused fieldset": {
+              borderColor: "#f5f5f5", // Border color con focused
+            },
+          },
+          "& .MuiFormLabel-root": {
+            color: "#aed13b", // Label color
+          },
+        },
+      },
+    },
+  },
 } as ExtendedThemeOptions);
 
 export const AURGI_THEME = createTheme({
@@ -75,6 +99,30 @@ export const AURGI_THEME = createTheme({
       main: "#9cc32c",
     },
   },
+  components: {
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          "& .MuiOutlinedInput-root": {
+            backgroundColor: "#f5f5f5", // Background color
+            borderRadius: "6px", // Border radius
+            "& fieldset": {
+              borderColor: "transparent", // Border color
+            },
+            "&:hover fieldset": {
+              borderColor: "transparent", // Border color on hover
+            },
+            "&.Mui-focused fieldset": {
+              borderColor: "#f5f5f5", // Border color con focused
+            },
+          },
+          "& .MuiFormLabel-root": {
+            color: "#aed13b", // Label color
+          },
+        },
+      },
+    },
+  },
 } as ExtendedThemeOptions);
 
 // TODO: update colors.
@@ -106,6 +154,30 @@ export const MOTORTOWN_THEME = createTheme({
     IBBackground: {
       light: "#a9d136",
       main: "#9cc32c",
+    },
+  },
+  components: {
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          "& .MuiOutlinedInput-root": {
+            backgroundColor: "#f5f5f5", // Background color
+            borderRadius: "6px", // Border radius
+            "& fieldset": {
+              borderColor: "transparent", // Border color
+            },
+            "&:hover fieldset": {
+              borderColor: "transparent", // Border color on hover
+            },
+            "&.Mui-focused fieldset": {
+              borderColor: "#f5f5f5", // Border color con focused
+            },
+          },
+          "& .MuiFormLabel-root": {
+            color: "#aed13b", // Label color
+          },
+        },
+      },
     },
   },
 } as ExtendedThemeOptions);

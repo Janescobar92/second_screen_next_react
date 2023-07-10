@@ -6,18 +6,26 @@ import useAppTheme from "./useAppTheme";
  */
 const useBreakpoints = () => {
   const theme = useAppTheme();
+  let isSmallDevice = false;
+  let isMediumDevice = false;
+  let isLargeDevice = false;
+  let isExtraLargeDevice = false;
 
-  // true if sm devices
-  const isSmallDevice = useMediaQuery(theme.breakpoints.down("sm"));
+  if (theme && theme?.breakpoints) {
+    // true if sm devices
+    isSmallDevice = useMediaQuery(theme?.breakpoints?.down?.("sm") || "sm");
 
-  // true if md devices
-  const isMediumDevice = useMediaQuery(theme.breakpoints.down("md"));
+    // true if md devices
+    isMediumDevice = useMediaQuery(theme?.breakpoints?.down?.("md") || "md");
 
-  // true if lg devices
-  const isLargeDevice = useMediaQuery(theme.breakpoints.down("md"));
+    // true if lg devices
+    isLargeDevice = useMediaQuery(theme?.breakpoints?.down?.("lg") || "lg");
 
-  // true if xl devices
-  const isExtraLargeDevice = useMediaQuery(theme.breakpoints.down("md"));
+    // true if xl devices
+    isExtraLargeDevice = useMediaQuery(
+      theme?.breakpoints?.down?.("xl") || "xl"
+    );
+  }
 
   return useMemo(() => {
     return {

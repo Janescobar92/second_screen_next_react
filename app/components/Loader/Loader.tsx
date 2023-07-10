@@ -1,3 +1,4 @@
+"use client";
 import { GiCartwheel } from "react-icons/gi";
 
 import styles from "./loader.module.css";
@@ -26,9 +27,12 @@ interface Props {
  *
  * @returns {React.Element} The React element representing the Loader component.
  */
-function Loader(props: Props): JSX.Element {
-  const { color, fontSize, LoadingText, showText } = props;
-
+function Loader({
+  color = "#ffffff",
+  fontSize = "3rem",
+  LoadingText = "Cargando...",
+  showText = false,
+}: Props): JSX.Element {
   return (
     <div className={styles.loaderContianer}>
       <GiCartwheel className={styles.wheel} style={{ color, fontSize }} />
@@ -38,12 +42,5 @@ function Loader(props: Props): JSX.Element {
     </div>
   );
 }
-
-Loader.defaultProps = {
-  color: "#ffffff",
-  fontSize: "3rem",
-  LoadingText: "Cargando...",
-  showText: false,
-};
 
 export default Loader;

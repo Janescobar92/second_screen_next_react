@@ -3,8 +3,10 @@ import { MouseEvent } from "react";
 import { IconButton, styled } from "@mui/material";
 
 interface Props {
-  id: string;
+  backGroundColor?: string;
   children: string | JSX.Element;
+  hide?: boolean;
+  id: string;
   onClick: (e: MouseEvent) => void;
 }
 
@@ -14,18 +16,29 @@ interface Props {
  * @returns {JSX.Element} - The rendered component.
  */
 function ContainedIconButton(props: Props): JSX.Element {
-  const { children, id, onClick } = props;
+  const { backGroundColor, children, hide, id, onClick } = props;
 
   return (
-    <StyledIconButton id={id} onClick={onClick}>
+    <StyledIconButton
+      backGroundColor={backGroundColor}
+      id={id}
+      hide={hide}
+      onClick={onClick}
+    >
       {children}
     </StyledIconButton>
   );
 }
 
-const StyledIconButton = styled(IconButton)(({ theme }) => ({
-  borderRadius: 20,
-  background: theme.palette.background.paper,
-}));
+const StyledIconButton = styled(IconButton, {
+  shouldForwardProp: (prop) => prop !== "backGroundColor" && prop !== "hide",
+})<{ backGroundColor?: string; hide?: boolean }>(
+  ({ theme, backGroundColor, hide }) => ({
+    borderRadius: 15,
+    color: theme.palette.background.paper,
+    background: backGroundColor || theme.palette.primary.dark,
+    visibility: hide ? "hidden" : "visible",
+  })
+);
 
 export default ContainedIconButton;

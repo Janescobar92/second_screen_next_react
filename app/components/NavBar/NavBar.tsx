@@ -1,11 +1,14 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
-import { AppBar, Toolbar, IconButton } from "@mui/material";
+import { AppBar, Toolbar } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 import { AppThemeProvider } from "@/app/providers";
 import { SettingsButton } from "../SettingsButton";
+import { ContainedIconButton } from "../ContainedIconButton";
+import { ROUTES } from "@/app/constants";
+import useAppTheme from "@/app/Hooks/useAppTheme";
 
 /**
  * Navigation bar component.
@@ -15,6 +18,8 @@ import { SettingsButton } from "../SettingsButton";
  */
 function NavBar(): JSX.Element {
   const router = useRouter();
+  const pathname = usePathname();
+  const theme = useAppTheme();
 
   /**
    * Handles the go back action.
@@ -33,17 +38,14 @@ function NavBar(): JSX.Element {
         elevation={0}
       >
         <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
-          <IconButton
+          <ContainedIconButton
+            backGroundColor={theme.custom.IBBackground.light}
             id="go-back-button"
-            size="large"
-            edge="start"
-            color="secondary"
-            aria-label="go back"
-            sx={{ mr: 2 }}
+            hide={pathname === ROUTES.home}
             onClick={handleGoBack}
           >
-            <ArrowBackIosIcon />
-          </IconButton>
+            <ArrowBackIosIcon sx={{ ml: 1 }} />
+          </ContainedIconButton>
           <SettingsButton />
         </Toolbar>
       </AppBar>

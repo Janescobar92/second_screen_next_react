@@ -126,7 +126,13 @@ function WebSocketComponent(): JSX.Element {
     };
   }, [config]); // Add config as dependencies of useEffect.
 
-  return <div id="web-sockets-component">{`WS Server conection attemps: ${attempts}`}</div>;
+  return (
+    <div id="web-sockets-component">
+      {process.env.NODE_ENV === "development" && (
+        <span>{`WS Server conection attemps: ${attempts}`}</span>
+      )}
+    </div>
+  );
 }
 
 export default WebSocketComponent;

@@ -7,7 +7,7 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.grid}>
         <CompanyLogo />
-        <MessageBox content="HOLA MUNDO" />
+        <MessageBox content="Hola mundo, esto es una prueba" />
       </div>
     </main>
   );

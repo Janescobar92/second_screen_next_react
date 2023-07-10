@@ -1,10 +1,11 @@
 "use client";
-import { Roboto } from "next/font/google";
+import { Lato } from "next/font/google";
 import { createTheme } from "@mui/material/styles";
 import { red } from "@mui/material/colors";
+import { ExtendedThemeOptions } from "./interfaces/theme";
 
-export const roboto = Roboto({
-  weight: ["300", "400", "500", "700"],
+export const lato = Lato({
+  weight: ["100", "300", "400", "700", "900"],
   subsets: ["latin"],
   display: "swap",
   fallback: ["Helvetica", "Arial", "sans-serif"],
@@ -24,7 +25,7 @@ const DEFAULT_THEME = createTheme({
     },
   },
   typography: {
-    fontFamily: roboto.style.fontFamily,
+    fontFamily: lato.style.fontFamily,
   },
   breakpoints: {
     values: {
@@ -35,12 +36,19 @@ const DEFAULT_THEME = createTheme({
       xl: 1536,
     },
   },
-});
+  custom: {
+    IBBackground: {
+      light: "#a9d136",
+      main: "#9cc32c",
+    },
+  },
+} as ExtendedThemeOptions);
 
 export const AURGI_THEME = createTheme({
   palette: {
     primary: {
       main: "#aed13b",
+      dark: "#9cc32c",
     },
     secondary: {
       main: "#1b4f89",
@@ -50,7 +58,7 @@ export const AURGI_THEME = createTheme({
     },
   },
   typography: {
-    fontFamily: roboto.style.fontFamily,
+    fontFamily: lato.style.fontFamily,
   },
   breakpoints: {
     values: {
@@ -61,8 +69,15 @@ export const AURGI_THEME = createTheme({
       xl: 1536,
     },
   },
-});
+  custom: {
+    IBBackground: {
+      light: "#a9d136",
+      main: "#9cc32c",
+    },
+  },
+} as ExtendedThemeOptions);
 
+// TODO: update colors.
 export const MOTORTOWN_THEME = createTheme({
   palette: {
     primary: {
@@ -76,7 +91,7 @@ export const MOTORTOWN_THEME = createTheme({
     },
   },
   typography: {
-    fontFamily: roboto.style.fontFamily,
+    fontFamily: lato.style.fontFamily,
   },
   breakpoints: {
     values: {
@@ -87,6 +102,12 @@ export const MOTORTOWN_THEME = createTheme({
       xl: 1536,
     },
   },
-});
+  custom: {
+    IBBackground: {
+      light: "#a9d136",
+      main: "#9cc32c",
+    },
+  },
+} as ExtendedThemeOptions);
 
 export default DEFAULT_THEME;

@@ -6,7 +6,18 @@ interface Props {
 
 function MessageBox(props: Props) {
   const { content } = props;
-  return <div className={styles.container}>{content}</div>;
+  const words = content.split(" ");
+  const firstWord = `${words[0]} `;
+  const restOfText = words.slice(1).join(" ");
+
+  return (
+    <div className={styles.container}>
+      <p>
+        <span className={styles.firstWord}>{firstWord}</span>
+        <span className={styles.restOfText}>{restOfText}</span>
+      </p>
+    </div>
+  );
 }
 
 export default MessageBox;

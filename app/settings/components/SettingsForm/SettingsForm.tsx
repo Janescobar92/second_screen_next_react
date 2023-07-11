@@ -9,14 +9,14 @@ import {
   FieldInputProps,
   FormikProps,
 } from "formik";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, MenuItem } from "@mui/material";
 import { Config } from "@/app/interfaces";
 import { AppThemeProvider } from "@/app/providers";
 
 import styles from "./settingsForm.module.css";
 
 import { CONFIG_API_URL } from "@/app/constants/config";
-import { validationSchema } from "./constants";
+import { COMPANY_VALUES, validationSchema } from "./constants";
 import { SettingsFormFields } from "./interfaces";
 import { Loader } from "@/app/components";
 
@@ -90,6 +90,52 @@ function SettingsForm() {
             <>
               <div id="settings-form-inputs-container">
                 {formFields.map((f) => {
+                  if (f.name === "COMPANY") {
+                    return (
+                      <Field name={f.name} key={f.name}>
+                        {({
+                          field,
+                          form,
+                        }: FieldProps<{
+                          field: FieldInputProps<{ [x: string]: string }>;
+                          form: FormikProps<SettingsFormFields>;
+                        }>) => {
+                          const fieldName = field.name;
+
+                          return (
+                            <TextField
+                              error={
+                                !!form.touched[fieldName] &&
+                                !!form.errors[fieldName]
+                              }
+                              fullWidth
+                              id="company-select-input"
+                              select
+                              label={f.label}
+                              helperText={
+                                (!!form.touched[fieldName] &&
+                                  (form.errors[fieldName] as string)) ||
+                                " "
+                              }
+                              value={field.value}
+                              onChange={({ target }) => {
+                                form.setFieldValue(fieldName, target.value);
+                              }}
+                            >
+                              {COMPANY_VALUES.map((option) => (
+                                <MenuItem
+                                  key={option.value}
+                                  value={option.value}
+                                >
+                                  {option.label}
+                                </MenuItem>
+                              ))}
+                            </TextField>
+                          );
+                        }}
+                      </Field>
+                    );
+                  }
                   return (
                     <Field name={f.name} key={f.name}>
                       {({

@@ -1,26 +1,9 @@
 "use client";
-import useSWR from "swr";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Socket, io } from "socket.io-client";
 
-import { CONFIG_API_URL } from "@/app/constants/config";
-import { Config } from "@/app/interfaces";
-
-/**
- * Fetcher function for useSWR.
- * @param {string} url - The URL to fetch.
- * @param {string} [method] - The HTTP method to use.
- * @param {string} [body] - The body of the request.
- * @returns {Promise<Config>} - The data from the response.
- */
-const fetcher = async (
-  url: string,
-  method?: string,
-  body?: string
-): Promise<Config> => {
-  const res = await fetch(url, { method, body });
-  return await res.json();
-};
+import { ConfigContext } from "@/app/providers/ConfigProvider/ConfigProvider";
+import error from "next/error";
 
 /**
  * WebSocketComponent is a React component that connects to a WebSocket server.
@@ -30,8 +13,7 @@ const fetcher = async (
  * @returns {JSX.Element} - The rendered component.
  */
 function WebSocketComponent(): JSX.Element {
-  // Fetch the configuration data.
-  const { data: config, error } = useSWR(CONFIG_API_URL, fetcher);
+  const { state: config } = useContext(ConfigContext);
 
   // Create a ref to hold the WebSocket connection.
   const ws = useRef<null | Socket>(null);
@@ -44,8 +26,8 @@ function WebSocketComponent(): JSX.Element {
    * @returns {Socket | null} - The new socket connection, or null if the server port is not defined.
    */
   const createSocket = (): Socket | null => {
-    if (config?.WS_SERVER_PORT) {
-      return io(config.WS_SERVER_PORT, {
+    if (config?.ws_server_port) {
+      return io(config.ws_server_port, {
         autoConnect: true,
         reconnection: false,
       });
@@ -65,7 +47,7 @@ function WebSocketComponent(): JSX.Element {
 
       ws.current?.on("connect", () => {
         console.log("Connected to WS Server.");
-        ws.current?.emit("register_client_in_room", config?.WS_ROOM);
+        ws.current?.emit("register_client_in_room", config?.ws_room);
         setAttempts(0); // Reset the attempts count on successful connection.
       });
 

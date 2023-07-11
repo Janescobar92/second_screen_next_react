@@ -9,7 +9,7 @@
 }
 
 .button {
-    min-width: 10rem;
-    height: 3rem;
-    border-radius: var(--border-radius);
+    min-width: 10rem !important;
+    height: 3rem !important;
+    border-radius: var(--border-radius) !important;
 }

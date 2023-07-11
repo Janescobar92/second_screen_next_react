@@ -1,3 +1,4 @@
+"use client";
 import "./globals.css";
 import { Inter } from "next/font/google";
 
@@ -7,6 +8,8 @@ import {
   ServiceWorkerComponent,
   WebSocketComponent,
 } from "./components";
+import { ConfigProvider } from "./providers/ConfigProvider";
+import { AppThemeProvider } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,7 +18,7 @@ export const metadata = {
   description: "Anjana TPV pantalla interactiva",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -26,15 +29,19 @@ export default async function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body id="app-body" className={inter.className}>
-        <header>
-          <nav>
-            <NavBar />
-          </nav>
-        </header>
-        <Background />
-        <ServiceWorkerComponent />
-        <WebSocketComponent />
-        {children}
+        <ConfigProvider>
+          <AppThemeProvider>
+            <header>
+              <nav>
+                <NavBar />
+              </nav>
+            </header>
+            <Background />
+            <ServiceWorkerComponent />
+            <WebSocketComponent />
+            {children}
+          </AppThemeProvider>
+        </ConfigProvider>
       </body>
     </html>
   );

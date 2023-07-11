@@ -6,7 +6,7 @@
 .button {
     min-width: 10rem;
     height: 3rem;
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius) !important;
     color: var(--background-paper)
 }
 

@@ -5,7 +5,6 @@ import SettingsIcon from "@mui/icons-material/Settings";
 
 import { LoginDialog } from "../LoginDialog";
 import { ContainedIconButton } from "../ContainedIconButton";
-import { AppThemeProvider } from "@/app/providers";
 
 interface Props {
   hide?: boolean;
@@ -38,18 +37,16 @@ function SettingsButton(props: Props): JSX.Element {
   };
 
   return (
-    <AppThemeProvider>
-      <div id="settings-container">
-        <ContainedIconButton
-          hide={hide}
-          id="settings-button"
-          onClick={handleClick}
-        >
-          <SettingsIcon id="settings-button-icon" />
-        </ContainedIconButton>
-        <LoginDialog open={open} onShow={handleShow} />
-      </div>
-    </AppThemeProvider>
+    <div id="settings-container">
+      <ContainedIconButton
+        hide={hide}
+        id="settings-button"
+        onClick={handleClick}
+      >
+        <SettingsIcon id="settings-button-icon" />
+      </ContainedIconButton>
+      <LoginDialog open={open} onShow={handleShow} />
+    </div>
   );
 }
 

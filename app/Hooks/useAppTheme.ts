@@ -1,14 +1,13 @@
 import { useState, useEffect, useMemo } from "react";
 import useCompany from "./useCompany";
-// TODO: REMOVE MOCK
-import { AURGI } from "../constants";
+
 import DEFAULT_THEME, { AURGI_THEME, MOTORTOWN_THEME } from "../theme";
 import { ExtendedThemeOptions } from "../interfaces/theme";
 
 /**
  * Custom hook used to get current app theme.
  */
-const useAppTheme = (tpvCompany = AURGI) => {
+const useAppTheme = (tpvCompany: string) => {
   const { isAurgiApp, isMTApp } = useCompany(tpvCompany);
   const [theme, setTheme] = useState(DEFAULT_THEME);
 

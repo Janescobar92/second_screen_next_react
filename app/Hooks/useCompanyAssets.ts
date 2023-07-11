@@ -1,13 +1,11 @@
 import { useMemo } from "react";
 import useCompany from "./useCompany";
-// TODO: REMOVE MOCK
-import { AURGI, MOTORTOWN } from "../constants";
 
 /**
  * Custom hook used to get current app background and company logo.
  */
-const useCompanyAssets = (tpvCompany = AURGI) => {
-  const { isAurgiApp, isMTApp } = useCompany(tpvCompany);
+const useCompanyAssets = (company: string) => {
+  const { isAurgiApp, isMTApp } = useCompany(company);
 
   let backgroundImage = "";
   let companyLogo = "";
@@ -22,8 +20,11 @@ const useCompanyAssets = (tpvCompany = AURGI) => {
   }
 
   return useMemo(() => {
-    return { backgroundImage, companyLogo };
-  }, [backgroundImage, companyLogo]);
+    return {
+      backgroundImage,
+      companyLogo,
+    };
+  }, [backgroundImage, companyLogo, company]);
 };
 
 export default useCompanyAssets;

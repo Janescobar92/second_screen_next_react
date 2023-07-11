@@ -1,7 +1,6 @@
 "use client";
 import { Lato } from "next/font/google";
 import { createTheme } from "@mui/material/styles";
-import { red } from "@mui/material/colors";
 import { ExtendedThemeOptions } from "./interfaces/theme";
 
 export const lato = Lato({
@@ -15,13 +14,15 @@ export const lato = Lato({
 const DEFAULT_THEME = createTheme({
   palette: {
     primary: {
-      main: "#aed13b",
+      light: "#4dabf5",
+      main: "#2196f3",
+      dark: "#1769aa",
+      contrastText: "#ffffff",
     },
     secondary: {
-      main: "#1b4f89",
-    },
-    error: {
-      main: red.A400,
+      light: "#1b4f89",
+      main: "#002a5f",
+      contrastText: "#ffffff",
     },
   },
   typography: {
@@ -72,14 +73,16 @@ const DEFAULT_THEME = createTheme({
 export const AURGI_THEME = createTheme({
   palette: {
     primary: {
+      light: "#d5e895",
       main: "#aed13b",
-      dark: "#9cc32c",
+      dark: "#7d9d0f",
+      contrastText: "#000000", // '#f5f5f5',
     },
     secondary: {
+      light: "#81a9d8",
       main: "#1b4f89",
-    },
-    error: {
-      main: red.A400,
+      dark: "#002a5f",
+      contrastText: "#ffffff",
     },
   },
   typography: {
@@ -131,13 +134,16 @@ export const AURGI_THEME = createTheme({
 export const MOTORTOWN_THEME = createTheme({
   palette: {
     primary: {
-      main: "#aed13b",
+      light: "#d80013",
+      main: "#b80010",
+      dark: "#82000b",
+      contrastText: "#ffffff", // '#f5f5f5',
     },
     secondary: {
-      main: "#1b4f89",
-    },
-    error: {
-      main: red.A400,
+      light: "#ffffff",
+      main: "#12151a",
+      dark: "#b1b1b1",
+      contrastText: "#ffffff",
     },
   },
   typography: {

@@ -4,22 +4,21 @@
 }
 
 .button {
-    min-width: 10rem;
-    height: 3rem;
+    min-width: 10rem !important;
+    height: 3rem !important;
     border-radius: var(--border-radius) !important;
     color: var(--background-paper)
 }
 
 .formContainer {
-    background-color: var(--background-paper);
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
-    padding: 1rem;
-    height: auto;
-    width: 100%
+    background-color: var(--background-paper) !important;
+    border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
+    height: auto !important;
+    width: 100% !important;
 }
 
 @media (min-width: 700px) {
     .formContainer {
-        padding: 2rem 3rem;
+        padding: 2rem 3rem !important;
     }
 }

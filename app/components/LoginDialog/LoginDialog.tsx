@@ -131,7 +131,6 @@ function LoginDialog(props: Props): JSX.Element {
             <Button
               className={styles.button}
               color="secondary"
-              disableElevation
               id="submit-login-button"
               type="submit"
               variant="contained"
@@ -142,7 +141,6 @@ function LoginDialog(props: Props): JSX.Element {
             <Button
               className={styles.button}
               color="primary"
-              disableElevation
               id="cancel-login-button"
               variant="contained"
               onClick={handleClose}

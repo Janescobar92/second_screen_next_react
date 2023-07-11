@@ -20,7 +20,6 @@ export async function getConfigFilePath() {
  * @param {Config} values - The configuration values to write.
  */
 export async function writeFile(values: Config) {
-  console.log({ values });
   fs.writeFileSync(await getConfigFilePath(), JSON.stringify(values, null, 2));
 }
 

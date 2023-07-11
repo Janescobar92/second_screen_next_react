@@ -3,7 +3,6 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { Socket, io } from "socket.io-client";
 
 import { ConfigContext } from "@/app/providers/ConfigProvider/ConfigProvider";
-import error from "next/error";
 
 /**
  * WebSocketComponent is a React component that connects to a WebSocket server.
@@ -92,7 +91,7 @@ function WebSocketComponent(): JSX.Element {
 
   // When the component mounts or the config changes, connect to the WebSocket server.
   useEffect(() => {
-    if (!error && config) {
+    if (config) {
       // If the socket is already connected, disconnect it before creating a new one.
       if (ws.current) {
         ws.current.disconnect();

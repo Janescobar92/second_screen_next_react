@@ -11,7 +11,7 @@ import {
 } from "formik";
 import { TextField, Button, MenuItem } from "@mui/material";
 
-import { ConfigContext } from "@/app/providers/ConfigProvider/ConfigProvider";
+import { ConfigContext } from "@/app/providers";
 
 import styles from "./settingsForm.module.css";
 

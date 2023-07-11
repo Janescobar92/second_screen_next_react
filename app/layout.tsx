@@ -8,8 +8,7 @@ import {
   ServiceWorkerComponent,
   WebSocketComponent,
 } from "./components";
-import { ConfigProvider } from "./providers/ConfigProvider";
-import { AppThemeProvider } from "./providers";
+import { AppThemeProvider, ConfigProvider, WSProvider } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,8 +37,10 @@ export default function RootLayout({
             </header>
             <Background />
             <ServiceWorkerComponent />
-            <WebSocketComponent />
-            {children}
+            <WSProvider>
+              <WebSocketComponent />
+              {children}
+            </WSProvider>
           </AppThemeProvider>
         </ConfigProvider>
       </body>

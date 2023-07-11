@@ -2,7 +2,7 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Socket, io } from "socket.io-client";
 
-import { ConfigContext } from "@/app/providers/ConfigProvider/ConfigProvider";
+import { ConfigContext,WSServerContext } from "@/app/providers";
 
 /**
  * WebSocketComponent is a React component that connects to a WebSocket server.
@@ -13,7 +13,7 @@ import { ConfigContext } from "@/app/providers/ConfigProvider/ConfigProvider";
  */
 function WebSocketComponent(): JSX.Element {
   const { state: config } = useContext(ConfigContext);
-
+  const { state: wsState } = useContext(WSServerContext);
   // Create a ref to hold the WebSocket connection.
   const ws = useRef<null | Socket>(null);
 

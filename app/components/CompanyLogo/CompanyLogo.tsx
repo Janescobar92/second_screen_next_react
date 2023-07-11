@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import styles from "./logo.module.css";
 import useCompanyAssets from "@/app/Hooks/useCompanyAssets";
-import { ConfigContext } from "@/app/providers/ConfigProvider/ConfigProvider";
+import { ConfigContext } from "@/app/providers";
 
 /**
  * Component for displaying the company logo.

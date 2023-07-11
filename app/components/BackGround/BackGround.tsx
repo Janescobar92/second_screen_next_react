@@ -3,7 +3,7 @@ import { useContext } from "react";
 
 import { styled } from "@mui/material";
 
-import { ConfigContext } from "@/app/providers/ConfigProvider/ConfigProvider";
+import { ConfigContext } from "@/app/providers";
 
 import useCompanyAssets from "@/app/Hooks/useCompanyAssets";
 import { usePathname } from "next/navigation";

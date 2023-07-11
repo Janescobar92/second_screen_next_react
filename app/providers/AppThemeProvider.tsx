@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { ThemeProvider } from "@mui/material";
 import { ReactNode } from "react";
 import useAppTheme from "../Hooks/useAppTheme";
-import { ConfigContext } from "./ConfigProvider/ConfigProvider";
+import { ConfigContext } from "./ConfigProvider";
 
 interface Props {
   children: ReactNode;

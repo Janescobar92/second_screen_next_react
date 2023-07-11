@@ -2,7 +2,8 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Socket, io } from "socket.io-client";
 
-import { ConfigContext,WSServerContext } from "@/app/providers";
+import { ConfigContext, WSServerContext } from "@/app/providers";
+import { setIncomingMsg } from "@/app/providers/WSProvider/actions";
 
 /**
  * WebSocketComponent is a React component that connects to a WebSocket server.
@@ -13,7 +14,8 @@ import { ConfigContext,WSServerContext } from "@/app/providers";
  */
 function WebSocketComponent(): JSX.Element {
   const { state: config } = useContext(ConfigContext);
-  const { state: wsState } = useContext(WSServerContext);
+  const { dispatch } = useContext(WSServerContext);
+
   // Create a ref to hold the WebSocket connection.
   const ws = useRef<null | Socket>(null);
 
@@ -84,7 +86,7 @@ function WebSocketComponent(): JSX.Element {
     if (ws.current) {
       ws.current.on("second_screen_sample_event", (data) => {
         const payload = JSON.parse(data);
-        console.log(`Received data from ${payload.transmitter}`, { payload });
+        setIncomingMsg(payload, dispatch);
       });
     }
   };

@@ -7,3 +7,4 @@ export { MessageBox } from "./MessageBox";
 export { NavBar } from "./NavBar";
 export { ServiceWorkerComponent } from "./ServiceWorkerComponent";
 export { WebSocketComponent } from "./WebSocketsComponent";
+export { WSMsgHandler } from "./WSMsgHandler";

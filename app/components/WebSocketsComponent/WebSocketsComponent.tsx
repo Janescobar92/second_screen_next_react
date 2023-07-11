@@ -7,7 +7,7 @@ import { setIncomingMsg } from "@/app/providers/WSProvider/actions";
 
 /**
  * WebSocketComponent is a React component that connects to a WebSocket server.
- * It uses the useSWR hook to fetch the configuration for the WebSocket server,
+ * It uses the useContext and ConfigContext hook to get the configuration for the WebSocket server,
  * and then connects to the server. If the configuration changes, it will
  * disconnect from the current server and connect to the new one.
  * @returns {JSX.Element} - The rendered component.

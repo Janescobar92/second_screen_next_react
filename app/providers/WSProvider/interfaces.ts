@@ -1,3 +1,10 @@
+export enum WSPayloadTypes {
+  text = 'text',
+  products = 'products',
+}
+
+export type WSPayloadType = WSPayloadTypes.text | WSPayloadTypes.products;
+
 export interface ActionType {
   type: string;
   payload: WSPayload | null;
@@ -8,6 +15,7 @@ export interface WSPayload {
   room: string;
   room_event: string;
   trasnmitter: string;
+  type: WSPayloadType 
 }
 
 export interface WSState {

@@ -3,12 +3,17 @@ import { useContext } from "react";
 
 import { WSServerContext } from "@/app/providers";
 import { MessageBox } from "../MessageBox";
+import { WSPayloadTypes } from "@/app/providers/WSProvider/interfaces";
 
 function WSMsgHandler() {
   const { state } = useContext(WSServerContext);
-  const msg = (state.incoming?.data || "Bienvenido a nuestra tienda") as string;
+  const { data, type } = state.incoming || {};
 
-  return <MessageBox content={msg} />;
+  if (type === WSPayloadTypes.text) {
+    return <MessageBox content={(data || "") as string} />;
+  }
+
+  return <MessageBox content={"Bienvenido a nuestra tienda"} />;
 }
 
 export default WSMsgHandler;

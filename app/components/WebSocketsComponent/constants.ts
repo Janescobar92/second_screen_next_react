@@ -1,0 +1,1 @@
+export const READ_FROM_TPV_MSG = 'sent_from_tpv';

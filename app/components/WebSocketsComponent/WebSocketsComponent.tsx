@@ -4,6 +4,7 @@ import { Socket, io } from "socket.io-client";
 
 import { ConfigContext, WSServerContext } from "@/app/providers";
 import { setIncomingMsg } from "@/app/providers/WSProvider/actions";
+import { READ_FROM_TPV_MSG } from "./constants";
 
 /**
  * WebSocketComponent is a React component that connects to a WebSocket server.
@@ -84,7 +85,7 @@ function WebSocketComponent(): JSX.Element {
    */
   const handleReadMsg = () => {
     if (ws.current) {
-      ws.current.on("second_screen_sample_event", (data) => {
+      ws.current.on(READ_FROM_TPV_MSG, (data) => {
         const payload = JSON.parse(data);
         setIncomingMsg(payload, dispatch);
       });

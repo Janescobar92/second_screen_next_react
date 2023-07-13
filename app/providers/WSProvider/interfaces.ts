@@ -1,6 +1,8 @@
+import { SuggestedItem } from "@/app/interfaces";
+
 export enum WSPayloadTypes {
-  text = 'text',
-  products = 'products',
+  text = "text",
+  products = "products",
 }
 
 export type WSPayloadType = WSPayloadTypes.text | WSPayloadTypes.products;
@@ -11,11 +13,11 @@ export interface ActionType {
 }
 
 export interface WSPayload {
-  data: null | number | string | Record<string, unknown>;
+  data: null | number | string | Record<string, unknown> | SuggestedItem[];
   room: string;
   room_event: string;
   trasnmitter: string;
-  type: WSPayloadType 
+  type: WSPayloadType;
 }
 
 export interface WSState {

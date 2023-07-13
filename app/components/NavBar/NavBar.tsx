@@ -4,9 +4,13 @@ import { usePathname, useRouter } from "next/navigation";
 import { AppBar, Toolbar } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
+import styles from "./navBar.module.css";
+
+import { ROUTES } from "@/app/constants";
+
 import { SettingsButton } from "../SettingsButton";
 import { ContainedIconButton } from "../ContainedIconButton";
-import { ROUTES } from "@/app/constants";
+import { CompanyLogo } from "../CompanyLogo";
 
 /**
  * Navigation bar component.
@@ -33,7 +37,7 @@ function NavBar(): JSX.Element {
       color="transparent"
       elevation={0}
     >
-      <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
+      <Toolbar className={styles.toolBar}>
         <ContainedIconButton
           id="go-back-button"
           hide={pathname === ROUTES.home}
@@ -41,6 +45,9 @@ function NavBar(): JSX.Element {
         >
           <ArrowBackIosIcon sx={{ ml: 1 }} />
         </ContainedIconButton>
+        <div style={{ marginBottom: -8 }}>
+          <CompanyLogo />
+        </div>
         <SettingsButton hide={pathname === ROUTES.settings} />
       </Toolbar>
     </AppBar>

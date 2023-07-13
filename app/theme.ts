@@ -14,14 +14,15 @@ export const lato = Lato({
 const DEFAULT_THEME = createTheme({
   palette: {
     primary: {
-      light: "#4dabf5",
-      main: "#2196f3",
-      dark: "#1769aa",
-      contrastText: "#ffffff",
+      light: "#d5e895",
+      main: "#aed13b",
+      dark: "#7d9d0f",
+      contrastText: "#000000", // '#f5f5f5',
     },
     secondary: {
-      light: "#1b4f89",
-      main: "#002a5f",
+      light: "#81a9d8",
+      main: "#1b4f89",
+      dark: "#002a5f",
       contrastText: "#ffffff",
     },
   },
@@ -64,6 +65,17 @@ const DEFAULT_THEME = createTheme({
           "& .MuiFormLabel-root": {
             color: "#aed13b", // Label color
           },
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 20,
+          color: "#ffffff",
+          minWidth: "10rem",
+          height: "3rem",
+          fontWeight: 600,
         },
       },
     },
@@ -127,6 +139,17 @@ export const AURGI_THEME = createTheme({
         },
       },
     },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 20,
+          color: "#ffffff",
+          minWidth: "10rem",
+          height: "3rem",
+          fontWeight: 600,
+        },
+      },
+    },
   },
 } as ExtendedThemeOptions);
 
@@ -185,6 +208,17 @@ export const MOTORTOWN_THEME = createTheme({
           "& .MuiFormLabel-root": {
             color: "#aed13b", // Label color
           },
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 20,
+          color: "#ffffff",
+          minWidth: "10rem",
+          height: "3rem",
+          fontWeight: 600,
         },
       },
     },

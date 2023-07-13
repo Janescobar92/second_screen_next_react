@@ -1,18 +1,17 @@
 .logo {
+    height: 7rem;
     position: sticky !important;
-    top: 0;
+    align-self: center;
 }
 
 @media (max-width: 700px) {
     .logo {
-        height: 5rem;
         width: 100%;
     }
 }
 
 @media (min-width: 701px) and (max-width: 1023px) {
     .logo {
-        height: 8rem;
         width: 100%;
     }
 }
@@ -20,7 +19,6 @@
 @media (min-width: 1024px) {
     .logo {
         position: relative;
-        height: 100%;
         width: 100%;
     }
 }

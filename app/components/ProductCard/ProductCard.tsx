@@ -1,29 +1,51 @@
-"use client";
+"use client"
+// Importing React hooks
 import { useContext } from "react";
+
+// Importing components from external libraries
 import Image from "next/image";
 
+// Material UI imports
 import {
-  Button,
   Card,
   CardActions,
   CardContent,
   Typography,
 } from "@mui/material";
 
-import styles from "./productCard.module.css";
-
-import { ConfigContext } from "@/app/providers";
-import { SuggestedItem } from "@/app/interfaces";
+// Importing hooks from the application
 import useCompanyAssets from "@/app/Hooks/useCompanyAssets";
 import useAppTheme from "@/app/Hooks/useAppTheme";
+
+// Importing context providers
+import { ConfigContext } from "@/app/providers";
+
+// Importing components from the same directory
+import { ProductDetailButton } from "./components";
+
+// Importing interfaces
+import { SuggestedItem } from "@/app/interfaces";
+
+// Importing styles
+import styles from "./productCard.module.css";
 
 interface Props {
   suggestedItem: SuggestedItem;
 }
 
+/**
+ * The ProductCard component displays a card with product information.
+ * @param props { suggestedItem: SuggestedItem }
+ * @returns JSX.Element.
+ */
 function ProductCard(props: Props) {
+  // Destructuring props
   const { suggestedItem } = props;
+
+  // Using context to get the application state
   const { state } = useContext(ConfigContext);
+
+  // Using custom hooks to get company assets and theme
   const { companyLogo } = useCompanyAssets(state.company);
   const theme = useAppTheme(state.company);
 
@@ -43,7 +65,12 @@ function ProductCard(props: Props) {
         priority
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography
+          gutterBottom
+          variant="h6"
+          component="div"
+          className={styles.descriptionTag}
+        >
           {suggestedItem.display_name}
         </Typography>
         <Typography
@@ -61,9 +88,7 @@ function ProductCard(props: Props) {
         </Typography>
       </CardContent>
       <CardActions className={styles.cardActionsContianer}>
-        <Button size="small" variant="contained">
-          Ver Producto
-        </Button>
+        <ProductDetailButton product={suggestedItem} />
       </CardActions>
     </Card>
   );

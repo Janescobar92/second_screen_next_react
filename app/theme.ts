@@ -79,6 +79,13 @@ const DEFAULT_THEME = createTheme({
         },
       },
     },
+    MuiDialog: {
+      styleOverrides: {
+        paper: {
+          borderRadius: "20px",
+        },
+      },
+    },
   },
 } as ExtendedThemeOptions);
 
@@ -147,6 +154,13 @@ export const AURGI_THEME = createTheme({
           minWidth: "10rem",
           height: "3rem",
           fontWeight: 600,
+        },
+      },
+    },
+    MuiDialog: {
+      styleOverrides: {
+        paper: {
+          borderRadius: "20px",
         },
       },
     },
@@ -219,6 +233,13 @@ export const MOTORTOWN_THEME = createTheme({
           minWidth: "10rem",
           height: "3rem",
           fontWeight: 600,
+        },
+      },
+    },
+    MuiDialog: {
+      styleOverrides: {
+        paper: {
+          borderRadius: "20px",
         },
       },
     },

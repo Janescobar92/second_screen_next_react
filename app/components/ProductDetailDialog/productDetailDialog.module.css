@@ -1,0 +1,32 @@
+.dialogContentContainer {
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr 1fr;
+}
+
+.imgContainer {
+    width: 10rem;
+    height: 10rem;
+}
+
+.descriptionContainer {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+    flex-direction: column;
+}
+
+.priceContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.priceTag {
+    font-weight: 800 !important;
+    font-size: xx-large !important;
+}
+
+.button {
+    height: 100% !important;
+}

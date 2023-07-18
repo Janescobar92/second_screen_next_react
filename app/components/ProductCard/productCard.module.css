@@ -1,7 +1,9 @@
 .cardContainer {
-    height: fit-content;
-    max-width: 20rem;
+    flex: 0 0 auto;
+    width: 20rem;
+    height: 28rem;
     border-radius: var(--border-radius) !important;
+    margin-left: 0.5rem;
 }
 
 .imgContainer {
@@ -19,9 +21,12 @@
     justify-content: space-between;
 }
 
+.descriptionTag {
+    min-height: 4rem !important;
+}
+
 .priceDescriptionTag {
     align-self: center !important;
-
 }
 
 .priceTag {

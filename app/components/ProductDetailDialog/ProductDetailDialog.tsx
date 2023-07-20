@@ -87,13 +87,13 @@ function ProductDetailDialog(props: Props) {
             className={styles.priceTag}
           >{`${product.total_cost}€`}</Typography>
         </Typography>
-        <Button
+        {/* <Button
           className={styles.button}
           id={`${id}-dialog-add-button`}
           variant="contained"
         >
           <MdOutlineAddShoppingCart style={{ fontSize: "2.5rem" }} />
-        </Button>
+        </Button> */}
       </DialogContent>
     </Dialog>
   );

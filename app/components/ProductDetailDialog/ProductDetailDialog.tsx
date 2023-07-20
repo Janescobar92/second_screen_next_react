@@ -36,7 +36,7 @@ interface Props {
 /**
  * ProductDetailDialog component
  * @param props
- * @returns 
+ * @returns
  */
 function ProductDetailDialog(props: Props) {
   // Destructure props
@@ -48,9 +48,6 @@ function ProductDetailDialog(props: Props) {
   // Use custom hooks to get company assets and theme
   const { companyLogo } = useCompanyAssets(state.company);
   const theme = useAppTheme(state.company);
-
-  // Log product for debugging
-  console.log({ product });
 
   // Return the dialog component
   return (

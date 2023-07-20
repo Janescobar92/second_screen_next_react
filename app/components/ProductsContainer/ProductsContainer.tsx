@@ -45,7 +45,13 @@ function ProductsContainer(props: Props) {
 
   useEffect(() => {
     const handleResize = () => {
-      setCardsPerView(window.innerWidth <= 1024 ? 2 : 3);
+      if (window.innerWidth <= 768) {
+        return setCardsPerView(1);
+      } else if (window.innerWidth <= 1024) {
+        return setCardsPerView(2);
+      } else {
+        return setCardsPerView(3);
+      }
     };
 
     window.addEventListener("resize", handleResize);

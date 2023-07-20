@@ -31,3 +31,7 @@
 .button {
     height: 100% !important;
 }
+
+.productTitle {
+    font-size: var(--product-title) !important;
+}

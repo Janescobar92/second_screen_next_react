@@ -7,7 +7,7 @@ import { useContext } from "react";
 import Image from "next/image";
 
 // Material UI imports
-import { Dialog, DialogContent, Typography, Button } from "@mui/material";
+import { Dialog, DialogContent, Typography, Button, Box } from "@mui/material";
 
 // Icon imports
 import { MdOutlineAddShoppingCart } from "react-icons/md";
@@ -71,22 +71,25 @@ function ProductDetailDialog(props: Props) {
           height={37}
           priority
         />
-        <Typography
-          className={styles.descriptionContainer}
-          color="text.secondary"
-        >
-          <Typography variant="h6" fontWeight={700}>
+        <Box className={styles.descriptionContainer}>
+          <Typography
+            color="text.secondary"
+            className={styles.productTitle}
+            fontWeight={700}
+          >
             {product.display_name}
           </Typography>
-          <Typography variant="body1">{product.display_description}</Typography>
-        </Typography>
-        <Typography className={styles.priceContainer} color="text.secondary">
+          <Typography color="text.secondary" variant="body1">
+            {product.display_description}
+          </Typography>
+        </Box>
+        <Box className={styles.priceContainer}>
           <Typography variant="body1">La unidad por:</Typography>
           <Typography
             color={theme.palette.primary.main}
             className={styles.priceTag}
           >{`${product.total_cost}€`}</Typography>
-        </Typography>
+        </Box>
         {/* <Button
           className={styles.button}
           id={`${id}-dialog-add-button`}

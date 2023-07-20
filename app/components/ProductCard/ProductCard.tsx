@@ -6,7 +6,7 @@ import { useContext } from "react";
 import Image from "next/image";
 
 // Material UI imports
-import { Card, CardActions, CardContent, Typography } from "@mui/material";
+import { Box, Card, CardActions, CardContent, Typography } from "@mui/material";
 
 // Importing hooks from the application
 import useCompanyAssets from "@/app/Hooks/useCompanyAssets";
@@ -64,17 +64,13 @@ function ProductCard(props: Props) {
         <CardContent>
           <Typography
             gutterBottom
-            variant="h6"
             component="div"
+            color="text.secondary"
             className={styles.descriptionTag}
           >
             {suggestedItem.display_name}
           </Typography>
-          <Typography
-            className={styles.cardPriceContainer}
-            variant="body2"
-            color="text.secondary"
-          >
+          <Box className={styles.cardPriceContainer}>
             <Typography className={styles.priceDescriptionTag}>
               La unidad por:
             </Typography>
@@ -82,7 +78,7 @@ function ProductCard(props: Props) {
               color={theme.palette.primary.main}
               className={styles.priceTag}
             >{`${suggestedItem.total_cost}€`}</Typography>
-          </Typography>
+          </Box>
         </CardContent>
         <CardActions className={styles.cardActionsContianer}>
           <ProductDetailButton product={suggestedItem} />

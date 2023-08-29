@@ -3,8 +3,15 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { Socket, io } from "socket.io-client";
 
 import { ConfigContext, WSServerContext } from "@/app/providers";
-import { setIncomingMsg } from "@/app/providers/WSProvider/actions";
+import {
+  setIncomingMsg,
+  setOutgoingMsg,
+} from "@/app/providers/WSProvider/actions";
 import { READ_FROM_TPV_MSG } from "./constants";
+import {
+  WSPayload,
+  WSPayloadTypes,
+} from "@/app/providers/WSProvider/interfaces";
 
 /**
  * WebSocketComponent is a React component that connects to a WebSocket server.
@@ -15,7 +22,8 @@ import { READ_FROM_TPV_MSG } from "./constants";
  */
 function WebSocketComponent(): JSX.Element {
   const { state: config } = useContext(ConfigContext);
-  const { dispatch } = useContext(WSServerContext);
+  const { state, dispatch } = useContext(WSServerContext);
+  const [conected, setConected] = useState<boolean>(false);
 
   // Create a ref to hold the WebSocket connection.
   const ws = useRef<null | Socket>(null);
@@ -50,7 +58,19 @@ function WebSocketComponent(): JSX.Element {
       ws.current?.on("connect", () => {
         console.log("Connected to WS Server.");
         ws.current?.emit("register_client_in_room", config?.ws_room);
+        setConected(true);
         setAttempts(0); // Reset the attempts count on successful connection.
+
+        setOutgoingMsg(
+          {
+            data: "get-suggested-items",
+            room: "TPV",
+            roomEvent: "sent_from_second_screen",
+            trasnmitter: "second_screen",
+            type: WSPayloadTypes.text,
+          },
+          dispatch
+        );
       });
 
       ws.current?.on("connect_error", () => {
@@ -70,15 +90,21 @@ function WebSocketComponent(): JSX.Element {
             return prevAttempts;
           }
         });
+        setConected(false);
       });
     }
   };
 
-  // const handleSendMsg = () => {
-  //   if (ws.current) {
-  //     ws.current.emit("restart_server", { data: "data test" });
-  //   }
-  // };
+  /**
+   * Send messages to WebSocket server.
+   */
+  const handleSendMsg = (details: WSPayload | null) => {
+    if (!details) return;
+    // const { roomEvent } = details;
+    if (ws.current) {
+      ws.current.emit("to_room_event", JSON.stringify(details));
+    }
+  };
 
   /**
    * Listen for messages from the WebSocket server.
@@ -109,6 +135,10 @@ function WebSocketComponent(): JSX.Element {
       ws.current?.disconnect();
     };
   }, [config]); // Add config as dependencies of useEffect.
+
+  useEffect(() => {
+    if (conected) handleSendMsg(state?.outgoing);
+  }, [state?.outgoing, conected]);
 
   return (
     <div id="web-sockets-component">

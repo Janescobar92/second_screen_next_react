@@ -1,0 +1,14 @@
+.recommended,
+.offer,
+.priceRatio {
+    color: var(--background-paper);
+}
+
+.tag {
+    padding: 0.2rem 0.8rem;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+}

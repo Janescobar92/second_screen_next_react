@@ -15,7 +15,7 @@ export interface ActionType {
 export interface WSPayload {
   data: null | number | string | Record<string, unknown> | SuggestedItem[];
   room: string;
-  room_event: string;
+  roomEvent: string;
   trasnmitter: string;
   type: WSPayloadType;
 }

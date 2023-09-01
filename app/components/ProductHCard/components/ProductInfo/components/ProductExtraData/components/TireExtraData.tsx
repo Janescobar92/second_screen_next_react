@@ -60,7 +60,6 @@ function TireExtraData() {
         style={{
           display: "flex",
           alignItems: "center",
-          paddingTop: "1rem",
         }}
       >
         <Image
@@ -107,7 +106,7 @@ function TireExtraData() {
             style={{
               display: "flex",
               alignItems: "center",
-              padding: "0 0.2rem",
+              marginTop: "1rem",
             }}
           >
             <Image
@@ -129,7 +128,6 @@ function TireExtraData() {
         style={{
           display: "flex",
           alignItems: "center",
-          paddingTop: "1rem",
         }}
       >
         {product.main_attributes.snow && (

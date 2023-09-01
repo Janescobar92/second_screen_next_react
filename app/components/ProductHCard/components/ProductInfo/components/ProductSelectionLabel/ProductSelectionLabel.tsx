@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import styles from "./productSelection.module.css";
 
-import ProductInfoContext from "../../context";
+import ProductContext from "../../../../context";
 
 import { Typography, styled } from "@mui/material";
 
@@ -28,7 +28,7 @@ const StyledTypography = styled(Typography, {
 }));
 
 function ProductSelectionLabel() {
-  const product = useContext(ProductInfoContext);
+  const product = useContext(ProductContext);
 
   //TODO: ADD REAL DATA.
   // const { id, logo, selectionLabel } = product;

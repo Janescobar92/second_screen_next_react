@@ -1,7 +1,7 @@
 import { createContext } from "react";
 import { SuggestedItem } from "@/app/interfaces";
 
-const ProductInfoContext = createContext<SuggestedItem>({
+const ProductContext = createContext<SuggestedItem>({
   description: "",
   id: 0,
   imge_url: "",
@@ -24,6 +24,7 @@ const ProductInfoContext = createContext<SuggestedItem>({
   tax_percentage: "",
   allow_automatic_order: false,
   extra_items: [],
+  main_attributes: null,
 });
 
-export default ProductInfoContext;
+export default ProductContext;

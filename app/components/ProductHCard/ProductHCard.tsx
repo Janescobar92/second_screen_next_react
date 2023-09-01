@@ -1,5 +1,5 @@
 // React imports
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 
 // Next.js imports
 import Image from "next/image";
@@ -11,16 +11,15 @@ import useCompanyAssets from "@/app/Hooks/useCompanyAssets";
 // Context imports
 import { ConfigContext } from "@/app/providers";
 
-// Material UI imports
-import { Box, Typography, Button } from "@mui/material";
-
 // Styles imports
 import styles from "./productHCard.module.css";
 
 // Interface imports
 import { SuggestedItem } from "@/app/interfaces";
 
-import { ProductInfo } from "./components/ProductInfo";
+import ProductContext from "./context";
+
+import { ProductInfo, SellInfoBox } from "./components";
 
 interface Props {
   id: string;
@@ -37,36 +36,34 @@ function ProductHCard(props: Props) {
   const { companyLogo } = useCompanyAssets(state.company);
   const theme = useAppTheme(state.company);
 
+  const contextValue = useMemo(() => {
+    return {
+      ...product,
+    };
+  }, [product]);
+
   return (
-    <div
-      id={`${id}-product-horizontal-card`}
-      className={styles.productHCardContainer}
-    >
-      <Image
-        id="logo-container"
-        className={styles.imgContainer}
-        src={companyLogo}
-        alt="Logo"
-        width={180}
-        height={37}
-        priority
-      />
-      <ProductInfo product={product} />
-      <Box className={styles.priceContainer}>
-        <Typography variant="body1" sx={{ textAlign: "center" }}>
-          La unidad por:
-        </Typography>
-        <Typography
-          color={theme.palette.primary.main}
-          className={styles.priceTag}
-        >{`${product.total_cost}€`}</Typography>
-      </Box>
-      <Box className={styles.priceContainer}>
-        <Button id={`${id}-dialog-add-button`} variant="contained">
-          Comprar
-        </Button>
-      </Box>
-    </div>
+    <ProductContext.Provider value={contextValue}>
+      <div
+        id={`${id}-product-horizontal-card`}
+        className={styles.productHCardContainer}
+      >
+        <Image
+          id="logo-container"
+          src={companyLogo}
+          alt="Logo"
+          width={100}
+          height={200}
+          priority
+        />
+        <ProductInfo />
+        <SellInfoBox
+          layout="row"
+          showAction
+          onAction={() => console.log("Buy button clicked")}
+        />
+      </div>
+    </ProductContext.Provider>
   );
 }
 

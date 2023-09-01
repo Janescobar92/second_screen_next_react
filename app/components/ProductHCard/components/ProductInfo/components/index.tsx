@@ -1,3 +1,3 @@
+export { default as InfoContent } from "./InfonContent";
 export { ProductSelectionLabel } from "./ProductSelectionLabel";
-export { default as ProductExtraData } from "./ProductExtraData";
-export { InfoContentHandler } from "./InfoContentHanlder";
+export { ProductExtraData } from "./ProductExtraData";

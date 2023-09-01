@@ -28,7 +28,29 @@ export interface ExtraItem {
   total_cost: string;
 }
 
+export interface MainAttributes {
+  rim: string;
+  brand: string;
+  dB: string;
+  model: string;
+  noise: string;
+  waves: string;
+  width: string;
+  family: string;
+  season: string;
+  runflat: string;
+  universe: string;
+  wet_grip: string;
+  load_index: string;
+  speed_index: string;
+  aspect_ratio: string;
+  fuel_eficiency: string;
+  snow: boolean;
+  ice: boolean;
+}
+
 export interface SuggestedItem {
+  main_attributes: MainAttributes | null;
   description: string;
   id: number;
   imge_url: string;

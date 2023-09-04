@@ -1,8 +1,8 @@
 // React imports
-import { useContext, useMemo } from "react";
+import { Children, isValidElement, useContext, useMemo } from "react";
 
 // Next.js imports
-import Image from "next/image";
+import Image, { ImageProps } from "next/image";
 
 import { Box } from "@mui/material";
 
@@ -23,14 +23,65 @@ import ProductContext from "./context";
 
 import { ProductInfo, SellInfoBox } from "./components";
 import { Label } from "./constants";
+import { CustomChildType, SellInfoContentProps } from "./interfaces";
 
 interface Props {
   id: string;
   product: SuggestedItem;
+  children:
+    | React.ReactElement<CustomChildType>[]
+    | React.ReactElement<CustomChildType>;
 }
 
+const ProductImage = (props: ImageProps) => {
+  // TODO: REMOVE
+  // Use context to get state
+  const { state } = useContext(ConfigContext);
+  const { companyLogo } = useCompanyAssets(state.company);
+
+  return (
+    <Image
+      id={props.id}
+      src={companyLogo}
+      alt={props.alt}
+      width={100}
+      height={200}
+      priority
+    />
+  );
+};
+const ProductInfoContent = () => <ProductInfo />;
+
+const SellInfoContent = (props: SellInfoContentProps) => (
+  <SellInfoBox
+    actionLabel={props.actionLabel}
+    layout={props.layout}
+    showAction={props.showAction}
+    onAction={props.onAction}
+  />
+);
+
 function ProductHCard(props: Props) {
-  const { id, product } = props;
+  const { id, product, children } = props;
+
+  const childrenArray = Children.toArray(children);
+  console.log({ childrenArray });
+
+  const image = childrenArray?.find(
+    (child) =>
+      isValidElement(child) && "hasImage" in (child.type as CustomChildType)
+  );
+
+  const productInfo = childrenArray?.find(
+    (child) =>
+      isValidElement(child) &&
+      "hasProductInfo" in (child.type as CustomChildType)
+  );
+
+  const sellInfo = childrenArray?.find(
+    (child) =>
+      isValidElement(child) && "hasSellInfo" in (child.type as CustomChildType)
+  );
 
   // TODO REMOVE THIS MOCK.
   product.main_attributes = {
@@ -59,9 +110,6 @@ function ProductHCard(props: Props) {
 
   // Use context to get state
   const { state } = useContext(ConfigContext);
-
-  // Use custom hooks to get company assets and theme
-  const { companyLogo } = useCompanyAssets(state.company);
   const theme = useAppTheme(state.company);
 
   const contextValue = useMemo(() => {
@@ -91,23 +139,23 @@ function ProductHCard(props: Props) {
         className={styles.productHCardContainer}
         sx={{ border: borderStyle }}
       >
-        <Image
-          id="logo-container"
-          src={companyLogo}
-          alt="Logo"
-          width={100}
-          height={200}
-          priority
-        />
-        <ProductInfo />
-        <SellInfoBox
-          layout="row"
-          showAction
-          onAction={() => console.log("Buy button clicked")}
-        />
+        <>
+          {image && <>{image}</>}
+          {productInfo && <>{productInfo}</>}
+          {sellInfo && <>{sellInfo}</>}
+        </>
       </Box>
     </ProductContext.Provider>
   );
 }
+
+ProductImage.hasImage = true;
+ProductHCard.Image = ProductImage;
+
+ProductInfoContent.hasProductInfo = true;
+ProductHCard.ProductInfo = ProductInfoContent;
+
+SellInfoContent.hasSellInfo = true;
+ProductHCard.SellInfo = SellInfoContent;
 
 export default ProductHCard;

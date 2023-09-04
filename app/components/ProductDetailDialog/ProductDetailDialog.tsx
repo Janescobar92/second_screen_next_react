@@ -36,7 +36,23 @@ function ProductDetailDialog(props: Props) {
       onClose={onClose}
     >
       <DialogContent id={`${id}-dialog-content`}>
-        <ProductHCard id={id} product={product} />
+        <ProductHCard id={`${product.id}`} product={product}>
+          <ProductHCard.Image
+            id={`${product.id}`}
+            src={"props.src"}
+            alt={`${product.id}-image`}
+            width={100}
+            height={200}
+            priority
+          />
+          <ProductHCard.ProductInfo />
+          <ProductHCard.SellInfo
+            actionLabel="comprar"
+            layout="row"
+            showAction
+            onAction={() => console.log("Buy button clicked")}
+          />
+        </ProductHCard>
       </DialogContent>
     </Dialog>
   );

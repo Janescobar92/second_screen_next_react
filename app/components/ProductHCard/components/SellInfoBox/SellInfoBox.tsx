@@ -7,11 +7,11 @@ import theme from "@/app/theme";
 import styles from "./sellInfoBox.module.css";
 
 import ProductContext from "../../context";
-
-type Layout = "column" | "row";
+import { SellInfoLayout } from "../../interfaces";
 
 interface Props {
-  layout: Layout;
+  actionLabel: string;
+  layout: SellInfoLayout;
   showAction: boolean;
   onAction: () => void;
 }
@@ -33,16 +33,18 @@ const centered = {
 
 const ContainerBox = styled(Box, {
   shouldForwardProp: (prop) => prop !== "layout" && prop !== "showAction",
-})<{ layout: Layout; showAction: boolean }>(({ layout, showAction }) => {
-  const isRow = layout === "row";
-  const isColumn = layout === "column";
-  if (!showAction) return centered;
-  if (isColumn && showAction) return showButtonAndCol;
-  if (isRow && showAction) return showButtonAndRow;
-});
+})<{ layout: SellInfoLayout; showAction: boolean }>(
+  ({ layout, showAction }) => {
+    const isRow = layout === "row";
+    const isColumn = layout === "column";
+    if (!showAction) return centered;
+    if (isColumn && showAction) return showButtonAndCol;
+    if (isRow && showAction) return showButtonAndRow;
+  }
+);
 
 function SellInfoBox(props: Props) {
-  const { layout, showAction, onAction } = props;
+  const { actionLabel, layout, showAction, onAction } = props;
   const product = useContext(ProductContext);
   const { id } = product;
 
@@ -76,7 +78,7 @@ function SellInfoBox(props: Props) {
             variant="contained"
             onClick={onAction}
           >
-            Comprar
+            {actionLabel}
           </Button>
         </Box>
       )}

@@ -9,7 +9,6 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { MobileStepper } from "@mui/material";
 
 // Local component imports
-import { ProductCard } from "../ProductCard";
 import { ContainedIconButton } from "../ContainedIconButton";
 
 // Local interfaces imports
@@ -17,6 +16,7 @@ import { SuggestedItem } from "@/app/interfaces";
 
 // Styles imports
 import styles from "./productContainer.module.css";
+import { ProductHCard } from "../ProductHCard";
 
 // Destructuring styles for easier access
 const {
@@ -115,7 +115,23 @@ function ProductsContainer(props: Props) {
         </div>
         <div className={productsContainer}>
           {itemsToShow.map((item) => (
-            <ProductCard key={item.nav_id} suggestedItem={item} />
+            <ProductHCard key={item.nav_id} id={`${item.id}`} product={item}>
+              <ProductHCard.Image
+                id={`${item.id}`}
+                src={"props.src"}
+                alt={`${item.id}-image`}
+                width={100}
+                height={200}
+                priority
+              />
+              <ProductHCard.ProductInfo />
+              <ProductHCard.SellInfo
+                actionLabel="comprar"
+                layout="row"
+                showAction
+                onAction={() => console.log("Buy button clicked")}
+              />
+            </ProductHCard>
           ))}
         </div>
         <div>

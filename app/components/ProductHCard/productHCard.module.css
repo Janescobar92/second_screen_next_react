@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 0.5fr 3fr 1fr;
     border-radius: var(--border-radius);
+    background-color: var(--background-paper);
 }
 
 .descriptionContainer {

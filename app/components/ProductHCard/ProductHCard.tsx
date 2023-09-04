@@ -65,7 +65,6 @@ function ProductHCard(props: Props) {
   const { id, product, children } = props;
 
   const childrenArray = Children.toArray(children);
-  console.log({ childrenArray });
 
   const image = childrenArray?.find(
     (child) =>

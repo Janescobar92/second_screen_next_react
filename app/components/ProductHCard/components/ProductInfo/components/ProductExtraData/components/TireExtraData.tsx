@@ -10,31 +10,9 @@ function TireExtraData() {
   const product = useContext(ProductContext);
   const { id } = product;
 
-  // TODO REMOVE THIS MOCK.
-  product.main_attributes = {
-    rim: "16",
-    brand: "1PRECIO",
-    model: "TOYO",
-    noise: "C",
-    dB: "70",
-    waves: "2",
-    width: "205",
-    family: "RUEDAS",
-    season: "summer",
-    runflat: "0",
-    universe: "RUEDAS",
-    wet_grip: "B",
-    load_index: "094",
-    speed_index: "H",
-    aspect_ratio: "55",
-    fuel_eficiency: "C",
-    snow: true,
-    ice: true,
-  };
-
-  const adherenceIcon = `/img/tires_specs/adherence_${product.main_attributes.wet_grip}.svg`;
-  const efficiencyIcon = `/img/tires_specs/efficiency_${product.main_attributes.fuel_eficiency}.svg`;
-  const noiseIcon = `/img/tires_specs/noise_${product.main_attributes.noise}.svg`;
+  const adherenceIcon = `/img/tires_specs/adherence_${product.main_attributes?.wet_grip}.svg`;
+  const efficiencyIcon = `/img/tires_specs/efficiency_${product.main_attributes?.fuel_eficiency}.svg`;
+  const noiseIcon = `/img/tires_specs/noise_${product.main_attributes?.noise}.svg`;
   const snowIcon = `/img/tires_specs/snow.svg`;
   const iceIcon = `/img/tires_specs/ice.svg`;
   const runFlatIcon = `/img/tires_specs/ic-runflat.svg`;
@@ -89,7 +67,7 @@ function TireExtraData() {
               transform: "translate(75%, 10px)",
             }}
           >
-            {`${product.main_attributes.dB}dB`}
+            {`${product.main_attributes?.dB}dB`}
           </Typography>
           <Image
             style={{ width: "5rem", padding: "0 0.2rem" }}
@@ -101,7 +79,7 @@ function TireExtraData() {
             priority
           />
         </div>
-        {product.main_attributes.runflat && (
+        {product.main_attributes?.runflat && (
           <div
             style={{
               display: "flex",
@@ -130,7 +108,7 @@ function TireExtraData() {
           alignItems: "center",
         }}
       >
-        {product.main_attributes.snow && (
+        {product.main_attributes?.snow && (
           <Image
             style={{ width: "2rem", padding: "0 0.2rem" }}
             id={`${id}-snow-img-container`}
@@ -141,7 +119,7 @@ function TireExtraData() {
             priority
           />
         )}
-        {product.main_attributes.ice && (
+        {product.main_attributes?.ice && (
           <Image
             style={{ width: "1.7rem", padding: "0 0.2rem" }}
             id={`${id}-ice-img-container`}

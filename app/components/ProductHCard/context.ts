@@ -2,6 +2,7 @@ import { createContext } from "react";
 import { SuggestedItem } from "@/app/interfaces";
 
 const ProductContext = createContext<SuggestedItem>({
+  label: "",
   description: "",
   id: 0,
   imge_url: "",

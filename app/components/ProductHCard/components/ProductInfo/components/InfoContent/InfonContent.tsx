@@ -1,5 +1,7 @@
 import { Children, JSXElementConstructor, isValidElement } from "react";
 
+import styles from "./infoContent.module.css";
+
 type CustomChildType = {
   isSelectionLabel?: boolean;
   isProductTitle?: boolean;
@@ -34,7 +36,7 @@ function InfoContent(props: Props) {
   );
 
   return (
-    <div>
+    <div className={styles.container}>
       {selectionLabel && <div>{selectionLabel}</div>}
       {productTitle && <div>{productTitle}</div>}
       {isPExtraData && <div>{isPExtraData}</div>}

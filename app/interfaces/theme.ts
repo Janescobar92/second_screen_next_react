@@ -14,6 +14,12 @@ export interface ExtendedThemeOptions extends ThemeOptions {
       dark: string;
       contrastText: string;
     };
+    warning: {
+      light: string;
+      main: string;
+      dark: string;
+      contrastText: string;
+    };
   };
   custom: {
     IBBackground: {

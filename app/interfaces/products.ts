@@ -50,6 +50,8 @@ export interface MainAttributes {
 }
 
 export interface SuggestedItem {
+  // TODO: check if its name is really label.
+  label: string;
   main_attributes: MainAttributes | null;
   description: string;
   id: number;

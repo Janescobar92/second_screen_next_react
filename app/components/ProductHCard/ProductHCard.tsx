@@ -4,6 +4,8 @@ import { useContext, useMemo } from "react";
 // Next.js imports
 import Image from "next/image";
 
+import { Box } from "@mui/material";
+
 // Custom hooks
 import useAppTheme from "@/app/Hooks/useAppTheme";
 import useCompanyAssets from "@/app/Hooks/useCompanyAssets";
@@ -20,6 +22,7 @@ import { SuggestedItem } from "@/app/interfaces";
 import ProductContext from "./context";
 
 import { ProductInfo, SellInfoBox } from "./components";
+import { Label } from "./constants";
 
 interface Props {
   id: string;
@@ -28,6 +31,31 @@ interface Props {
 
 function ProductHCard(props: Props) {
   const { id, product } = props;
+
+  // TODO REMOVE THIS MOCK.
+  product.main_attributes = {
+    rim: "16",
+    brand: "1PRECIO",
+    model: "TOYO",
+    noise: "C",
+    dB: "70",
+    waves: "2",
+    width: "205",
+    family: "RUEDAS",
+    season: "summer",
+    runflat: "0",
+    universe: "RUEDAS",
+    wet_grip: "B",
+    load_index: "094",
+    speed_index: "H",
+    aspect_ratio: "55",
+    fuel_eficiency: "C",
+    snow: true,
+    ice: true,
+  };
+
+  // TODO REMOVE THIS MOCK.
+  product.label = "price_ratio";
 
   // Use context to get state
   const { state } = useContext(ConfigContext);
@@ -42,11 +70,26 @@ function ProductHCard(props: Props) {
     };
   }, [product]);
 
+  const handleBorder = () => {
+    switch (product.label) {
+      case Label.recommended:
+        return `solid 0.2rem ${theme.palette.secondary.main}`;
+
+      case Label.price_ratio:
+        return `solid 0.2rem ${theme.palette.warning.main}`;
+      default:
+        return "";
+    }
+  };
+
+  const borderStyle = handleBorder();
+
   return (
     <ProductContext.Provider value={contextValue}>
-      <div
+      <Box
         id={`${id}-product-horizontal-card`}
         className={styles.productHCardContainer}
+        sx={{ border: borderStyle }}
       >
         <Image
           id="logo-container"
@@ -62,7 +105,7 @@ function ProductHCard(props: Props) {
           showAction
           onAction={() => console.log("Buy button clicked")}
         />
-      </div>
+      </Box>
     </ProductContext.Provider>
   );
 }

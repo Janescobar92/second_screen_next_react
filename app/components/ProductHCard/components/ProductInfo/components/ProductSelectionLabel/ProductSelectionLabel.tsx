@@ -11,7 +11,6 @@ import { Typography, styled } from "@mui/material";
 
 import useAppTheme from "@/app/Hooks/useAppTheme";
 import useCompanyAssets from "@/app/Hooks/useCompanyAssets";
-import { ConfigContext } from "@/app/providers";
 import { Label } from "@/app/components/ProductHCard/constants";
 
 const StyledTypography = styled(Typography, {
@@ -32,12 +31,9 @@ function ProductSelectionLabel() {
   //TODO: ADD REAL DATA.
   // const { id, logo, selectionLabel } = product;
 
-  // Using context to get the application state
-  const { state } = useContext(ConfigContext);
-
   // Using custom hooks to get company assets and theme
-  const { companyLogo } = useCompanyAssets(state.company);
-  const theme = useAppTheme(state.company);
+  const { companyLogo } = useCompanyAssets();
+  const theme = useAppTheme();
 
   //TODO: ADD REAL DATA.
   const { id, label } = product;

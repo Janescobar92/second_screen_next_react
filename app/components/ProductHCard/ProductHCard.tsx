@@ -1,5 +1,5 @@
 // React imports
-import { Children, isValidElement, useContext, useMemo } from "react";
+import { Children, isValidElement, useMemo } from "react";
 
 // Next.js imports
 import Image, { ImageProps } from "next/image";
@@ -9,9 +9,6 @@ import { Box } from "@mui/material";
 // Custom hooks
 import useAppTheme from "@/app/Hooks/useAppTheme";
 import useCompanyAssets from "@/app/Hooks/useCompanyAssets";
-
-// Context imports
-import { ConfigContext } from "@/app/providers";
 
 // Styles imports
 import styles from "./productHCard.module.css";
@@ -35,9 +32,7 @@ interface Props {
 
 const ProductImage = (props: ImageProps) => {
   // TODO: REMOVE
-  // Use context to get state
-  const { state } = useContext(ConfigContext);
-  const { companyLogo } = useCompanyAssets(state.company);
+  const { companyLogo } = useCompanyAssets();
 
   return (
     <Image
@@ -107,9 +102,8 @@ function ProductHCard(props: Props) {
   // TODO REMOVE THIS MOCK.
   product.label = "price_ratio";
 
-  // Use context to get state
-  const { state } = useContext(ConfigContext);
-  const theme = useAppTheme(state.company);
+
+  const theme = useAppTheme();
 
   const contextValue = useMemo(() => {
     return {
@@ -133,7 +127,8 @@ function ProductHCard(props: Props) {
 
   return (
     <ProductContext.Provider value={contextValue}>
-      <Box boxShadow={3}
+      <Box
+        boxShadow={3}
         id={`${id}-product-horizontal-card`}
         className={styles.productHCardContainer}
         sx={{ border: borderStyle }}

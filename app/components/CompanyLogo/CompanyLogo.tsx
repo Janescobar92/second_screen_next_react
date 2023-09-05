@@ -1,10 +1,8 @@
 "use client";
-import { useContext } from "react";
 import Image from "next/image";
 
 import styles from "./logo.module.css";
 import useCompanyAssets from "@/app/Hooks/useCompanyAssets";
-import { ConfigContext } from "@/app/providers";
 
 /**
  * Component for displaying the company logo.
@@ -12,8 +10,7 @@ import { ConfigContext } from "@/app/providers";
  * @returns {JSX.Element} - The rendered component.
  */
 function CompanyLogo(): JSX.Element {
-  const { state } = useContext(ConfigContext);
-  const { companyLogo } = useCompanyAssets(state.company);
+  const { companyLogo } = useCompanyAssets();
 
   return (
     <Image

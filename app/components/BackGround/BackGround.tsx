@@ -1,9 +1,6 @@
 "use client";
-import { useContext } from "react";
 
 import { styled } from "@mui/material";
-
-import { ConfigContext } from "@/app/providers";
 
 import useCompanyAssets from "@/app/Hooks/useCompanyAssets";
 import { usePathname } from "next/navigation";
@@ -37,8 +34,7 @@ const StyledBackground = styled("div", {
  * @returns {JSX.Element} - The rendered component.
  */
 function Background(): JSX.Element {
-  const { state } = useContext(ConfigContext);
-  const { backgroundImage } = useCompanyAssets(state.company);
+  const { backgroundImage } = useCompanyAssets();
   const pathname = usePathname();
 
   return (

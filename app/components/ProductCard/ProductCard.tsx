@@ -1,6 +1,4 @@
 "use client";
-// Importing React hooks
-import { useContext } from "react";
 
 // Importing components from external libraries
 import Image from "next/image";
@@ -11,9 +9,6 @@ import { Box, Card, CardActions, CardContent, Typography } from "@mui/material";
 // Importing hooks from the application
 import useCompanyAssets from "@/app/Hooks/useCompanyAssets";
 import useAppTheme from "@/app/Hooks/useAppTheme";
-
-// Importing context providers
-import { ConfigContext } from "@/app/providers";
 
 // Importing components from the same directory
 import { ProductDetailButton } from "./components";
@@ -38,12 +33,9 @@ function ProductCard(props: Props) {
   // Destructuring props
   const { suggestedItem, personalization } = props;
 
-  // Using context to get the application state
-  const { state } = useContext(ConfigContext);
-
   // Using custom hooks to get company assets and theme
-  const { companyLogo } = useCompanyAssets(state.company);
-  const theme = useAppTheme(state.company);
+  const { companyLogo } = useCompanyAssets();
+  const theme = useAppTheme();
 
   return (
     <div className={personalization}>

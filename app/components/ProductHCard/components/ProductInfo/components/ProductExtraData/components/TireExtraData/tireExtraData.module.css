@@ -10,8 +10,8 @@
 
 .noiseTextStyle {
     position: absolute;
-    font-size: 0.7rem;
-    transform: translate(75%, 10px);
+    font-size: 0.7rem !important;
+    transform: translate(80%, 10px);
 }
 
 .noiseIconStyle {

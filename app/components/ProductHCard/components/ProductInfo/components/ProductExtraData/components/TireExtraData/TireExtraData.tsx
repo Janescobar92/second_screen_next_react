@@ -36,6 +36,7 @@ function TireExtraData() {
   };
 
   const season = handleSeasonLabel();
+  console.log({ product });
 
   return (
     <div>
@@ -59,7 +60,11 @@ function TireExtraData() {
           priority
         />
         <div>
-          <Typography fontWeight={900} className={styles.noiseTextStyle}>
+          <Typography
+            color={theme.palette.primary.contrastText}
+            fontWeight={900}
+            className={styles.noiseTextStyle}
+          >
             {`${product.main_attributes?.dB}dB`}
           </Typography>
           <Image

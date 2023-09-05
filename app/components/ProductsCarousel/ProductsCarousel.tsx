@@ -15,8 +15,8 @@ import { ContainedIconButton } from "../ContainedIconButton";
 import { SuggestedItem } from "@/app/interfaces";
 
 // Styles imports
-import styles from "./productContainer.module.css";
-import { ProductHCard } from "../ProductHCard";
+import styles from "./productsCarousel.module.css";
+import { ProductCard } from "../ProductCard";
 
 // Destructuring styles for easier access
 const {
@@ -115,23 +115,7 @@ function ProductsContainer(props: Props) {
         </div>
         <div className={productsContainer}>
           {itemsToShow.map((item) => (
-            <ProductHCard key={item.nav_id} id={`${item.id}`} product={item}>
-              <ProductHCard.Image
-                id={`${item.id}`}
-                src={"props.src"}
-                alt={`${item.id}-image`}
-                width={100}
-                height={200}
-                priority
-              />
-              <ProductHCard.ProductInfo />
-              <ProductHCard.SellInfo
-                actionLabel="comprar"
-                layout="row"
-                showAction
-                onAction={() => console.log("Buy button clicked")}
-              />
-            </ProductHCard>
+            <ProductCard key={item.nav_id} suggestedItem={item} />
           ))}
         </div>
         <div>

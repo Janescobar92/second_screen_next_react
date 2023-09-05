@@ -5,7 +5,7 @@ export { Loader } from "./Loader";
 export { LoginDialog } from "./LoginDialog";
 export { ProductCard } from "./ProductCard";
 export { ProductDetailDialog } from "./ProductDetailDialog";
-export { ProductsContainer } from "./ProductsContainer";
+export { ProductsCarousel } from "./ProductsCarousel";
 export { MessageBox } from "./MessageBox";
 export { NavBar } from "./NavBar";
 export { ServiceWorkerComponent } from "./ServiceWorkerComponent";

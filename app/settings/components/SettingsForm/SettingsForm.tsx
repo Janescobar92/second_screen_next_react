@@ -15,23 +15,11 @@ import { ConfigContext } from "@/app/providers";
 
 import styles from "./settingsForm.module.css";
 
-import { CONFIG_API_URL } from "@/app/constants/config";
 import { COMPANY_VALUES, validationSchema } from "./constants";
 import { Config } from "@/app/interfaces";
 import { SettingsFormFields } from "./interfaces";
 import { setConfig } from "@/app/providers/ConfigProvider/actions";
-
-/**
- * Fetcher function for useSWR.
- * @param {string} url - The URL to fetch.
- * @param {string} [method] - The HTTP method to use.
- * @param {string} [body] - The body of the request.
- * @returns {Promise<any>} - The data from the response.
- */
-const fetcher = async (url: string, method?: string, body?: string) => {
-  const res = await fetch(url, { method, body });
-  return await res.json();
-};
+import useConfig from "@/app/Hooks/useConfig";
 
 /**
  * SettingsForm is a React component that displays a form to manage settings.
@@ -41,6 +29,7 @@ const fetcher = async (url: string, method?: string, body?: string) => {
  */
 function SettingsForm(): JSX.Element {
   const { state, dispatch } = useContext(ConfigContext);
+  const { writeConfig } = useConfig();
   const config = {
     COMPANY: state.company,
     WS_ROOM: state.ws_room,
@@ -52,12 +41,8 @@ function SettingsForm(): JSX.Element {
    * @param {Config} values - The form values.
    */
   const handleSubmit = async (values: Config) => {
-    try {
-      await fetcher(CONFIG_API_URL, "POST", JSON.stringify(values));
-      setConfig(values, dispatch);
-    } catch (error) {
-      console.error({ error });
-    }
+    writeConfig(values);
+    setConfig(values, dispatch);
   };
 
   // Create form fields based on configuration data

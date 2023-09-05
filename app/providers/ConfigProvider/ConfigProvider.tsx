@@ -9,11 +9,10 @@ import {
 
 // Internal modules or components
 import { ActionType, ConfigState } from "./interfaces";
-import { getConfig } from "./services";
 import reducer from "./reducer";
 import { Loader } from "@/app/components";
-import { CONFIG_API_URL } from "@/app/constants/config";
 import { setConfig } from "./actions";
+import useConfig from "@/app/Hooks/useConfig";
 
 // Initialize the state
 const initialState: ConfigState = {
@@ -33,19 +32,12 @@ export const ConfigContext = createContext<{
 const ConfigProvider = ({ children }: { children: ReactNode }) => {
   // Initialize state and dispatch with useReducer
   const [state, dispatch] = useReducer(reducer, initialState);
+  const { getGlobalConfig } = useConfig();
 
-  // Fetch config on mount and update the state
+  //get config from localStaoage.
   useEffect(() => {
-    const fetcher = async () => {
-      try {
-        const response = await getConfig(CONFIG_API_URL);
-        setConfig(response, dispatch);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetcher();
+    const config = getGlobalConfig();
+    setConfig(config, dispatch);
   }, []);
 
   // Show loading state while config is being fetched

@@ -5,8 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    -webkit-text-stroke: 1px #fff;
-    font-size: 2rem;
+    flex-direction: column;
     font-style: normal;
     line-height: normal;
 }
@@ -17,4 +16,14 @@
 
 .container .restOfText {
     font-weight: 300;
+}
+
+.container .title {
+    font-weight: 800;
+    font-size: 2rem;
+}
+
+.container .subtitle {
+    font-weight: 400;
+    font-size: 2rem;
 }

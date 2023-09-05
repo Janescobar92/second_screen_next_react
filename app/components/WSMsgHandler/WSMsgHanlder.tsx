@@ -12,14 +12,14 @@ function WSMsgHandler() {
   const { data, type } = state.incoming || {};
 
   if (type === WSPayloadTypes.text) {
-    return <MessageBox content={(data || "") as string} />;
+    return <MessageBox title={(data || "") as string} />;
   }
 
   if (type === WSPayloadTypes.products) {
     return <ProductsContainer sugestedItems={data as SuggestedItem[]} />;
   }
 
-  return <MessageBox content={"Bienvenido a nuestra tienda."} />;
+  return <MessageBox title={"Tenemos las MEJORES OPCIONES para ti"} />;
 }
 
 export default WSMsgHandler;

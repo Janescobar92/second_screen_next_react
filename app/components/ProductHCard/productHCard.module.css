@@ -3,6 +3,7 @@
     grid-template-columns: 0.5fr 3fr 1fr;
     border-radius: var(--border-radius);
     background-color: var(--background-paper);
+    margin: 0.5rem 0;
 }
 
 .descriptionContainer {

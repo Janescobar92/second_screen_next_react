@@ -133,7 +133,7 @@ function ProductHCard(props: Props) {
 
   return (
     <ProductContext.Provider value={contextValue}>
-      <Box
+      <Box boxShadow={3}
         id={`${id}-product-horizontal-card`}
         className={styles.productHCardContainer}
         sx={{ border: borderStyle }}

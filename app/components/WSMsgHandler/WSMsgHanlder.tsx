@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { WSServerContext } from "@/app/providers";
 import { MessageBox } from "../MessageBox";
 import { WSPayloadTypes } from "@/app/providers/WSProvider/interfaces";
-import { ProductsCarousel } from "../ProductsCarousel";
+import { ProductsContainer } from "../ProductsContainer";
 import { SuggestedItem } from "@/app/interfaces";
 
 function WSMsgHandler() {
@@ -16,7 +16,7 @@ function WSMsgHandler() {
   }
 
   if (type === WSPayloadTypes.products) {
-    return <ProductsCarousel sugestedItems={data as SuggestedItem[]} />;
+    return <ProductsContainer sugestedItems={data as SuggestedItem[]} />;
   }
 
   return <MessageBox content={"Bienvenido a nuestra tienda."} />;

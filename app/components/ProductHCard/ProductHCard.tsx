@@ -40,7 +40,7 @@ const ProductImage = (props: ImageProps) => {
       src={companyLogo}
       alt={props.alt}
       width={100}
-      height={200}
+      height={150}
       priority
     />
   );

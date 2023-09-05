@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.iconStyles {
+    width: 6rem;
+    padding: 0 0.2rem;
+}
+
+.noiseTextStyle {
+    position: absolute;
+    font-size: 0.7rem;
+    transform: translate(75%, 10px);
+}
+
+.noiseIconStyle {
+    width: 5rem;
+    padding: 0 0.2rem;
+}
+
+.snowIconStyle {
+    width: 2rem;
+    padding: 0 0.2rem;
+    align-self: flex-end;
+}
+
+.iceIconStyle {
+    width: 1.7rem;
+    padding: 0 0.2rem;
+    align-self: flex-end;
+}
+
+.runFlatIconContainer {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.runFlatIcon {
+    width: 2rem;
+}

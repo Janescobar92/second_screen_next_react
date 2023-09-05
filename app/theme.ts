@@ -79,7 +79,7 @@ const DEFAULT_THEME = createTheme({
         root: {
           borderRadius: 20,
           color: "#ffffff",
-          minWidth: "10rem",
+          minWidth: "8rem",
           height: "3rem",
           fontWeight: 600,
         },

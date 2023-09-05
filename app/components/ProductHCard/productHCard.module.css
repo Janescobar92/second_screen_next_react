@@ -4,6 +4,7 @@
     border-radius: var(--border-radius);
     background-color: var(--background-paper);
     margin: 0.5rem 0;
+    max-height: 10rem;
 }
 
 .descriptionContainer {

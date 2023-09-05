@@ -1,12 +1,17 @@
+.actionButton {
+    min-width: 7.5rem !important;
+}
+
 .box {
     display: flex !important;
     justify-content: center;
     align-items: center;
-    padding: 0 0.8rem;
+    padding: 0 1rem;
 }
 
 .priceContainer {
     flex-direction: column;
+    min-width: 9rem;
 }
 
 .priceTag {

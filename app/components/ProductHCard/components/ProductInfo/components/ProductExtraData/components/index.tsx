@@ -1,1 +1,1 @@
-export { default as TireExtraData } from "./TireExtraData";
+export { TireExtraData } from "./TireExtraData";

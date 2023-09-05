@@ -2,9 +2,9 @@ import { useContext } from "react";
 
 import { Box, Typography, Button, styled } from "@mui/material";
 
-import theme from "@/app/theme";
-
 import styles from "./sellInfoBox.module.css";
+
+import useAppTheme from "@/app/Hooks/useAppTheme";
 
 import ProductContext from "../../context";
 import { SellInfoLayout } from "../../interfaces";
@@ -46,6 +46,8 @@ const ContainerBox = styled(Box, {
 function SellInfoBox(props: Props) {
   const { actionLabel, layout, showAction, onAction } = props;
   const product = useContext(ProductContext);
+  const theme = useAppTheme();
+
   const { id } = product;
 
   return (
@@ -59,6 +61,7 @@ function SellInfoBox(props: Props) {
         className={`${styles.box} ${styles.priceContainer}`}
       >
         <Typography
+          color={theme.palette.primary.contrastText}
           id={`${id}-sell-info-box-label`}
           variant="body1"
           sx={{ textAlign: "center" }}
@@ -74,6 +77,7 @@ function SellInfoBox(props: Props) {
       {showAction && (
         <Box id={`${id}-sell-info-box-action-container`} className={styles.box}>
           <Button
+            className={styles.actionButton}
             id={`${id}-sell-info-box-action-button`}
             variant="contained"
             onClick={onAction}

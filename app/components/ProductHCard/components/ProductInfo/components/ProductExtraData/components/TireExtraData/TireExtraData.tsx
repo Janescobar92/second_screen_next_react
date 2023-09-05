@@ -4,10 +4,15 @@ import { useContext } from "react";
 import Image from "next/image";
 
 import { Typography } from "@mui/material";
+
+import useAppTheme from "@/app/Hooks/useAppTheme";
 import ProductContext from "@/app/components/ProductHCard/context";
+
+import styles from "./tireExtraData.module.css";
 
 function TireExtraData() {
   const product = useContext(ProductContext);
+  const theme = useAppTheme();
   const { id } = product;
 
   const adherenceIcon = `/img/tires_specs/adherence_${product.main_attributes?.wet_grip}.svg`;
@@ -34,14 +39,9 @@ function TireExtraData() {
 
   return (
     <div>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
+      <div className={styles.container}>
         <Image
-          style={{ width: "6rem", padding: "0 0.2rem" }}
+          className={styles.iconStyles}
           id={`${id}-efficience-img-container`}
           src={efficiencyIcon}
           alt="Logo"
@@ -50,7 +50,7 @@ function TireExtraData() {
           priority
         />
         <Image
-          style={{ width: "6rem", padding: "0 0.2rem" }}
+          className={styles.iconStyles}
           id={`${id}-adherence-img-container`}
           src={adherenceIcon}
           alt="Logo"
@@ -59,18 +59,11 @@ function TireExtraData() {
           priority
         />
         <div>
-          <Typography
-            fontWeight={900}
-            style={{
-              position: "absolute",
-              fontSize: "0.7rem",
-              transform: "translate(75%, 10px)",
-            }}
-          >
+          <Typography fontWeight={900} className={styles.noiseTextStyle}>
             {`${product.main_attributes?.dB}dB`}
           </Typography>
           <Image
-            style={{ width: "5rem", padding: "0 0.2rem" }}
+            className={styles.noiseIconStyle}
             id={`${id}-noise-img-container`}
             src={noiseIcon}
             alt="Logo"
@@ -79,38 +72,9 @@ function TireExtraData() {
             priority
           />
         </div>
-        {product.main_attributes?.runflat && (
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginTop: "1rem",
-            }}
-          >
-            <Image
-              style={{ width: "3rem" }}
-              id={`${id}-runfla-img-container`}
-              src={runFlatIcon}
-              alt="Logo"
-              width={50}
-              height={50}
-              priority
-            />
-            <Typography fontWeight={900} padding={"0 0.2rem"}>
-              Runflat (Antipinchazos)
-            </Typography>
-          </div>
-        )}
-      </div>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
         {product.main_attributes?.snow && (
           <Image
-            style={{ width: "2rem", padding: "0 0.2rem" }}
+            className={styles.snowIconStyle}
             id={`${id}-snow-img-container`}
             src={snowIcon}
             alt="Logo"
@@ -121,7 +85,7 @@ function TireExtraData() {
         )}
         {product.main_attributes?.ice && (
           <Image
-            style={{ width: "1.7rem", padding: "0 0.2rem" }}
+            className={styles.iceIconStyle}
             id={`${id}-ice-img-container`}
             src={iceIcon}
             alt="Logo"
@@ -129,6 +93,26 @@ function TireExtraData() {
             height={50}
             priority
           />
+        )}
+        {product.main_attributes?.runflat && (
+          <div className={styles.runFlatIconContainer}>
+            <Image
+              className={styles.runFlatIcon}
+              id={`${id}-runflat-img-container`}
+              src={runFlatIcon}
+              alt="Logo"
+              width={50}
+              height={50}
+              priority
+            />
+            <Typography
+              color={theme.palette.primary.contrastText}
+              fontWeight={900}
+              padding={"0 0.2rem"}
+            >
+              Runflat (Antipinchazos)
+            </Typography>
+          </div>
         )}
         <Typography
           color="primary"

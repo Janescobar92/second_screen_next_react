@@ -19,6 +19,8 @@ import { SuggestedItem } from "@/app/interfaces";
 // Importing styles
 import styles from "./productCard.module.css";
 
+import { formatCurrency } from "@/app/utils";
+
 interface Props {
   suggestedItem: SuggestedItem;
   personalization?: string;
@@ -36,6 +38,8 @@ function ProductCard(props: Props) {
   // Using custom hooks to get company assets and theme
   const { companyLogo } = useCompanyAssets();
   const theme = useAppTheme();
+
+  const totalCost = formatCurrency(suggestedItem.total_cost);
 
   return (
     <div className={personalization}>
@@ -69,7 +73,9 @@ function ProductCard(props: Props) {
             <Typography
               color={theme.palette.primary.main}
               className={styles.priceTag}
-            >{`${suggestedItem.total_cost}€`}</Typography>
+            >
+              {totalCost}
+            </Typography>
           </Box>
         </CardContent>
         <CardActions className={styles.cardActionsContianer}>

@@ -5,7 +5,7 @@ import { SALE_DETAIL_ACTIONS } from "./actionsTypes";
 
 // Action to set the selected product for sale detail
 export const setSelectedProduct = (
-  selectedProduct: SuggestedItem,
+  selectedProduct: SuggestedItem | undefined,
   dispatch: Dispatch<ActionType>
 ) => {
   dispatch({

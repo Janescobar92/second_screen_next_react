@@ -6,6 +6,7 @@ export { LoginDialog } from "./LoginDialog";
 export { ProductCard } from "./ProductCard";
 export { ProductDetailDialog } from "./ProductDetailDialog";
 export { ProductsCarousel } from "./ProductsCarousel";
+export { SaleSummaryBox } from "./SaleSummaryBox";
 export { MessageBox } from "./MessageBox";
 export { NavBar } from "./NavBar";
 export { ServiceWorkerComponent } from "./ServiceWorkerComponent";

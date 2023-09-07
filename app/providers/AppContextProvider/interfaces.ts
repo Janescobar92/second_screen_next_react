@@ -18,5 +18,5 @@ export interface AppState {
 
 export interface ActionType {
   type: string;
-  payload: string | ConfigState | SuggestedItem;
+  payload: string | undefined | ConfigState | SuggestedItem;
 }

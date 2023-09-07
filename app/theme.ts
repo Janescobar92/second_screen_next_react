@@ -31,6 +31,12 @@ const DEFAULT_THEME = createTheme({
       dark: "#002a5f",
       contrastText: "#ffffff",
     },
+    error: {
+      light: "#9b2b2b",
+      main: "##9d0f0f",
+      dark: "#960000",
+      contrastText: "#000000",
+    },
   },
   typography: {
     fontFamily: lato.style.fontFamily,
@@ -113,6 +119,12 @@ export const AURGI_THEME = createTheme({
       light: "#81a9d8",
       main: "#f0d700",
       dark: "#002a5f",
+      contrastText: "#000000",
+    },
+    error: {
+      light: "#9b2b2b",
+      main: "#D13A3A",
+      dark: "#960000",
       contrastText: "#000000",
     },
   },
@@ -199,6 +211,12 @@ export const MOTORTOWN_THEME = createTheme({
       main: "#f0d700",
       dark: "#002a5f",
       contrastText: "#ffffff",
+    },
+    error: {
+      light: "#9b2b2b",
+      main: "##9d0f0f",
+      dark: "#960000",
+      contrastText: "#000000",
     },
   },
   typography: {

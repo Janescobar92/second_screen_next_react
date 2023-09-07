@@ -5,6 +5,7 @@ import { Box, Typography, Button, styled } from "@mui/material";
 import styles from "./sellInfoBox.module.css";
 
 import useAppTheme from "@/app/Hooks/useAppTheme";
+import { formatCurrency } from "@/app/utils";
 
 import ProductContext from "../../context";
 import { SellInfoLayout } from "../../interfaces";
@@ -49,6 +50,7 @@ function SellInfoBox(props: Props) {
   const theme = useAppTheme();
 
   const { id } = product;
+  const totalCost = formatCurrency(product?.total_cost);
 
   return (
     <ContainerBox
@@ -72,7 +74,7 @@ function SellInfoBox(props: Props) {
           id={`${id}-sell-info-box-price`}
           color={theme.palette.primary.main}
           className={styles.priceTag}
-        >{`${product.total_cost}€`}</Typography>
+        >{totalCost}</Typography>
       </Box>
       {showAction && (
         <Box id={`${id}-sell-info-box-action-container`} className={styles.box}>

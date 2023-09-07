@@ -8,28 +8,25 @@ import {
 } from "react";
 
 // Internal modules or components
-import { ActionType, ConfigState } from "./interfaces";
+import { ActionType, AppState } from "./interfaces";
 import reducer from "./reducer";
 import { Loader } from "@/app/components";
-import { setConfig } from "./actions";
 import useConfig from "@/app/Hooks/useConfig";
+import { setConfig } from "./actions";
 
 // Initialize the state
-const initialState: ConfigState = {
-  company: "",
-  ws_room: "",
-  ws_server_port: "",
-  loading: true,
+const initialState: AppState = {
+  config: { company: "", ws_room: "", ws_server_port: "", loading: true },
 };
 
 // Create a context for state and dispatch
-export const ConfigContext = createContext<{
-  state: ConfigState;
+export const AppContext = createContext<{
+  state: AppState;
   dispatch: Dispatch<ActionType>;
 }>({ state: initialState, dispatch: () => null });
 
 // Provider component for Config context
-const ConfigProvider = ({ children }: { children: ReactNode }) => {
+const AppContextProvider = ({ children }: { children: ReactNode }) => {
   // Initialize state and dispatch with useReducer
   const [state, dispatch] = useReducer(reducer, initialState);
   const { getGlobalConfig } = useConfig();
@@ -41,7 +38,7 @@ const ConfigProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   // Show loading state while config is being fetched
-  if (state.loading) {
+  if (state.config.loading) {
     return (
       <Loader fontSize="7rem" showText LoadingText="Cargando configuración.." />
     );
@@ -49,10 +46,10 @@ const ConfigProvider = ({ children }: { children: ReactNode }) => {
 
   // Provide the state and dispatch to children
   return (
-    <ConfigContext.Provider value={{ state, dispatch }}>
+    <AppContext.Provider value={{ state, dispatch }}>
       {children}
-    </ConfigContext.Provider>
+    </AppContext.Provider>
   );
 };
 
-export default ConfigProvider;
+export default AppContextProvider;

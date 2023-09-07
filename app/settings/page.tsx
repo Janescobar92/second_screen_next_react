@@ -2,7 +2,7 @@ import styles from "./page.module.css";
 
 import { SettingsForm } from "./components/";
 
-export default async function SettingsView() {
+export default function SettingsView() {
   return (
     <section className={styles.main}>
       <div className={styles.titleContainer}>

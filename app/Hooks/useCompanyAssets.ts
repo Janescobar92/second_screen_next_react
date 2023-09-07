@@ -1,13 +1,13 @@
 import { useContext, useMemo } from "react";
 import useCompany from "./useCompany";
-import { ConfigContext } from "../providers";
+import { AppContext } from "../providers";
 
 /**
  * Custom hook used to get current app background and company logo.
  */
 const useCompanyAssets = () => {
-  const { state } = useContext(ConfigContext);
-  const { isAurgiApp, isMTApp } = useCompany(state.company);
+  const { state } = useContext(AppContext);
+  const { isAurgiApp, isMTApp } = useCompany(state.config.company);
 
   let backgroundImage = "";
   let companyLogo = "";
@@ -26,7 +26,7 @@ const useCompanyAssets = () => {
       backgroundImage,
       companyLogo,
     };
-  }, [backgroundImage, companyLogo, state.company]);
+  }, [backgroundImage, companyLogo, state.config.company]);
 };
 
 export default useCompanyAssets;

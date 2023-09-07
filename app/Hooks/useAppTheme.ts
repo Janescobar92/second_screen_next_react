@@ -3,14 +3,14 @@ import useCompany from "./useCompany";
 
 import DEFAULT_THEME, { AURGI_THEME, MOTORTOWN_THEME } from "../theme";
 import { ExtendedThemeOptions } from "../interfaces/theme";
-import { ConfigContext } from "../providers";
+import { AppContext } from "../providers";
 
 /**
  * Custom hook used to get current app theme.
  */
 const useAppTheme = () => {
-  const { state } = useContext(ConfigContext);
-  const { isAurgiApp, isMTApp } = useCompany(state.company);
+  const { state } = useContext(AppContext);
+  const { isAurgiApp, isMTApp } = useCompany(state.config.company);
   const [theme, setTheme] = useState(DEFAULT_THEME);
 
   const setThemeData = () => {
@@ -24,7 +24,7 @@ const useAppTheme = () => {
 
   useEffect(() => {
     setThemeData();
-  }, [state.company]);
+  }, [state.config.company]);
 
   return useMemo(() => {
     return theme as unknown as ExtendedThemeOptions;

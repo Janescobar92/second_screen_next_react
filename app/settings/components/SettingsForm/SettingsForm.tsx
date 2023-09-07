@@ -11,14 +11,14 @@ import {
 } from "formik";
 import { TextField, Button, MenuItem } from "@mui/material";
 
-import { ConfigContext } from "@/app/providers";
+import { AppContext } from "@/app/providers";
 
 import styles from "./settingsForm.module.css";
 
 import { COMPANY_VALUES, validationSchema } from "./constants";
 import { Config } from "@/app/interfaces";
 import { SettingsFormFields } from "./interfaces";
-import { setConfig } from "@/app/providers/ConfigProvider/actions";
+import { setConfig } from "@/app/providers/AppContextProvider/actions";
 import useConfig from "@/app/Hooks/useConfig";
 
 /**
@@ -28,12 +28,12 @@ import useConfig from "@/app/Hooks/useConfig";
  * @returns {JSX.Element} - The rendered component.
  */
 function SettingsForm(): JSX.Element {
-  const { state, dispatch } = useContext(ConfigContext);
+  const { state, dispatch } = useContext(AppContext);
   const { writeConfig } = useConfig();
   const config = {
-    COMPANY: state.company,
-    WS_ROOM: state.ws_room,
-    WS_SERVER_PORT: state.ws_server_port,
+    COMPANY: state.config.company,
+    WS_ROOM: state.config.ws_room,
+    WS_SERVER_PORT: state.config.ws_server_port,
   };
 
   /**

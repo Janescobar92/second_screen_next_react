@@ -1,3 +1,3 @@
 export { default as AppThemeProvider } from "./AppThemeProvider";
-export { ConfigProvider, ConfigContext } from "./ConfigProvider";
+export { AppContextProvider, AppContext } from "./AppContextProvider";
 export { WSProvider, WSServerContext } from "./WSProvider";

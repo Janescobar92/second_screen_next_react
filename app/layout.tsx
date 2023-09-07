@@ -8,7 +8,7 @@ import {
   ServiceWorkerComponent,
   WebSocketComponent,
 } from "./components";
-import { AppThemeProvider, ConfigProvider, WSProvider } from "./providers";
+import { AppThemeProvider, AppContextProvider, WSProvider } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,7 +28,7 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body id="app-body" className={inter.className}>
-        <ConfigProvider>
+        <AppContextProvider>
           <AppThemeProvider>
             <header>
               <nav>
@@ -42,7 +42,7 @@ export default function RootLayout({
               {children}
             </WSProvider>
           </AppThemeProvider>
-        </ConfigProvider>
+        </AppContextProvider>
       </body>
     </html>
   );

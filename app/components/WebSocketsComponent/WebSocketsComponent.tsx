@@ -2,7 +2,7 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Socket, io } from "socket.io-client";
 
-import { ConfigContext, WSServerContext } from "@/app/providers";
+import { AppContext, WSServerContext } from "@/app/providers";
 import {
   setIncomingMsg,
   setOutgoingMsg,
@@ -15,13 +15,14 @@ import {
 
 /**
  * WebSocketComponent is a React component that connects to a WebSocket server.
- * It uses the useContext and ConfigContext hook to get the configuration for the WebSocket server,
+ * It uses the useContext and AppContext hook to get the configuration for the WebSocket server,
  * and then connects to the server. If the configuration changes, it will
  * disconnect from the current server and connect to the new one.
  * @returns {JSX.Element} - The rendered component.
  */
 function WebSocketComponent(): JSX.Element {
-  const { state: config } = useContext(ConfigContext);
+  const { state: appState } = useContext(AppContext);
+  const { config } = appState;
   const { state, dispatch } = useContext(WSServerContext);
   const [conected, setConected] = useState<boolean>(false);
 

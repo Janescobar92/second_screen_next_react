@@ -1,7 +1,7 @@
 import { Config } from "@/app/interfaces";
 import { Dispatch } from "react";
+import { ActionType } from "../../interfaces";
 import { CONFIG_ACTIONS } from "./actionsTypes";
-import { ActionType } from "./interfaces";
 
 // Action creator for setting the whole config
 export const setConfig = (

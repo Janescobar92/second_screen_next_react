@@ -8,6 +8,10 @@
     padding: 0 0.2rem;
 }
 
+.noiseContainer {
+    position: relative;
+}
+
 .noiseTextStyle {
     position: absolute;
     font-size: 0.7rem !important;

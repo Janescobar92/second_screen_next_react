@@ -59,7 +59,7 @@ function TireExtraData() {
           height={50}
           priority
         />
-        <div>
+        <div className={styles.noiseContainer}>
           <Typography
             color={theme.palette.primary.contrastText}
             fontWeight={900}

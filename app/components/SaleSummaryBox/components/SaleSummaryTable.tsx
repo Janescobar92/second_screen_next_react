@@ -32,14 +32,13 @@ function SaleSummaryTable(props: { product: SuggestedItem }) {
   console.log({ product });
 
   // TODO: REMOVE THIS MOCKED DATA
-  product.hasServices = !!product?.extra_items.length;
-  product.promotion = { name: "Test promo", amount: "38.50" };
+  product.has_services = !!product?.extra_items.length;
+  product.promotion = [{ name: "Test promo", amount: "38.50" }];
   product.services_total_cost = "293.00";
 
-  const promotionPrice = `-${formatCurrency(product?.promotion?.amount)}`;
   const servicesTotalCost = formatCurrency(product?.services_total_cost);
-  const hasService = product.hasServices;
-  const hasPromo = !!product.promotion?.amount;
+  const hasService = product.has_services;
+  const hasPromo = !!product?.promotion.length;
 
   return (
     <div>
@@ -64,19 +63,22 @@ function SaleSummaryTable(props: { product: SuggestedItem }) {
               </TableCellStyled>
             </TableRow>
           )}
-          {/* TODO: MAP for each promo */}
-          {hasPromo && (
-            <TableRow>
-              <TableCellStyled>
-                <TypographyStyled>{product?.promotion?.name}</TypographyStyled>
-              </TableCellStyled>
-              <TableCellStyled align="right">
-                <TypographyStyled sx={{ color: theme.palette.error.main }}>
-                  {promotionPrice}
-                </TypographyStyled>
-              </TableCellStyled>
-            </TableRow>
-          )}
+          {hasPromo &&
+            product.promotion.map((promo) => {
+              const promotionPrice = `-${formatCurrency(promo.amount)}`;
+              return (
+                <TableRow key={`${promo.name}-${promo.amount}`}>
+                  <TableCellStyled>
+                    <TypographyStyled>{promo.name}</TypographyStyled>
+                  </TableCellStyled>
+                  <TableCellStyled align="right">
+                    <TypographyStyled sx={{ color: theme.palette.error.main }}>
+                      {promotionPrice}
+                    </TypographyStyled>
+                  </TableCellStyled>
+                </TableRow>
+              );
+            })}
         </TableBody>
       </Table>
     </div>

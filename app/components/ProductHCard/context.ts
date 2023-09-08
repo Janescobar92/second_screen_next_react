@@ -26,6 +26,9 @@ const ProductContext = createContext<SuggestedItem>({
   allow_automatic_order: false,
   extra_items: [],
   main_attributes: null,
+  has_services: false,
+  promotion: [],
+  services_total_cost: ""
 });
 
 export default ProductContext;

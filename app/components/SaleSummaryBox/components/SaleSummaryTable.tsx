@@ -29,7 +29,6 @@ function SaleSummaryTable(props: { product: SuggestedItem }) {
   const { product } = props;
   const theme = useAppTheme();
   const productPrice = formatCurrency(product?.price);
-  console.log({ product });
 
   // TODO: REMOVE THIS MOCKED DATA
   product.has_services = !!product?.extra_items.length;

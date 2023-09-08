@@ -36,7 +36,6 @@ function TireExtraData() {
   };
 
   const season = handleSeasonLabel();
-  console.log({ product });
 
   return (
     <div>

@@ -3,6 +3,7 @@ export { CompanyLogo } from "./CompanyLogo";
 export { ContainedIconButton } from "./ContainedIconButton";
 export { Loader } from "./Loader";
 export { LoginDialog } from "./LoginDialog";
+export { PriceTag } from "./PriceTag";
 export { ProductCard } from "./ProductCard";
 export { ProductDetailDialog } from "./ProductDetailDialog";
 export { ProductsCarousel } from "./ProductsCarousel";

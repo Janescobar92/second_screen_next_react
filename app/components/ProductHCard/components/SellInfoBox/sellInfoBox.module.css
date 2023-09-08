@@ -13,8 +13,3 @@
     flex-direction: column;
     min-width: 9rem;
 }
-
-.priceTag {
-    font-weight: 600 !important;
-    font-size: xx-large !important;
-}

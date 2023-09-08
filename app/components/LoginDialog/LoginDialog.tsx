@@ -65,7 +65,9 @@ function LoginDialog(props: Props): JSX.Element {
 
   return (
     <Dialog id="login-dialog" open={open} onClose={handleClose}>
-      <DialogTitle id="login-dialog-title">Enter your credentials</DialogTitle>
+      <DialogTitle id="login-dialog-title">
+        Introduzca sus credenciales.
+      </DialogTitle>
       <Formik
         initialValues={{
           [FORM_FIELD_USER]: "",

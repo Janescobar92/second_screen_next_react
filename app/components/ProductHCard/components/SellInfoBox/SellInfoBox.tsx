@@ -5,6 +5,7 @@ import { Box, Typography, Button, styled } from "@mui/material";
 import styles from "./sellInfoBox.module.css";
 
 import useAppTheme from "@/app/Hooks/useAppTheme";
+import { PriceTag } from "@/app/components/PriceTag";
 import { formatCurrency } from "@/app/utils";
 
 import ProductContext from "../../context";
@@ -70,11 +71,7 @@ function SellInfoBox(props: Props) {
         >
           La unidad por:
         </Typography>
-        <Typography
-          id={`${id}-sell-info-box-price`}
-          color={theme.palette.primary.main}
-          className={styles.priceTag}
-        >{totalCost}</Typography>
+        <PriceTag id={`${id}-sell-info-box-price-tag`} price={totalCost} />
       </Box>
       {showAction && (
         <Box id={`${id}-sell-info-box-action-container`} className={styles.box}>

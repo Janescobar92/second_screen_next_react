@@ -8,7 +8,6 @@ import { Box, Card, CardActions, CardContent, Typography } from "@mui/material";
 
 // Importing hooks from the application
 import useCompanyAssets from "@/app/Hooks/useCompanyAssets";
-import useAppTheme from "@/app/Hooks/useAppTheme";
 
 // Importing components from the same directory
 import { ProductDetailButton } from "./components";
@@ -20,6 +19,7 @@ import { SuggestedItem } from "@/app/interfaces";
 import styles from "./productCard.module.css";
 
 import { formatCurrency } from "@/app/utils";
+import { PriceTag } from "../PriceTag";
 
 interface Props {
   suggestedItem: SuggestedItem;
@@ -37,7 +37,6 @@ function ProductCard(props: Props) {
 
   // Using custom hooks to get company assets and theme
   const { companyLogo } = useCompanyAssets();
-  const theme = useAppTheme();
 
   const totalCost = formatCurrency(suggestedItem.total_cost);
 
@@ -70,12 +69,10 @@ function ProductCard(props: Props) {
             <Typography className={styles.priceDescriptionTag}>
               La unidad por:
             </Typography>
-            <Typography
-              color={theme.palette.primary.main}
-              className={styles.priceTag}
-            >
-              {totalCost}
-            </Typography>
+            <PriceTag
+              id={`product-card-${suggestedItem.nav_id}-price-tag`}
+              price={totalCost}
+            />
           </Box>
         </CardContent>
         <CardActions className={styles.cardActionsContianer}>

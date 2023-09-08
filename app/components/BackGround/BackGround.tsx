@@ -1,9 +1,10 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+
 import { styled } from "@mui/material";
 
-import useCompanyAssets from "@/app/Hooks/useCompanyAssets";
-import { usePathname } from "next/navigation";
+import { useCompanyAssets } from "@/app/Hooks";
 import { ROUTES } from "@/app/constants";
 
 /**

@@ -7,8 +7,7 @@ import Image, { ImageProps } from "next/image";
 import { Box } from "@mui/material";
 
 // Custom hooks
-import useAppTheme from "@/app/Hooks/useAppTheme";
-import useCompanyAssets from "@/app/Hooks/useCompanyAssets";
+import { useAppTheme, useCompanyAssets } from "@/app/Hooks";
 
 // Styles imports
 import styles from "./productHCard.module.css";
@@ -101,7 +100,6 @@ function ProductHCard(props: Props) {
 
   // TODO REMOVE THIS MOCK.
   product.label = "price_ratio";
-
 
   const theme = useAppTheme();
 

@@ -2,7 +2,7 @@
 import Image from "next/image";
 
 import styles from "./logo.module.css";
-import useCompanyAssets from "@/app/Hooks/useCompanyAssets";
+import { useCompanyAssets } from "@/app/Hooks";
 
 /**
  * Component for displaying the company logo.

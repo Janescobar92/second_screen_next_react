@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import useAppTheme from "@/app/Hooks/useAppTheme";
+import { useAppTheme } from "@/app/Hooks";
 import { formatCurrency } from "@/app/utils";
 import { SuggestedItem } from "@/app/interfaces";
 

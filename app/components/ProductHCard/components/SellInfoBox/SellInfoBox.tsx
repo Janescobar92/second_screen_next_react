@@ -4,7 +4,7 @@ import { Box, Typography, Button, styled } from "@mui/material";
 
 import styles from "./sellInfoBox.module.css";
 
-import useAppTheme from "@/app/Hooks/useAppTheme";
+import { useAppTheme } from "@/app/Hooks";
 import { PriceTag } from "@/app/components/PriceTag";
 import { formatCurrency } from "@/app/utils";
 

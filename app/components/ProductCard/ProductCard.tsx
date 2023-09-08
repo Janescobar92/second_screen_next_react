@@ -7,7 +7,7 @@ import Image from "next/image";
 import { Box, Card, CardActions, CardContent, Typography } from "@mui/material";
 
 // Importing hooks from the application
-import useCompanyAssets from "@/app/Hooks/useCompanyAssets";
+import { useCompanyAssets } from "@/app/Hooks";
 
 // Importing components from the same directory
 import { ProductDetailButton } from "./components";

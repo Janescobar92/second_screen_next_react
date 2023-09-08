@@ -1,0 +1,41 @@
+.container {
+    width: 32.688rem;
+    height: 30.25rem;
+    padding: 1rem !important;
+}
+
+.actionsContainer {
+    display: flex !important;
+    justify-content: space-evenly !important;
+}
+
+.titleContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+.title {
+    text-transform: uppercase;
+}
+
+.headTitle {
+    font-size: 1.188rem !important;
+}
+
+.mainTitle {
+    font-size: 1.688rem;
+}
+
+.contentContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.boldText {
+    font-weight: 600
+}

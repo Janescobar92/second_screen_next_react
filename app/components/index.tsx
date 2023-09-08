@@ -1,6 +1,8 @@
 export { Background } from "./BackGround";
 export { CompanyLogo } from "./CompanyLogo";
 export { ContainedIconButton } from "./ContainedIconButton";
+export { DialogDividedTitle } from "./DialogDividedTitle";
+export { DialogActions } from "./DialogActions";
 export { Loader } from "./Loader";
 export { LoginDialog } from "./LoginDialog";
 export { PriceTag } from "./PriceTag";
@@ -8,6 +10,7 @@ export { ProductCard } from "./ProductCard";
 export { ProductDetailDialog } from "./ProductDetailDialog";
 export { ProductsCarousel } from "./ProductsCarousel";
 export { SaleSummaryBox } from "./SaleSummaryBox";
+export { ServicesSelectionDialog } from "./ServicesSelectionDialog";
 export { MessageBox } from "./MessageBox";
 export { NavBar } from "./NavBar";
 export { ServiceWorkerComponent } from "./ServiceWorkerComponent";

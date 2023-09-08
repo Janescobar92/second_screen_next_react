@@ -11,7 +11,7 @@ import {
 import { ActionType, AppState } from "./interfaces";
 import reducer from "./reducer";
 import { Loader } from "@/app/components";
-import useConfig from "@/app/Hooks/useConfig";
+import { useConfig } from "@/app/Hooks";
 import { setConfig } from "./actions";
 
 // Initialize the state

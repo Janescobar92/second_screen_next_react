@@ -1,5 +1,5 @@
 "use client";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 import styles from "./page.module.css";
@@ -7,22 +7,37 @@ import styles from "./page.module.css";
 import { AppContext } from "../providers";
 
 import { ROUTES } from "../constants";
-import { MessageBox, SaleSummaryBox } from "../components";
+import {
+  MessageBox,
+  SaleSummaryBox,
+  ServicesSelectionDialog,
+} from "../components";
 import { ProductHCard } from "../components/ProductHCard";
 import { setSelectedProduct } from "../providers/AppContextProvider";
 
 //TODO: check the need of a custom hook to handle the state of the page.
 export default function SaleDetail() {
   const { state, dispatch } = useContext(AppContext);
+  const [showServicesSelection, setShowServicesSelection] = useState(false);
   const pathname = usePathname();
   const { selected_product: product } = state?.sale_details || {};
   const subTitle = product?.item_type;
+  const pageRendered = pathname === ROUTES.sale_details;
+
+  //TODO: CHECK BOOLEAN.
+  const hasServices = !!product?.extra_items?.length;
 
   useEffect(() => {
-    if (pathname !== ROUTES.sale_details) {
+    if (!pageRendered) {
       setSelectedProduct(undefined, dispatch);
     }
-  }, [pathname]);
+  }, [pageRendered]);
+
+  useEffect(() => {
+    if (hasServices && pageRendered) {
+      setShowServicesSelection(hasServices);
+    }
+  }, [hasServices, pageRendered]);
 
   return (
     <section className={styles.main}>
@@ -47,6 +62,13 @@ export default function SaleDetail() {
           </ProductHCard>
           <SaleSummaryBox product={product} />
         </>
+      )}
+
+      {hasServices && (
+        <ServicesSelectionDialog
+          open={showServicesSelection}
+          services={product?.extra_items}
+        />
       )}
     </section>
   );

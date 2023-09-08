@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import { Typography } from "@mui/material";
 
-import useAppTheme from "@/app/Hooks/useAppTheme";
+import { useAppTheme } from "@/app/Hooks";
 import ProductContext from "@/app/components/ProductHCard/context";
 
 import styles from "./tireExtraData.module.css";

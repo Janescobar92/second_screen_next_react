@@ -19,7 +19,7 @@ import { COMPANY_VALUES, validationSchema } from "./constants";
 import { Config } from "@/app/interfaces";
 import { SettingsFormFields } from "./interfaces";
 import { setConfig } from "@/app/providers/AppContextProvider/actions";
-import useConfig from "@/app/Hooks/useConfig";
+import { useConfig } from "@/app/Hooks";
 
 /**
  * SettingsForm is a React component that displays a form to manage settings.

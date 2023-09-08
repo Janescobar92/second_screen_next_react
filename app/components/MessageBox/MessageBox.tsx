@@ -1,6 +1,6 @@
 "use client";
 import { Typography } from "@mui/material";
-import useAppTheme from "@/app/Hooks/useAppTheme";
+import { useAppTheme } from "@/app/Hooks";
 
 import styles from "./messageBox.module.css";
 

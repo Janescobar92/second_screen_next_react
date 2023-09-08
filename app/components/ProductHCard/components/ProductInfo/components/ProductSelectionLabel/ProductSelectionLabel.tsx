@@ -9,8 +9,7 @@ import ProductContext from "../../../../context";
 
 import { Typography, styled } from "@mui/material";
 
-import useAppTheme from "@/app/Hooks/useAppTheme";
-import useCompanyAssets from "@/app/Hooks/useCompanyAssets";
+import { useAppTheme, useCompanyAssets } from "@/app/Hooks";
 import { Label } from "@/app/components/ProductHCard/constants";
 
 const StyledTypography = styled(Typography, {

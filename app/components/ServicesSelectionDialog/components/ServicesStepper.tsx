@@ -52,31 +52,27 @@ const SetepContent = (
   );
 };
 
-function ServicesStepper(props: { steps: ExtraItem[] }) {
-  const { steps } = props;
+function ServicesStepper(props: {
+  steps: ExtraItem[];
+  onAdd: (service: ExtraItem | undefined, isLast?: boolean) => void;
+}) {
+  const { steps, onAdd } = props;
   const theme = useAppTheme();
   const { nInflateAsset } = useServicesAssets();
   const [activeStep, setActiveStep] = useState(0);
 
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const handleAdd = (extItem: ExtraItem) => {
-    console.log({ extItem });
-    handleNext();
-  };
-
-  const handleRemove = (extItem: ExtraItem) => {
-    console.log({ extItem });
-    // if (activeStep === 0) return;
-    handleNext();
+  const handleNext = (extItem?: ExtraItem) => {
+    const isLastStep = activeStep === steps.length - 1;
+    onAdd(extItem, isLastStep);
+    if (!isLastStep) setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   return useMemo(() => {
+    const service = steps[activeStep];
+
     return (
       <Box style={{ width: "100%", paddingTop: "0.5rem" }}>
-        <>{SetepContent(nInflateAsset, steps[activeStep], theme)}</>
+        <>{SetepContent(nInflateAsset, service, theme)}</>
         <MobileStepper
           variant="text"
           steps={steps.length}
@@ -88,7 +84,7 @@ function ServicesStepper(props: { steps: ExtraItem[] }) {
               sx={{ color: theme.palette.primary.main }}
               color="primary"
               variant="outlined"
-              onClick={() => handleRemove(steps[activeStep])}
+              onClick={() => handleNext()}
             >
               {CANCEL_LABEL}
             </Button>
@@ -99,7 +95,7 @@ function ServicesStepper(props: { steps: ExtraItem[] }) {
               id="services-selection-dialog-submit-button"
               color="primary"
               variant="contained"
-              onClick={() => handleAdd(steps[activeStep])}
+              onClick={() => handleNext(service)}
             >
               {SUBMIT_LABEL}
             </Button>

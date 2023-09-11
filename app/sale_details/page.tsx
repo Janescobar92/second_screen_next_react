@@ -14,6 +14,7 @@ import {
 } from "../components";
 import { ProductHCard } from "../components/ProductHCard";
 import { setSelectedProduct } from "../providers/AppContextProvider";
+import { ExtraItem } from "../interfaces";
 
 //TODO: check the need of a custom hook to handle the state of the page.
 export default function SaleDetail() {
@@ -38,6 +39,14 @@ export default function SaleDetail() {
       setShowServicesSelection(hasServices);
     }
   }, [hasServices, pageRendered]);
+
+  const handleCloseServicesSelection = () => {
+    setShowServicesSelection(false);
+  };
+
+  const handleSubmit = (services: ExtraItem[]) => {
+    console.log("submit", { services });
+  };
 
   return (
     <section className={styles.main}>
@@ -68,6 +77,8 @@ export default function SaleDetail() {
         <ServicesSelectionDialog
           open={showServicesSelection}
           services={product?.extra_items}
+          onClose={handleCloseServicesSelection}
+          onSubmit={handleSubmit}
         />
       )}
     </section>

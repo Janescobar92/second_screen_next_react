@@ -2,7 +2,6 @@ export { Background } from "./BackGround";
 export { CompanyLogo } from "./CompanyLogo";
 export { ContainedIconButton } from "./ContainedIconButton";
 export { DialogDividedTitle } from "./DialogDividedTitle";
-export { DialogActions } from "./DialogActions";
 export { Loader } from "./Loader";
 export { LoginDialog } from "./LoginDialog";
 export { PriceTag } from "./PriceTag";

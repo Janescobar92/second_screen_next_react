@@ -6,13 +6,7 @@ import { ExtraItem } from "@/app/interfaces";
 
 import styles from "./servicesSelectionDialog.module.css";
 
-import {
-  CANCEL_LABEL,
-  HEAD_TITLE_TXT,
-  MAIN_TITLE_TXT,
-  SUBMIT_LABEL,
-} from "./constants";
-import { DialogActions } from "../DialogActions";
+import { HEAD_TITLE_TXT, MAIN_TITLE_TXT } from "./constants";
 import { DialogDividedTitle } from "../DialogDividedTitle";
 import { ServicesStepper } from "./components";
 
@@ -28,14 +22,6 @@ function ServicesSelectionDialog(props: {
     console.log("close");
   };
 
-  const handleRemove = () => {
-    console.log("add");
-  };
-
-  const handleAdd = () => {
-    console.log("add");
-  };
-
   // TODO: DELETE DIALOG ACTIONS COMPONENT
   return (
     <Dialog
@@ -49,13 +35,6 @@ function ServicesSelectionDialog(props: {
         mainTitleTxt={MAIN_TITLE_TXT}
       />
       <ServicesStepper steps={services} />
-
-      {/* <DialogActions
-        leftActionTxt={CANCEL_LABEL}
-        rightActionTxt={SUBMIT_LABEL}
-        leftActionHandler={handleRemove}
-        rightActionHandler={handleAdd}
-      /> */}
     </Dialog>
   );
 }

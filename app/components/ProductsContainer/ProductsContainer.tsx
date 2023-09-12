@@ -23,7 +23,7 @@ function ProductsContainer(props: Props) {
 
   const handleSelectItemToBuy = (item: SuggestedItem) => {
     setSelectedProduct(item, dispatch);
-    router.push(ROUTES.sale_details);
+    router.push(`${ROUTES.sale_details}/${item.id}`);
   };
 
   return (

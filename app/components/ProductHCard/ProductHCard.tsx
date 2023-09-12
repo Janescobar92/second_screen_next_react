@@ -49,7 +49,9 @@ const ProductInfoContent = () => <ProductInfo />;
 const SellInfoContent = (props: SellInfoContentProps) => (
   <SellInfoBox
     actionLabel={props.actionLabel}
+    id={props.id}
     layout={props.layout}
+    price={props?.price}
     showAction={props.showAction}
     onAction={props.onAction}
   />

@@ -2,9 +2,9 @@
 import { useContext } from "react";
 import { useRouter } from "next/navigation";
 import { ROUTES } from "@/app/constants";
-import { SuggestedItem } from "@/app/interfaces";
+import { ComparativeQuote, Order } from "@/app/interfaces";
 
-import styles from "./productsContainer.module.css";
+import styles from "./comparativesContainer.module.css";
 
 import { ProductHCard } from "../ProductHCard";
 import { MessageBox } from "../MessageBox";
@@ -12,18 +12,19 @@ import { AppContext } from "@/app/providers";
 import { setSelectedProduct } from "@/app/providers/AppContextProvider/actions";
 
 interface Props {
-  sugestedItems: SuggestedItem[];
+  comparativeQuote: ComparativeQuote;
 }
 
-function ProductsContainer(props: Props) {
-  const { sugestedItems } = props;
+function ComparativesContainer(props: Props) {
+  const { comparativeQuote } = props;
   const router = useRouter();
   const { dispatch } = useContext(AppContext);
-  const subTitle = sugestedItems[0]?.item_type;
+  const subTitle = comparativeQuote.quotes[0]?.items[0]?.item_type;
 
-  const handleSelectItemToBuy = (item: SuggestedItem) => {
-    setSelectedProduct(item, dispatch);
-    router.push(`${ROUTES.sale_details}/${item.id}`);
+  const handleSelectItemToBuy = (order: Order) => {
+    const product = order.items[0];
+    setSelectedProduct(product, dispatch);
+    router.push(`${ROUTES.sale_details}/${order.id}`);
   };
 
   return (
@@ -34,24 +35,28 @@ function ProductsContainer(props: Props) {
           subTitle={subTitle}
         />
       </div>
-      {sugestedItems.map((item) => (
-        <ProductHCard key={item.nav_id} id={`${item.id}`} product={item}>
+      {comparativeQuote.quotes.map((order) => (
+        <ProductHCard
+          key={order.id}
+          id={`${order.id}`}
+          product={order.items[0]}
+        >
           <ProductHCard.Image
-            id={`${item.id}`}
+            id={`${order.id}`}
             src={"props.src"}
-            alt={`${item.id}-image`}
+            alt={`${order.id}-image`}
             width={100}
             height={200}
             priority
           />
           <ProductHCard.ProductInfo />
           <ProductHCard.SellInfo
-            id={item.id}
+            id={order.id}
             actionLabel="comprar"
             layout="row"
-            price={item?.total_cost}
+            price={order?.total_cost}
             showAction
-            onAction={() => handleSelectItemToBuy(item)}
+            onAction={() => handleSelectItemToBuy(order)}
           />
         </ProductHCard>
       ))}
@@ -59,4 +64,4 @@ function ProductsContainer(props: Props) {
   );
 }
 
-export default ProductsContainer;
+export default ComparativesContainer;

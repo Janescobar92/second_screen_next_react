@@ -1,4 +1,4 @@
-import { SuggestedItem } from "@/app/interfaces";
+import { ComparativeQuote, SuggestedItem } from "@/app/interfaces";
 
 export enum WSPayloadTypes {
   text = "text",
@@ -17,7 +17,13 @@ export interface ActionType {
 }
 
 export interface WSPayload {
-  data: null | number | string | Record<string, unknown> | SuggestedItem[];
+  data:
+    | null
+    | number
+    | string
+    | Record<string, unknown>
+    | SuggestedItem[]
+    | ComparativeQuote;
   room: string;
   roomEvent: string;
   trasnmitter: string;

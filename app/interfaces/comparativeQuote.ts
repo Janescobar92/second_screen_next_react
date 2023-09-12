@@ -1,5 +1,5 @@
 import { Customer } from "./customer";
-import { User, OrderAPI } from "./order";
+import { User, Order } from "./order";
 import { Vehicle } from "./vehicle";
 
 export interface ComparativeQuote {
@@ -8,7 +8,7 @@ export interface ComparativeQuote {
   created_at: string;
   created_by: User | number;
   has_expired?: boolean;
-  quotes: OrderAPI[];
+  quotes: Order[];
   vehicle?: Vehicle;
   seller_id?: string;
 }

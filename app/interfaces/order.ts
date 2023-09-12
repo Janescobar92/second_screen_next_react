@@ -372,7 +372,7 @@ export interface AllPaymentsData {
   returns_payments: Payments[];
 }
 
-export interface OrderAPI {
+export interface Order {
   advance_payments: Array<AdvancePayments>;
   advance_payments_total: number;
   all_payments_data: AllPaymentsData;
@@ -399,7 +399,7 @@ export interface OrderAPI {
   };
   has_exchange: boolean;
   has_expired?: boolean;
-  id?: number;
+  id: number;
   invoice: InvoiceAPI | null;
   invoice_return_allowed: boolean;
   is_precaweb: boolean;

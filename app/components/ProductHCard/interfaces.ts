@@ -16,7 +16,9 @@ export interface ImageProps {
 
 export interface SellInfoContentProps {
   actionLabel: string;
+  id: number;
   layout: SellInfoLayout;
+  price: string | undefined;
   showAction: boolean;
   onAction: () => void;
 }

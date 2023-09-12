@@ -1,5 +1,3 @@
-import { useContext } from "react";
-
 import { Box, Typography, Button, styled } from "@mui/material";
 
 import styles from "./sellInfoBox.module.css";
@@ -8,15 +6,7 @@ import { useAppTheme } from "@/app/Hooks";
 import { PriceTag } from "@/app/components/PriceTag";
 import { formatCurrency } from "@/app/utils";
 
-import ProductContext from "../../context";
-import { SellInfoLayout } from "../../interfaces";
-
-interface Props {
-  actionLabel: string;
-  layout: SellInfoLayout;
-  showAction: boolean;
-  onAction: () => void;
-}
+import { SellInfoContentProps, SellInfoLayout } from "../../interfaces";
 
 const showButtonAndCol = {
   display: "grid",
@@ -45,13 +35,11 @@ const ContainerBox = styled(Box, {
   }
 );
 
-function SellInfoBox(props: Props) {
-  const { actionLabel, layout, showAction, onAction } = props;
-  const product = useContext(ProductContext);
+function SellInfoBox(props: SellInfoContentProps) {
+  const { actionLabel, id, layout, price, showAction, onAction } = props;
   const theme = useAppTheme();
 
-  const { id } = product;
-  const totalCost = formatCurrency(product?.total_cost);
+  const totalCost = formatCurrency(price);
 
   return (
     <ContainerBox

@@ -1,17 +1,16 @@
-import { SuggestedItem } from "@/app/interfaces";
+import { Order } from "@/app/interfaces";
 
 import styles from "./saleSummaryBox.module.css";
 
-import { SaleSummaryTable, TotalDivider, BuyButton } from "./components";
+import { SaleSummaryTable, TotalDivider } from "./components";
 
-function SaleSummaryBox(props: { product: SuggestedItem }) {
-  const { product } = props;
+function SaleSummaryBox(props: { order: Order }) {
+  const { order } = props;
 
   return (
     <div className={styles.container}>
-      <SaleSummaryTable product={product} />
-      <TotalDivider price={product?.total_cost} />
-      <BuyButton product={product} />
+      <SaleSummaryTable order={order} />
+      <TotalDivider price={order?.total_cost} />
     </div>
   );
 }

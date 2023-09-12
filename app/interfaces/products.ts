@@ -49,12 +49,6 @@ export interface MainAttributes {
   ice: boolean;
 }
 
-// TODO: CHECK INTERFACE
-interface Promo {
-  name: string;
-  amount: string;
-}
-
 export interface SuggestedItem {
   // TODO: check if its name is really label.
   label: string;
@@ -62,6 +56,7 @@ export interface SuggestedItem {
   description: string;
   id: number;
   imge_url: string;
+  is_promo: boolean;
   price: string;
   all_included_price: number;
   item_type: string;
@@ -81,8 +76,4 @@ export interface SuggestedItem {
   tax_percentage: string;
   allow_automatic_order: boolean;
   extra_items: [];
-  // TODO: check if it is really the values to use.
-  has_services: boolean;
-  promotion: Promo[];
-  services_total_cost: string;
 }

@@ -2,6 +2,7 @@ import { Box, Button } from "@mui/material";
 import { SUBMIT_LABEL } from "../constants";
 import { SuggestedItem } from "@/app/interfaces";
 
+// TODO: DELETE COMPONENT?
 function BuyButton(props: { product: SuggestedItem }) {
   const { product } = props;
 

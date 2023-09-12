@@ -13,7 +13,7 @@ import {
   ServicesSelectionDialog,
 } from "../../components";
 import { ProductHCard } from "../../components/ProductHCard";
-import { setSelectedProduct } from "../../providers/AppContextProvider";
+import { setComparativeQuote } from "../../providers/AppContextProvider";
 import { ExtraItem } from "../../interfaces";
 
 //TODO: check the need of a custom hook to handle the state of the page.
@@ -22,16 +22,21 @@ export default function SaleDetail({ params }: { params: { id: string } }) {
   const { state, dispatch } = useContext(AppContext);
   const [showServicesSelection, setShowServicesSelection] = useState(false);
   const pathname = usePathname();
-  const { selected_product: product } = state?.sale_details || {};
+  const order = state?.sale_details?.comparative_quote?.quotes.find(
+    (quote) => `${quote.id}` === id
+  );
+
+  //TODO: CHECK PRODUCT CONST
+  const product = order?.items[0];
   const subTitle = product?.item_type;
   const pageRendered = pathname.includes(ROUTES.sale_details);
 
-  //TODO: CHECK BOOLEAN.
+  //TODO: CHECK BOOLEAN and add logic of allready added services.
   const hasServices = !!product?.extra_items?.length;
 
   useEffect(() => {
     if (!pageRendered) {
-      setSelectedProduct(undefined, dispatch);
+      setComparativeQuote(undefined, dispatch);
     }
   }, [pageRendered]);
 
@@ -70,7 +75,7 @@ export default function SaleDetail({ params }: { params: { id: string } }) {
             />
             <ProductHCard.ProductInfo />
           </ProductHCard>
-          <SaleSummaryBox product={product} />
+          <SaleSummaryBox order={order} />
         </>
       )}
 

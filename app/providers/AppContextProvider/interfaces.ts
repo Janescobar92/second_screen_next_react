@@ -1,4 +1,4 @@
-import { SuggestedItem } from "@/app/interfaces";
+import { ComparativeQuote, Order, SuggestedItem } from "@/app/interfaces";
 
 export interface ConfigState {
   company: string;
@@ -8,7 +8,8 @@ export interface ConfigState {
 }
 
 export interface SaleDetailsState {
-  selected_product: SuggestedItem;
+  selected_order: Order;
+  comparative_quote: ComparativeQuote;
 }
 
 export interface AppState {
@@ -18,5 +19,11 @@ export interface AppState {
 
 export interface ActionType {
   type: string;
-  payload: string | undefined | ConfigState | SuggestedItem;
+  payload:
+    | string
+    | undefined
+    | ConfigState
+    | SuggestedItem
+    | Order
+    | ComparativeQuote;
 }

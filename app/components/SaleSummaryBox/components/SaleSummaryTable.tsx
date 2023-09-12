@@ -10,7 +10,7 @@ import {
 
 import { useAppTheme } from "@/app/Hooks";
 import { formatCurrency } from "@/app/utils";
-import { SuggestedItem } from "@/app/interfaces";
+import { Order } from "@/app/interfaces";
 
 import { ORDER_SUMMARY_HEAD, SERVICES_LABEL } from "../constants";
 import HeadSectionLabel from "./HeadSeactionLabel";
@@ -25,48 +25,56 @@ const TypographyStyled = styled(Typography)(({ theme }) => ({
   fontWeight: 600,
 }));
 
-function SaleSummaryTable(props: { product: SuggestedItem }) {
-  const { product } = props;
+function SaleSummaryTable(props: { order: Order }) {
+  const { order } = props;
   const theme = useAppTheme();
-  const productPrice = formatCurrency(product?.price);
-
-  // TODO: REMOVE THIS MOCKED DATA
-  product.has_services = !!product?.extra_items.length;
-  product.promotion = [{ name: "Test promo", amount: "38.50" }];
-  product.services_total_cost = "293.00";
-
-  const servicesTotalCost = formatCurrency(product?.services_total_cost);
-  const hasService = product.has_services;
-  const hasPromo = !!product?.promotion.length;
+  const items = order.items.filter((item) => !item.is_promo);
+  const promos = order.items.filter((item) => item.is_promo);
+  const hasPromo = !!promos.length;
 
   return (
     <div>
       <HeadSectionLabel text={ORDER_SUMMARY_HEAD} />
       <Table size="small">
         <TableBody>
-          <TableRow>
-            <TableCellStyled>
-              <TypographyStyled>{product?.display_name}</TypographyStyled>
-            </TableCellStyled>
-            <TableCellStyled align="right">
-              <TypographyStyled>{productPrice}</TypographyStyled>
-            </TableCellStyled>
-          </TableRow>
-          {hasService && (
-            <TableRow>
-              <TableCellStyled>
-                <TypographyStyled>{SERVICES_LABEL}</TypographyStyled>
-              </TableCellStyled>
-              <TableCellStyled align="right">
-                <TypographyStyled>{servicesTotalCost}</TypographyStyled>
-              </TableCellStyled>
-            </TableRow>
-          )}
+          {items.map((item) => {
+            const productPrice = formatCurrency(item?.total_cost);
+            const hasServices = !!item.extra_items.length;
+            const itemServices = order?.calculate_payload?.services.find(
+              (service) => service?.item_id === item?.id
+            );
+            const servicesPrice = formatCurrency(
+              itemServices?.work_price_iva || 0
+            );
+
+            return (
+              <>
+                <TableRow>
+                  <TableCellStyled>
+                    <TypographyStyled>{item?.display_name}</TypographyStyled>
+                  </TableCellStyled>
+                  <TableCellStyled align="right">
+                    <TypographyStyled>{productPrice}</TypographyStyled>
+                  </TableCellStyled>
+                </TableRow>
+                {hasServices && (
+                  <TableRow>
+                    <TableCellStyled>
+                      <TypographyStyled>{SERVICES_LABEL}</TypographyStyled>
+                    </TableCellStyled>
+                    <TableCellStyled align="right">
+                      <TypographyStyled>{servicesPrice}</TypographyStyled>
+                    </TableCellStyled>
+                  </TableRow>
+                )}
+              </>
+            );
+          })}
           {hasPromo &&
-            product.promotion.map((promo) => {
-              const promotionPrice = `-${formatCurrency(promo.amount)}`;
+            promos.map((promo) => {
+              const promotionPrice = `-${formatCurrency(promo.price)}`;
               return (
-                <TableRow key={`${promo.name}-${promo.amount}`}>
+                <TableRow key={`${promo.name}-${promo.price}`}>
                   <TableCellStyled>
                     <TypographyStyled>{promo.name}</TypographyStyled>
                   </TableCellStyled>

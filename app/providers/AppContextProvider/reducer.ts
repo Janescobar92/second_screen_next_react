@@ -1,4 +1,4 @@
-import { SuggestedItem } from "@/app/interfaces";
+import { ComparativeQuote, Order } from "@/app/interfaces";
 import { CONFIG_ACTIONS, SALE_DETAIL_ACTIONS } from "./actions";
 import { AppState, ActionType, ConfigState } from "./interfaces";
 
@@ -24,10 +24,21 @@ const reducer = (state: AppState, action: ActionType) => {
         ...state,
         config: { ...state.config, ...(action.payload as ConfigState) },
       };
-    case SALE_DETAIL_ACTIONS.SET_SELECTED_PRODUCT:
+    case SALE_DETAIL_ACTIONS.SET_SELECTED_ORDER:
       return {
         ...state,
-        sale_details: { selected_product: action.payload as SuggestedItem },
+        sale_details: {
+          ...state.sale_details,
+          selected_order: action.payload as Order,
+        },
+      };
+    case SALE_DETAIL_ACTIONS.SET_COMPARATIVE_QUOTE:
+      return {
+        ...state,
+        sale_details: {
+          ...state.sale_details,
+          comparative_quote: action.payload as ComparativeQuote,
+        },
       };
     default:
       return state;

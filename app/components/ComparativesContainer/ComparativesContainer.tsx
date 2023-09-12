@@ -1,5 +1,4 @@
 "use client";
-import { useContext } from "react";
 import { useRouter } from "next/navigation";
 import { ROUTES } from "@/app/constants";
 import { ComparativeQuote, Order } from "@/app/interfaces";
@@ -8,8 +7,6 @@ import styles from "./comparativesContainer.module.css";
 
 import { ProductHCard } from "../ProductHCard";
 import { MessageBox } from "../MessageBox";
-import { AppContext } from "@/app/providers";
-import { setSelectedProduct } from "@/app/providers/AppContextProvider/actions";
 
 interface Props {
   comparativeQuote: ComparativeQuote;
@@ -18,12 +15,9 @@ interface Props {
 function ComparativesContainer(props: Props) {
   const { comparativeQuote } = props;
   const router = useRouter();
-  const { dispatch } = useContext(AppContext);
   const subTitle = comparativeQuote.quotes[0]?.items[0]?.item_type;
 
   const handleSelectItemToBuy = (order: Order) => {
-    const product = order.items[0];
-    setSelectedProduct(product, dispatch);
     router.push(`${ROUTES.sale_details}/${order.id}`);
   };
 

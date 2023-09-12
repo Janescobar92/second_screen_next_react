@@ -3,9 +3,13 @@ import { SuggestedItem } from "@/app/interfaces";
 export enum WSPayloadTypes {
   text = "text",
   products = "products",
+  comparative = "comparative",
 }
 
-export type WSPayloadType = WSPayloadTypes.text | WSPayloadTypes.products;
+export type WSPayloadType =
+  | WSPayloadTypes.text
+  | WSPayloadTypes.products
+  | WSPayloadTypes.comparative;
 
 export interface ActionType {
   type: string;

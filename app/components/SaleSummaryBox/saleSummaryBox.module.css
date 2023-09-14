@@ -23,7 +23,7 @@
 
 .totalDividerContainer {
     display: grid;
-    grid-template-columns: 4fr 1fr;
+    grid-template-columns: 3.5fr 1fr;
     min-height: 5rem;
     align-items: center;
 }
@@ -38,7 +38,7 @@
 .priceIVAContainer {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: column;
     margin-top: 1.2rem;
 }

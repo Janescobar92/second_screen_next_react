@@ -33,8 +33,6 @@ export default function SaleDetail({ params }: { params: { id: string } }) {
     (quote) => `${quote.id}` === id
   );
 
-  console.log({ order, pathname, id, wsState });
-
   //TODO: CHECK PRODUCT CONST
   const product = order?.items[0];
   const subTitle = product?.item_type;
@@ -54,7 +52,6 @@ export default function SaleDetail({ params }: { params: { id: string } }) {
   };
 
   const handleSubmit = (services: ExtraItem[]) => {
-    console.log("submit", { services });
     if (!product || !order) return;
     const updateProduct: SuggestedItem = {
       ...product,

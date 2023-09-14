@@ -88,7 +88,6 @@ function WebSocketComponent(): JSX.Element {
    */
   const handleSendMsg = (details: WSPayload | null) => {
     if (!details) return;
-    // const { roomEvent } = details;
     if (ws.current) {
       ws.current.emit("to_room_event", JSON.stringify(details));
     }

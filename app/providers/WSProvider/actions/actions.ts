@@ -74,3 +74,8 @@ export const updateTPVComparativeTab = (
   });
   setOutgoingMsg(msg, dispatch);
 };
+
+export const resetState = (dispatch: Dispatch<ActionType>) =>
+  dispatch({
+    type: WS_SERVER_ACTIONS.RESET,
+  });

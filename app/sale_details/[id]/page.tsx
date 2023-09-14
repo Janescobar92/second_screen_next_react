@@ -1,8 +1,9 @@
 "use client";
 import { useContext, useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 
 import styles from "./page.module.css";
+
+import { useNavigation } from "@/app/Hooks";
 
 import { ROUTES } from "../../constants";
 import {
@@ -28,7 +29,7 @@ export default function SaleDetail({ params }: { params: { id: string } }) {
   // TODO : UNIFY CONTEXTS.
   const { state: wsState, dispatch: wsDispatch } = useContext(WSServerContext);
   const [showServicesSelection, setShowServicesSelection] = useState(false);
-  const pathname = usePathname();
+  const { pathname } = useNavigation();
   const order = (wsState?.incoming?.data as ComparativeQuote)?.quotes?.find(
     (quote) => `${quote.id}` === id
   );

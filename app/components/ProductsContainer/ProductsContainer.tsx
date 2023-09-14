@@ -1,5 +1,5 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { useNavigation } from "@/app/Hooks";
 import { ROUTES } from "@/app/constants";
 import { SuggestedItem } from "@/app/interfaces";
 
@@ -14,7 +14,7 @@ interface Props {
 // TODO check if the component is needed
 function ProductsContainer(props: Props) {
   const { sugestedItems } = props;
-  const router = useRouter();
+  const { router } = useNavigation();
   const subTitle = sugestedItems[0]?.item_type;
 
   const handleSelectItemToBuy = (item: SuggestedItem) => {

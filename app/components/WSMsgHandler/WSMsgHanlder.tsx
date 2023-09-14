@@ -1,26 +1,17 @@
 "use client";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 
-import { AppContext, WSServerContext } from "@/app/providers";
-import { MessageBox } from "../MessageBox";
-import { WSPayloadTypes } from "@/app/providers/WSProvider/interfaces";
-import { ProductsContainer } from "../ProductsContainer";
+import { WSServerContext } from "@/app/providers";
 import { ComparativeQuote, SuggestedItem } from "@/app/interfaces";
+import { WSPayloadTypes } from "@/app/providers/WSProvider/interfaces";
+
+import { MessageBox } from "../MessageBox";
+import { ProductsContainer } from "../ProductsContainer";
 import { ComparativesContainer } from "../ComparativesContainer";
-import { setComparativeQuote } from "@/app/providers/AppContextProvider";
 
 function WSMsgHandler() {
   const { state } = useContext(WSServerContext);
-  const { dispatch: appContextDispatch } = useContext(AppContext);
   const { data, type } = state.incoming || {};
-
-  const handleComparative = () => {
-    setComparativeQuote(data as ComparativeQuote, appContextDispatch);
-  };
-
-  useEffect(() => {
-    if (type === WSPayloadTypes.comparative) handleComparative();
-  }, [state.incoming]);
 
   if (type === WSPayloadTypes.text) {
     return <MessageBox title={(data || "") as string} />;

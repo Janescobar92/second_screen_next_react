@@ -1,10 +1,7 @@
 "use client";
-
-import { usePathname } from "next/navigation";
-
 import { styled } from "@mui/material";
 
-import { useCompanyAssets } from "@/app/Hooks";
+import { useCompanyAssets, useNavigation } from "@/app/Hooks";
 import { ROUTES } from "@/app/constants";
 
 /**
@@ -36,7 +33,7 @@ const StyledBackground = styled("div", {
  */
 function Background(): JSX.Element {
   const { backgroundImage } = useCompanyAssets();
-  const pathname = usePathname();
+  const { pathname } = useNavigation();
 
   return (
     <StyledBackground

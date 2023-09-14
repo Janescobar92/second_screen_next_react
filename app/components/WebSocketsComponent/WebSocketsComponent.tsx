@@ -2,13 +2,21 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Socket, io } from "socket.io-client";
 
+// Context and constants imports
 import { AppContext, WSServerContext } from "@/app/providers";
+import { ROUTES } from "@/app/constants";
+import { useNavigation } from "@/app/Hooks";
 import {
   getTPVStatus,
+  resetState,
   setIncomingMsg,
 } from "@/app/providers/WSProvider/actions";
-import { READ_FROM_TPV_MSG } from "./constants";
-import { WSPayload } from "@/app/providers/WSProvider/interfaces";
+import {
+  WSPayload,
+  WSPayloadTypes,
+} from "@/app/providers/WSProvider/interfaces";
+
+import { NEW_SALE_MSG, READ_FROM_TPV_MSG } from "./constants";
 
 /**
  * WebSocketComponent is a React component that connects to a WebSocket server.
@@ -19,9 +27,11 @@ import { WSPayload } from "@/app/providers/WSProvider/interfaces";
  */
 function WebSocketComponent(): JSX.Element {
   const { state: appState } = useContext(AppContext);
-  const { config } = appState;
   const { state, dispatch } = useContext(WSServerContext);
+  const { router } = useNavigation();
   const [conected, setConected] = useState<boolean>(false);
+
+  const { config } = appState;
 
   // Create a ref to hold the WebSocket connection.
   const ws = useRef<null | Socket>(null);
@@ -94,13 +104,54 @@ function WebSocketComponent(): JSX.Element {
   };
 
   /**
+   * Handles new sale payload case.
+   */
+  const handleNewSale = () => {
+    router.push(ROUTES.home);
+    resetState(dispatch);
+  };
+
+  /**
+   * Handles inconig text type payload.
+   * @param {WSPayload} payload - The payload to handle.
+
+   */
+  const handleComparative = (payload: WSPayload) => {
+    setIncomingMsg(payload, dispatch);
+  };
+
+  /**
+   * Handles inconig text type payload.
+   * @param {WSPayload} payload - The payload to handle.
+   */
+  const handleText = (payload: WSPayload) => {
+    switch (payload.data) {
+      case NEW_SALE_MSG:
+        handleNewSale();
+        break;
+      default:
+        setIncomingMsg(payload, dispatch);
+        break;
+    }
+  };
+
+  /**
+   * Handles inconig ws msg payload.
+   * @param {WSPayload} payload - The payload to handle.
+   */
+  const handleIncoimingMsg = (payload: WSPayload) => {
+    if (payload.type === WSPayloadTypes.text) handleText(payload);
+    if (payload.type === WSPayloadTypes.comparative) handleComparative(payload);
+  };
+
+  /**
    * Listen for messages from the WebSocket server.
    */
   const handleReadMsg = () => {
     if (ws.current) {
       ws.current.on(READ_FROM_TPV_MSG, (data) => {
-        const payload = JSON.parse(data);
-        setIncomingMsg(payload, dispatch);
+        const payload: WSPayload = JSON.parse(data);
+        handleIncoimingMsg(payload);
       });
     }
   };

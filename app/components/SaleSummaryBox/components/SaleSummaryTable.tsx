@@ -14,6 +14,7 @@ import { Order } from "@/app/interfaces";
 
 import { ORDER_SUMMARY_HEAD, SERVICES_LABEL } from "../constants";
 import HeadSectionLabel from "./HeadSeactionLabel";
+import { Fragment } from "react";
 
 const TableCellStyled = styled(TableCell)(() => ({
   borderBottom: "none",
@@ -48,7 +49,7 @@ function SaleSummaryTable(props: { order: Order }) {
             );
 
             return (
-              <>
+              <Fragment key={`${item?.id}`}>
                 <TableRow>
                   <TableCellStyled>
                     <TypographyStyled>{item?.display_name}</TypographyStyled>
@@ -67,7 +68,7 @@ function SaleSummaryTable(props: { order: Order }) {
                     </TableCellStyled>
                   </TableRow>
                 )}
-              </>
+              </Fragment>
             );
           })}
           {hasPromo &&

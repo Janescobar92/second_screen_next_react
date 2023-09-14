@@ -13,7 +13,7 @@ export type WSPayloadType =
 
 export interface ActionType {
   type: string;
-  payload: WSPayload | null;
+  payload?: WSPayload | null;
 }
 
 export interface WSPayload {

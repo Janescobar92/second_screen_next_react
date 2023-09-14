@@ -1,8 +1,8 @@
 "use client";
-import { usePathname, useRouter } from "next/navigation";
-
 import { AppBar, Toolbar } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+
+import { useNavigation } from "@/app/Hooks";
 
 import styles from "./navBar.module.css";
 
@@ -19,8 +19,7 @@ import { CompanyLogo } from "../CompanyLogo";
  * @returns {JSX.Element} - The rendered component.
  */
 function NavBar(): JSX.Element {
-  const router = useRouter();
-  const pathname = usePathname();
+  const { router, pathname } = useNavigation();
 
   /**
    * Handles the go back action.

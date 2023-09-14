@@ -1,5 +1,4 @@
 "use client";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import {
   Formik,
@@ -18,8 +17,10 @@ import {
 } from "@mui/material";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
 
-import styles from "./loginDialog.module.css";
+import { useNavigation } from "@/app/Hooks";
 import { ROUTES } from "@/app/constants";
+
+import styles from "./loginDialog.module.css";
 import {
   FORM_FIELD_PASSWORD,
   FORM_FIELD_USER,
@@ -40,7 +41,7 @@ interface Props {
  */
 function LoginDialog(props: Props): JSX.Element {
   const { open, onShow } = props;
-  const router = useRouter();
+  const { router } = useNavigation();
 
   const [showPassword, setShowPassWord] = useState<boolean>(false);
 

@@ -14,12 +14,18 @@ import {
 } from "../../components";
 import { ProductHCard } from "../../components/ProductHCard";
 import { setComparativeQuote } from "../../providers/AppContextProvider";
-import { ExtraItem } from "../../interfaces";
+import { ExtraItem, Order, SuggestedItem } from "../../interfaces";
+import {
+  WSServerContext,
+  updateTPVComparativeTab,
+} from "@/app/providers/WSProvider";
 
 //TODO: check the need of a custom hook to handle the state of the page.
 export default function SaleDetail({ params }: { params: { id: string } }) {
   const { id } = params;
+  // TODO : UNIFY CONTEXTS.
   const { state, dispatch } = useContext(AppContext);
+  const { dispatch: wsDispatch } = useContext(WSServerContext);
   const [showServicesSelection, setShowServicesSelection] = useState(false);
   const pathname = usePathname();
   const order = state?.sale_details?.comparative_quote?.quotes.find(
@@ -52,6 +58,13 @@ export default function SaleDetail({ params }: { params: { id: string } }) {
 
   const handleSubmit = (services: ExtraItem[]) => {
     console.log("submit", { services });
+    if (!product || !order) return;
+    const updateProduct: SuggestedItem = {
+      ...product,
+      extra_items: services,
+    };
+    const updatedOrder: Order = { ...order, items: [updateProduct] };
+    updateTPVComparativeTab(updatedOrder, wsDispatch);
   };
 
   return (

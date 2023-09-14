@@ -75,5 +75,5 @@ export interface SuggestedItem {
   tax_applied: string;
   tax_percentage: string;
   allow_automatic_order: boolean;
-  extra_items: [];
+  extra_items: ExtraItem[];
 }

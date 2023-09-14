@@ -4,14 +4,11 @@ import { Socket, io } from "socket.io-client";
 
 import { AppContext, WSServerContext } from "@/app/providers";
 import {
+  getTPVStatus,
   setIncomingMsg,
-  setOutgoingMsg,
 } from "@/app/providers/WSProvider/actions";
 import { READ_FROM_TPV_MSG } from "./constants";
-import {
-  WSPayload,
-  WSPayloadTypes,
-} from "@/app/providers/WSProvider/interfaces";
+import { WSPayload } from "@/app/providers/WSProvider/interfaces";
 
 /**
  * WebSocketComponent is a React component that connects to a WebSocket server.
@@ -61,17 +58,7 @@ function WebSocketComponent(): JSX.Element {
         ws.current?.emit("register_client_in_room", config?.ws_room);
         setConected(true);
         setAttempts(0); // Reset the attempts count on successful connection.
-
-        setOutgoingMsg(
-          {
-            data: "get-suggested-items",
-            room: "TPV",
-            roomEvent: "sent_from_second_screen",
-            trasnmitter: "second_screen",
-            type: WSPayloadTypes.text,
-          },
-          dispatch
-        );
+        getTPVStatus(dispatch);
       });
 
       ws.current?.on("connect_error", () => {

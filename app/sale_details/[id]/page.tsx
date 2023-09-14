@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 
 import styles from "./page.module.css";
 
-import { AppContext } from "../../providers";
+// import { AppContext } from "../../providers";
 
 import { ROUTES } from "../../constants";
 import {
@@ -13,8 +13,13 @@ import {
   ServicesSelectionDialog,
 } from "../../components";
 import { ProductHCard } from "../../components/ProductHCard";
-import { setComparativeQuote } from "../../providers/AppContextProvider";
-import { ExtraItem, Order, SuggestedItem } from "../../interfaces";
+// import { setComparativeQuote } from "../../providers/AppContextProvider";
+import {
+  ComparativeQuote,
+  ExtraItem,
+  Order,
+  SuggestedItem,
+} from "../../interfaces";
 import {
   WSServerContext,
   updateTPVComparativeTab,
@@ -24,13 +29,15 @@ import {
 export default function SaleDetail({ params }: { params: { id: string } }) {
   const { id } = params;
   // TODO : UNIFY CONTEXTS.
-  const { state, dispatch } = useContext(AppContext);
-  const { dispatch: wsDispatch } = useContext(WSServerContext);
+  // const { state, dispatch } = useContext(AppContext);
+  const { state: wsState, dispatch: wsDispatch } = useContext(WSServerContext);
   const [showServicesSelection, setShowServicesSelection] = useState(false);
   const pathname = usePathname();
-  const order = state?.sale_details?.comparative_quote?.quotes.find(
+  const order = (wsState?.incoming?.data as ComparativeQuote)?.quotes.find(
     (quote) => `${quote.id}` === id
   );
+
+  console.log({ order, pathname, id, wsState });
 
   //TODO: CHECK PRODUCT CONST
   const product = order?.items[0];
@@ -40,11 +47,11 @@ export default function SaleDetail({ params }: { params: { id: string } }) {
   //TODO: CHECK BOOLEAN and add logic of allready added services.
   const hasServices = !!product?.extra_items?.length;
 
-  useEffect(() => {
-    if (!pageRendered) {
-      setComparativeQuote(undefined, dispatch);
-    }
-  }, [pageRendered]);
+  // useEffect(() => {
+  //   if (!pageRendered) {
+  //     setComparativeQuote(undefined, dispatch);
+  //   }
+  // }, [pageRendered]);
 
   useEffect(() => {
     if (hasServices && pageRendered) {

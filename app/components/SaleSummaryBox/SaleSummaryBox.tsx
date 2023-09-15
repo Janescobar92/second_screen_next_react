@@ -11,15 +11,19 @@ function SaleSummaryBox(props: { order: Order }) {
   const renderPromos = !!calculatePayload?.total_discounts;
 
   return (
-    <div className={styles.container}>
-      <SaleSummaryTable order={order} />
-      {renderPromos && (
-        <div className={styles.savingsContainer}>
-          <SavingsLabel savingTotal={calculatePayload?.total_discounts} />
-        </div>
-      )}
-      <TotalDivider price={order?.total_cost} />
-    </div>
+    <>
+      <div className={styles.container}>
+        <SaleSummaryTable order={order} />
+        {renderPromos && (
+          <div className={styles.savingsContainer}>
+            <SavingsLabel savingTotal={calculatePayload?.total_discounts} />
+          </div>
+        )}
+      </div>
+      <div className={styles.totalContainer}>
+        <TotalDivider price={order?.total_cost} />
+      </div>
+    </>
   );
 }
 

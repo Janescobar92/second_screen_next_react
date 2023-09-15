@@ -1,12 +1,13 @@
 "use client";
 import LocalOfferOutlinedIcon from "@mui/icons-material/LocalOfferOutlined";
+import { Box, Typography } from "@mui/material";
 
 import { useAppTheme } from "@/app/Hooks";
 import { formatCurrency } from "@/app/utils";
 
-import { Box, Typography } from "@mui/material";
-
 import styles from "./savingsLabel.module.css";
+
+import { SAVINGS_LABEL } from "./constants";
 
 function SavingsLabel(props: { savingTotal: number }) {
   const { savingTotal } = props;
@@ -17,11 +18,13 @@ function SavingsLabel(props: { savingTotal: number }) {
       className={styles.container}
       sx={{ backgroundColor: theme.palette.secondary.main }}
     >
-      <LocalOfferOutlinedIcon style={{ transform: "scaleX(-1)" }} />
-      <div className={styles.priceGrid}>
-        <Typography>Ahorro</Typography>
-        <Typography>{`-${formatCurrency(savingTotal)}`}</Typography>
+      <div className={styles.labelContainer}>
+        <LocalOfferOutlinedIcon style={{ transform: "scaleX(-1)" }} />
+        <Typography>{SAVINGS_LABEL}</Typography>
       </div>
+      <Typography component={"div"} textAlign={"right"}>
+        {`-${formatCurrency(savingTotal)}`}
+      </Typography>
     </Box>
   );
 }

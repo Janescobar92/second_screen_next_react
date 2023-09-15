@@ -1,8 +1,8 @@
 .container {
     width: 100%;
     background-color: var(--background-paper) !important;
-    border-radius: var(--border-radius);
-    padding: 1rem;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    padding: 1rem 1rem 0 1rem;
 }
 
 .dividerStyle {
@@ -32,7 +32,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 0;
+    min-width: 12rem;
+}
+
+.totalContainer {
+    width: 100%;
+    background-color: #f8f8f8;
+    padding: 0 1rem;
+    border-radius: 0 0 8px 8px;
 }
 
 .priceIVAContainer {

@@ -42,3 +42,9 @@
     flex-direction: column;
     margin-top: 1.2rem;
 }
+
+.savingsContainer {
+    display: flex;
+    justify-content: end;
+    margin-top: 1rem;
+}

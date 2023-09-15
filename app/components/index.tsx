@@ -9,6 +9,7 @@ export { ProductCard } from "./ProductCard";
 export { ProductDetailDialog } from "./ProductDetailDialog";
 export { ProductsCarousel } from "./ProductsCarousel";
 export { SaleSummaryBox } from "./SaleSummaryBox";
+export { SavingsLabel } from "./SavingsLabel";
 export { ServicesSelectionDialog } from "./ServicesSelectionDialog";
 export { MessageBox } from "./MessageBox";
 export { NavBar } from "./NavBar";

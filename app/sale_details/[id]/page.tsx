@@ -29,7 +29,7 @@ export default function SaleDetail({ params }: { params: { id: string } }) {
   // TODO : UNIFY CONTEXTS.
   const { state: wsState, dispatch: wsDispatch } = useContext(WSServerContext);
   const [showServicesSelection, setShowServicesSelection] = useState(false);
-  const { pathname } = useNavigation();
+  const { pathname, router } = useNavigation();
   const order = (wsState?.incoming?.data as ComparativeQuote)?.quotes?.find(
     (quote) => `${quote.id}` === id
   );
@@ -47,6 +47,12 @@ export default function SaleDetail({ params }: { params: { id: string } }) {
       setShowServicesSelection(hasServices);
     }
   }, [hasServices, pageRendered]);
+
+  useEffect(() => {
+    if (!order) {
+      router.push(ROUTES.home);
+    }
+  }, [pageRendered, order]);
 
   const handleCloseServicesSelection = () => {
     setShowServicesSelection(false);

@@ -39,8 +39,7 @@ export default function SaleDetail({ params }: { params: { id: string } }) {
   const subTitle = product?.item_type;
   const pageRendered = pathname.includes(ROUTES.sale_details);
 
-  //TODO: CHECK BOOLEAN and add logic of allready added services.
-  const hasServices = !!product?.extra_items?.length;
+  const hasServices = !!product?.all_extra_items?.length;
 
   useEffect(() => {
     if (hasServices && pageRendered) {
@@ -96,7 +95,7 @@ export default function SaleDetail({ params }: { params: { id: string } }) {
       {hasServices && (
         <ServicesSelectionDialog
           open={showServicesSelection}
-          services={product?.extra_items}
+          services={product?.all_extra_items}
           onClose={handleCloseServicesSelection}
           onSubmit={handleSubmit}
         />

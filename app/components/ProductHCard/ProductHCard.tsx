@@ -79,28 +79,6 @@ function ProductHCard(props: Props) {
   );
 
   // TODO REMOVE THIS MOCK.
-  product.main_attributes = {
-    rim: "16",
-    brand: "1PRECIO",
-    model: "TOYO",
-    noise: "C",
-    dB: "70",
-    waves: "2",
-    width: "205",
-    family: "RUEDAS",
-    season: "summer",
-    runflat: "0",
-    universe: "RUEDAS",
-    wet_grip: "B",
-    load_index: "094",
-    speed_index: "H",
-    aspect_ratio: "55",
-    fuel_eficiency: "C",
-    snow: true,
-    ice: true,
-  };
-
-  // TODO REMOVE THIS MOCK.
   product.label = "price_ratio";
 
   const theme = useAppTheme();

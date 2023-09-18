@@ -14,10 +14,14 @@ function TireExtraData() {
   const product = useContext(ProductContext);
   const theme = useAppTheme();
   const { id } = product;
+  const showSnowIcon =
+    product.main_attributes?.snow ||
+    product.main_attributes?.season === "winter" ||
+    product.main_attributes?.season === "winter_alt";
 
   const adherenceIcon = `/img/tires_specs/adherence_${product.main_attributes?.wet_grip}.svg`;
   const efficiencyIcon = `/img/tires_specs/efficiency_${product.main_attributes?.fuel_eficiency}.svg`;
-  const noiseIcon = `/img/tires_specs/noise_${product.main_attributes?.noise}.svg`;
+  const noiseIcon = `/img/tires_specs/noise_${product.main_attributes?.waves}.svg`;
   const snowIcon = `/img/tires_specs/snow.svg`;
   const iceIcon = `/img/tires_specs/ice.svg`;
   const runFlatIcon = `/img/tires_specs/ic-runflat.svg`;
@@ -26,10 +30,10 @@ function TireExtraData() {
     switch (product.main_attributes?.season) {
       case "summer":
         return "Verano";
-      case "winter":
+      case "winter" || "winter_alt":
         return "Invierno";
-      case "all_season":
-        return "All Season";
+      case "all":
+        return "4 Estaciones";
       default:
         return "";
     }
@@ -64,7 +68,7 @@ function TireExtraData() {
             fontWeight={900}
             className={styles.noiseTextStyle}
           >
-            {`${product.main_attributes?.dB}dB`}
+            {`${product.main_attributes?.noise}dB`}
           </Typography>
           <Image
             className={styles.noiseIconStyle}
@@ -76,7 +80,7 @@ function TireExtraData() {
             priority
           />
         </div>
-        {product.main_attributes?.snow && (
+        {showSnowIcon && (
           <Image
             className={styles.snowIconStyle}
             id={`${id}-snow-img-container`}

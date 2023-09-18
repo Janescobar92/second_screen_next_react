@@ -17,6 +17,7 @@ import { setConfig } from "./actions";
 // Initialize the state
 const initialState: AppState = {
   config: { company: "", ws_room: "", ws_server_port: "", loading: true },
+  tpv_loader: false,
 };
 
 // Create a context for state and dispatch

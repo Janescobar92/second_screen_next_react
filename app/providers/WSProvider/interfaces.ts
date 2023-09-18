@@ -4,12 +4,14 @@ export enum WSPayloadTypes {
   text = "text",
   products = "products",
   comparative = "comparative",
+  loading = "loading",
 }
 
 export type WSPayloadType =
   | WSPayloadTypes.text
   | WSPayloadTypes.products
-  | WSPayloadTypes.comparative;
+  | WSPayloadTypes.comparative
+  | WSPayloadTypes.loading;
 
 export interface ActionType {
   type: string;
@@ -21,6 +23,7 @@ export interface WSPayload {
     | null
     | number
     | string
+    | boolean
     | Record<string, unknown>
     | SuggestedItem[]
     | ComparativeQuote;

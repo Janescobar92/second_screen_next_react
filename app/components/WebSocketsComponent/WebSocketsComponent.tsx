@@ -11,6 +11,7 @@ import {
   resetState,
   setIncomingMsg,
 } from "@/app/providers/WSProvider/actions";
+import { setTPVLoader } from "@/app/providers/AppContextProvider/actions";
 import {
   WSPayload,
   WSPayloadTypes,
@@ -26,7 +27,7 @@ import { NEW_SALE_MSG, READ_FROM_TPV_MSG } from "./constants";
  * @returns {JSX.Element} - The rendered component.
  */
 function WebSocketComponent(): JSX.Element {
-  const { state: appState } = useContext(AppContext);
+  const { state: appState, dispatch: appDispatch } = useContext(AppContext);
   const { state, dispatch } = useContext(WSServerContext);
   const { router } = useNavigation();
   const [conected, setConected] = useState<boolean>(false);
@@ -121,6 +122,15 @@ function WebSocketComponent(): JSX.Element {
   };
 
   /**
+   * Handles inconig loading type payload.
+   * @param {WSPayload} payload - The payload to handle.
+
+   */
+  const handleLoading = (payload: WSPayload) => {
+    setTPVLoader(payload.data as boolean, appDispatch);
+  };
+
+  /**
    * Handles inconig text type payload.
    * @param {WSPayload} payload - The payload to handle.
    */
@@ -142,6 +152,7 @@ function WebSocketComponent(): JSX.Element {
   const handleIncoimingMsg = (payload: WSPayload) => {
     if (payload.type === WSPayloadTypes.text) handleText(payload);
     if (payload.type === WSPayloadTypes.comparative) handleComparative(payload);
+    if (payload.type === WSPayloadTypes.loading) handleLoading(payload);
   };
 
   /**

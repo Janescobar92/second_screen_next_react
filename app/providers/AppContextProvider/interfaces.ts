@@ -14,6 +14,7 @@ export interface SaleDetailsState {
 
 export interface AppState {
   config: ConfigState;
+  tpv_loader: boolean;
   sale_details?: SaleDetailsState;
 }
 
@@ -22,6 +23,7 @@ export interface ActionType {
   payload:
     | string
     | undefined
+    | boolean
     | ConfigState
     | SuggestedItem
     | Order

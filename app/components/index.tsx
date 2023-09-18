@@ -8,6 +8,7 @@ export { PriceTag } from "./PriceTag";
 export { ProductCard } from "./ProductCard";
 export { ProductDetailDialog } from "./ProductDetailDialog";
 export { ProductsCarousel } from "./ProductsCarousel";
+export { TPVLoader } from "./TPVLoader";
 export { SaleSummaryBox } from "./SaleSummaryBox";
 export { SavingsLabel } from "./SavingsLabel";
 export { ServicesSelectionDialog } from "./ServicesSelectionDialog";

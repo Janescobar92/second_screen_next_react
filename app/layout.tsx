@@ -6,6 +6,7 @@ import {
   Background,
   NavBar,
   ServiceWorkerComponent,
+  TPVLoader,
   WebSocketComponent,
 } from "./components";
 import { AppThemeProvider, AppContextProvider, WSProvider } from "./providers";
@@ -38,6 +39,7 @@ export default function RootLayout({
             <Background />
             <ServiceWorkerComponent />
             <WSProvider>
+              <TPVLoader />
               <WebSocketComponent />
               {children}
             </WSProvider>

@@ -1,6 +1,7 @@
 import { ComparativeQuote, Order } from "@/app/interfaces";
 import { CONFIG_ACTIONS, SALE_DETAIL_ACTIONS } from "./actions";
 import { AppState, ActionType, ConfigState } from "./interfaces";
+import { TPV_LOADER_ACTIONS } from "./actions/tpvLoaderActions";
 
 const reducer = (state: AppState, action: ActionType) => {
   switch (action.type) {
@@ -39,6 +40,11 @@ const reducer = (state: AppState, action: ActionType) => {
           ...state.sale_details,
           comparative_quote: action.payload as ComparativeQuote,
         },
+      };
+    case TPV_LOADER_ACTIONS.SET_LOADER:
+      return {
+        ...state,
+        tpv_loader: action.payload as boolean,
       };
     default:
       return state;

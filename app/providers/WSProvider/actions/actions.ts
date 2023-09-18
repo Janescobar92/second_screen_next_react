@@ -2,6 +2,11 @@ import { Dispatch } from "react";
 import { ActionType, WSPayload, WSPayloadTypes } from "../interfaces";
 import { WS_SERVER_ACTIONS } from "../actionTypes";
 import { Order } from "@/app/interfaces";
+import {
+  GET_TPV_STATUS,
+  SET_COMPARATIVE_ACTIVE_TAB,
+  UPDATE_COMPARATIVE_TAB,
+} from "../constants";
 
 export const setIncomingMsg = (
   data: WSPayload,
@@ -24,10 +29,9 @@ export const setOutgoingMsg = (
 };
 
 export const getTPVStatus = (dispatch: Dispatch<ActionType>) => {
-  // TODO: SET AS A COSNTANT.
   setOutgoingMsg(
     {
-      data: "get-tpv-status",
+      data: GET_TPV_STATUS,
       room: "TPV",
       roomEvent: "sent_from_second_screen",
       trasnmitter: "second_screen",
@@ -37,7 +41,6 @@ export const getTPVStatus = (dispatch: Dispatch<ActionType>) => {
   );
 };
 
-// TODO CHECK PAYLOAD TYPE.
 const comparativeOutGoingMsg = (type: string, payload: unknown) => {
   return {
     data: {
@@ -55,8 +58,7 @@ export const setTPVComparativeTab = (
   order: Order,
   dispatch: Dispatch<ActionType>
 ) => {
-  // TODO: SET AS A COSNTANT.
-  const msg = comparativeOutGoingMsg("set-comparative-active-tap", {
+  const msg = comparativeOutGoingMsg(SET_COMPARATIVE_ACTIVE_TAB, {
     order_id: order.id,
   });
 
@@ -67,9 +69,7 @@ export const updateTPVComparativeTab = (
   order: Order,
   dispatch: Dispatch<ActionType>
 ) => {
-  // TODO: SET AS A COSNTANT.
-
-  const msg = comparativeOutGoingMsg("update-comparative-tap", {
+  const msg = comparativeOutGoingMsg(UPDATE_COMPARATIVE_TAB, {
     order: order,
   });
   setOutgoingMsg(msg, dispatch);

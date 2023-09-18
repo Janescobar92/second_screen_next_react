@@ -43,7 +43,7 @@ export interface Customer {
   current_credit?: number;
   customer_type: number;
   customer_category: number;
-  customer_info: Person | Company; // TODO: Modelos por separado.
+  customer_info: Person | Company;
   document_type: number;
   nav_id: string;
   person?: Person;

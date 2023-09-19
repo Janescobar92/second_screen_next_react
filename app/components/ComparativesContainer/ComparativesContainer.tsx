@@ -41,14 +41,14 @@ function ComparativesContainer(props: Props) {
           id={`${order.id}`}
           product={order.items[0]}
         >
-          {/* <ProductHCard.Image
+          <ProductHCard.Image
             id={`${order.id}`}
-            src={"props.src"}
+            src={order.items[0].item_type}
             alt={`${order.id}-image`}
             width={100}
             height={200}
             priority
-          /> */}
+          />
           <ProductHCard.ProductInfo />
           <ProductHCard.SellInfo
             id={order.id}

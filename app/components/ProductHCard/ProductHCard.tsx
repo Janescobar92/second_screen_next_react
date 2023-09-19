@@ -7,7 +7,7 @@ import Image, { ImageProps } from "next/image";
 import { Box } from "@mui/material";
 
 // Custom hooks
-import { useAppTheme, useCompanyAssets } from "@/app/Hooks";
+import { useAppTheme, useProductAsset } from "@/app/Hooks";
 
 // Styles imports
 import styles from "./productHCard.module.css";
@@ -30,18 +30,23 @@ interface Props {
 }
 
 const ProductImage = (props: ImageProps) => {
-  // TODO: REMOVE
-  const { companyLogo } = useCompanyAssets();
+  // TODO: CHECK PROP AN INTERFACES
+  const img = useProductAsset(props.src as string);
 
   return (
-    <Image
-      id={props.id}
-      src={companyLogo}
-      alt={props.alt}
-      width={100}
-      height={150}
-      priority
-    />
+    <>
+      {img && (
+        <Image
+          style={{ padding: "0.5rem" }}
+          id={props.id}
+          src={img}
+          alt={props.alt}
+          width={100}
+          height={150}
+          priority
+        />
+      )}
+    </>
   );
 };
 const ProductInfoContent = () => <ProductInfo />;

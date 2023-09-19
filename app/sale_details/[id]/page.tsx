@@ -80,7 +80,7 @@ export default function SaleDetail({ params }: { params: { id: string } }) {
           <ProductHCard id={`${product.id}`} product={product}>
             <ProductHCard.Image
               id={`${product.id}`}
-              src={"props.src"}
+              src={product.item_type}
               alt={`${product.id}-image`}
               width={100}
               height={200}

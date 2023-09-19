@@ -113,11 +113,16 @@ function WebSocketComponent(): JSX.Element {
   };
 
   /**
-   * Handles inconig text type payload.
+   * Handles inconig comparative type payload.
+   * @param {WSPayload} payload - The payload to handle.
+
+
+  /**
+  * Handles inconig Sale and Comparative type payload.
    * @param {WSPayload} payload - The payload to handle.
 
    */
-  const handleComparative = (payload: WSPayload) => {
+  const handleSaleProccess = (payload: WSPayload) => {
     setIncomingMsg(payload, dispatch);
   };
 
@@ -150,8 +155,12 @@ function WebSocketComponent(): JSX.Element {
    * @param {WSPayload} payload - The payload to handle.
    */
   const handleIncoimingMsg = (payload: WSPayload) => {
+    const isSaleProcess =
+      payload.type === WSPayloadTypes.comparative ||
+      payload.type === WSPayloadTypes.sale;
+
+    if (isSaleProcess) handleSaleProccess(payload);
     if (payload.type === WSPayloadTypes.text) handleText(payload);
-    if (payload.type === WSPayloadTypes.comparative) handleComparative(payload);
     if (payload.type === WSPayloadTypes.loading) handleLoading(payload);
   };
 

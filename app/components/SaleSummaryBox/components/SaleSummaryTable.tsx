@@ -52,7 +52,9 @@ function SaleSummaryTable(props: { order: Order }) {
               <Fragment key={`${item?.id}`}>
                 <TableRow>
                   <TableCellStyled>
-                    <TypographyStyled>{item?.display_name}</TypographyStyled>
+                    <TypographyStyled>
+                      {item.name || item?.display_name}
+                    </TypographyStyled>
                   </TableCellStyled>
                   <TableCellStyled align="right">
                     <TypographyStyled>{productPrice}</TypographyStyled>

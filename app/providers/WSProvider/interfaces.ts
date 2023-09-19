@@ -1,15 +1,15 @@
-import { ComparativeQuote, SuggestedItem } from "@/app/interfaces";
+import { ComparativeQuote, Order, SuggestedItem } from "@/app/interfaces";
 
 export enum WSPayloadTypes {
   text = "text",
-  products = "products",
+  sale = "sale",
   comparative = "comparative",
   loading = "loading",
 }
 
 export type WSPayloadType =
   | WSPayloadTypes.text
-  | WSPayloadTypes.products
+  | WSPayloadTypes.sale
   | WSPayloadTypes.comparative
   | WSPayloadTypes.loading;
 
@@ -18,15 +18,18 @@ export interface ActionType {
   payload?: WSPayload | null;
 }
 
+export type WSData =
+  | null
+  | number
+  | string
+  | boolean
+  | Record<string, unknown>
+  | SuggestedItem[]
+  | ComparativeQuote
+  | Order;
+
 export interface WSPayload {
-  data:
-    | null
-    | number
-    | string
-    | boolean
-    | Record<string, unknown>
-    | SuggestedItem[]
-    | ComparativeQuote;
+  data: WSData;
   room: string;
   roomEvent: string;
   trasnmitter: string;

@@ -1,7 +1,6 @@
 "use client";
-
 // React imports
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 // Material UI imports
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
@@ -16,117 +15,69 @@ import { SuggestedItem } from "@/app/interfaces";
 
 // Styles imports
 import styles from "./productsCarousel.module.css";
-import { ProductCard } from "../ProductCard";
+import { ProductHCard } from "../ProductHCard";
 
 // Destructuring styles for easier access
-const {
-  buttonBackGround,
-  carousel,
-  dot,
-  dotActive,
-  productsContainer,
-  stepperBackgorund,
-} = styles;
+const { buttonBackGround, carousel, stepperBackgorund, dot, dotActive } =
+  styles;
 
-// Props interface for the ProductsContainer component
+// Props interface for the ProductsCarousel component
 interface Props {
-  sugestedItems: SuggestedItem[];
+  items: SuggestedItem[];
 }
 
 /**
- * The ProductsContainer component displays a carousel of product cards.
- * @param props { sugestedItems: SuggestedItem[] }
+ * The ProductsCarousel component displays a carousel of product cards.
+ * @param props { items: SuggestedItem[] }
  * @returns JSX.Element.
  */
-function ProductsContainer(props: Props) {
-  const { sugestedItems } = props;
+function ProductsCarousel(props: Props) {
+  const { items } = props;
   const [currentItem, setCurrentItem] = useState(0);
-  const [cardsPerview, setCardsPerView] = useState(3);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 768) {
-        return setCardsPerView(1);
-      } else if (window.innerWidth <= 1024) {
-        return setCardsPerView(2);
-      } else {
-        return setCardsPerView(3);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    handleResize();
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   const goNext = () => {
-    setCurrentItem((oldItem) => {
-      let newItem = oldItem + 1;
-      if (newItem >= sugestedItems.length) {
-        newItem = 0;
-      }
-      return newItem;
-    });
+    setCurrentItem((oldItem) => (oldItem + 1) % items.length);
   };
 
   const goPrev = () => {
-    setCurrentItem((oldItem) => {
-      let newItem = oldItem - 1;
-      if (newItem < 0) {
-        newItem = sugestedItems.length - 1;
-      }
-      return newItem;
-    });
+    setCurrentItem((oldItem) => (oldItem - 1 + items.length) % items.length);
   };
 
-  let itemsToShow = [];
-  if (sugestedItems.length === 1) {
-    itemsToShow = [sugestedItems[currentItem]];
-  } else if (sugestedItems.length === 2 || cardsPerview === 2) {
-    itemsToShow = [
-      sugestedItems[currentItem],
-      sugestedItems[(currentItem + 1) % sugestedItems.length],
-    ];
-  } else {
-    itemsToShow = [
-      sugestedItems[
-        (currentItem - 1 + sugestedItems.length) % sugestedItems.length
-      ],
-      sugestedItems[currentItem],
-      sugestedItems[(currentItem + 1) % sugestedItems.length],
-    ];
-  }
-
   return (
-    <>
-      <div id="container" className={carousel}>
-        <div>
-          <ContainedIconButton
-            backGroundColor={buttonBackGround}
-            id="prev-products-carousel-button"
-            onClick={goPrev}
-          >
-            <ArrowBackIosIcon id="prev-button-icon" />
-          </ContainedIconButton>
-        </div>
-        <div className={productsContainer}>
-          {itemsToShow.map((item) => (
-            <ProductCard key={item.nav_id} suggestedItem={item} />
-          ))}
-        </div>
-        <div>
-          <ContainedIconButton
-            backGroundColor={buttonBackGround}
-            id="next-products-carousel-button"
-            onClick={goNext}
-          >
-            <ArrowForwardIosIcon id="next-button-icon" />
-          </ContainedIconButton>
-        </div>
+    <div id="container" className={carousel}>
+      <div>
+        <ContainedIconButton
+          backGroundColor={buttonBackGround}
+          id="prev-products-carousel-button"
+          onClick={goPrev}
+        >
+          <ArrowBackIosIcon id="prev-button-icon" />
+        </ContainedIconButton>
+      </div>
+      <div className={stepperBackgorund}>
+        <ProductHCard
+          id={`${items[currentItem].id}`}
+          product={items[currentItem]}
+        >
+          <ProductHCard.Image
+            id={`${items[currentItem].id}`}
+            src={items[currentItem].item_type}
+            alt={`${items[currentItem].id}-image`}
+            width={100}
+            height={200}
+            priority
+          />
+          <ProductHCard.ProductInfo />
+        </ProductHCard>
+      </div>
+      <div>
+        <ContainedIconButton
+          backGroundColor={buttonBackGround}
+          id="next-products-carousel-button"
+          onClick={goNext}
+        >
+          <ArrowForwardIosIcon id="next-button-icon" />
+        </ContainedIconButton>
       </div>
       <MobileStepper
         color="primary"
@@ -135,11 +86,11 @@ function ProductsContainer(props: Props) {
         className={stepperBackgorund}
         position="static"
         nextButton={null}
-        steps={sugestedItems.length}
+        steps={items.length}
         classes={{ dot, dotActive }}
       />
-    </>
+    </div>
   );
 }
 
-export default ProductsContainer;
+export default ProductsCarousel;

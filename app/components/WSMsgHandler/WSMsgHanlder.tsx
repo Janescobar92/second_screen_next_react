@@ -2,12 +2,12 @@
 import { useContext } from "react";
 
 import { WSServerContext } from "@/app/providers";
-import { ComparativeQuote, SuggestedItem } from "@/app/interfaces";
+import { ComparativeQuote, Order } from "@/app/interfaces";
 import { WSPayloadTypes } from "@/app/providers/WSProvider/interfaces";
 
 import { MessageBox } from "../MessageBox";
-import { ProductsContainer } from "../ProductsContainer";
 import { ComparativesContainer } from "../ComparativesContainer";
+import { SaleDetailBox } from "../SaleDetailBox";
 
 function WSMsgHandler() {
   const { state } = useContext(WSServerContext);
@@ -23,8 +23,8 @@ function WSMsgHandler() {
     );
   }
 
-  if (type === WSPayloadTypes.products) {
-    return <ProductsContainer sugestedItems={data as SuggestedItem[]} />;
+  if (type === WSPayloadTypes.sale) {
+    return <SaleDetailBox order={data as Order} />;
   }
 
   return <MessageBox title={"Tenemos las MEJORES OPCIONES para ti"} />;

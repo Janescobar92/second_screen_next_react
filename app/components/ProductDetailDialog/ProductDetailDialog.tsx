@@ -47,8 +47,10 @@ function ProductDetailDialog(props: Props) {
           />
           <ProductHCard.ProductInfo />
           <ProductHCard.SellInfo
+            id={product.id}
             actionLabel="comprar"
             layout="row"
+            price={product?.total_cost}
             showAction
             onAction={() => console.log("Buy button clicked")}
           />

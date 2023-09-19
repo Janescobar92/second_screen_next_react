@@ -23,7 +23,7 @@ function ProductInfo() {
           className={styles.productTitle}
           fontWeight={700}
         >
-          {product.display_name}
+          {product.name || product.display_name}
         </Typography>
       </InfoContent.PTitle>
       <InfoContent.PExtraData>

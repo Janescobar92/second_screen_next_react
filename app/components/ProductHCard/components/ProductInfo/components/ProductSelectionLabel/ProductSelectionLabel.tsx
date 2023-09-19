@@ -9,7 +9,7 @@ import ProductContext from "../../../../context";
 
 import { Typography, styled } from "@mui/material";
 
-import { useAppTheme, useCompanyAssets } from "@/app/Hooks";
+import { useAppTheme, useBrandAsset } from "@/app/Hooks";
 import { Label } from "@/app/components/ProductHCard/constants";
 
 const StyledTypography = styled(Typography, {
@@ -30,8 +30,8 @@ function ProductSelectionLabel() {
   //TODO: ADD REAL DATA.
   // const { id, logo, selectionLabel } = product;
 
-  // Using custom hooks to get company assets and theme
-  const { companyLogo } = useCompanyAssets();
+  // Using custom hooks to get brand asset and theme
+  const logo = useBrandAsset(product);
   const theme = useAppTheme();
 
   //TODO: ADD REAL DATA.
@@ -40,7 +40,6 @@ function ProductSelectionLabel() {
   const isOffer = selectionLabel === Label.offer;
   const isPriceRatio = selectionLabel === Label.price_ratio;
   const offer = "50% la segunda unidad";
-  const logo = companyLogo;
 
   const handleLabelData = () => {
     switch (selectionLabel) {
@@ -93,14 +92,17 @@ function ProductSelectionLabel() {
           </StyledTypography>
         )}
       </div>
-      <Image
-        id={`${id}selection-label-logo-container`}
-        src={logo}
-        alt="Logo"
-        width={180}
-        height={37}
-        priority
-      />
+      {logo && (
+        <Image
+          className={styles.brandLogo}
+          id={`${id}selection-label-logo-container`}
+          src={logo}
+          alt="Logo"
+          width={100}
+          height={20}
+          priority
+        />
+      )}
     </div>
   );
 }

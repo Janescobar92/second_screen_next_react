@@ -1,5 +1,7 @@
 import { useContext } from "react";
-import { PRODUCT_TYPE } from "@/app/components/ProductHCard/constants";
+import { Typography } from "@mui/material";
+
+import { PRODUCT_TYPE } from "@/app/constants/item";
 import ProductContext from "@/app/components/ProductHCard/context";
 import { TireExtraData } from "./components";
 
@@ -10,7 +12,16 @@ function ProductExtraData() {
     case PRODUCT_TYPE.TIRE:
       return <TireExtraData />;
     default:
-      return null;
+      return (
+        <Typography
+          sx={{ minWidth: "20rem" }}
+          component={"div"}
+          color="text.secondary"
+          variant="body1"
+        >
+          {product.display_description}
+        </Typography>
+      );
   }
 }
 

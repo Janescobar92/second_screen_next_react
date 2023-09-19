@@ -15,7 +15,6 @@ const useBrandAsset = (product: SuggestedItem) => {
   if (product.item_type === PRODUCT_TYPE.BATTERY && brand) {
     brandLogo = `${basePath}/batteries/${brand}.jpg`;
   }
-  console.log({ brandLogo, product });
 
   return brandLogo;
 };

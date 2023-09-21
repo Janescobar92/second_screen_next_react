@@ -14,7 +14,7 @@ function ServiceWorkerComponent() {
     }
   }, []);
 
-  return <div id="service-worker-component" />;
+  return <div id="service-worker-component" style={{ display: "none" }} />;
 }
 
 export default ServiceWorkerComponent;

@@ -1,0 +1,13 @@
+.carouselContainer {
+    max-width: 60rem;
+}
+
+.saleSummaryContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.saleSummaryContainer > span {
+    max-width: 50rem;
+    margin-left: -1rem;
+}

@@ -11,7 +11,7 @@ function SaleSummaryBox(props: { order: Order }) {
   const renderPromos = !!calculatePayload?.total_discounts;
 
   return (
-    <>
+    <div>
       <div className={styles.container}>
         <SaleSummaryTable order={order} />
         {renderPromos && (
@@ -23,7 +23,7 @@ function SaleSummaryBox(props: { order: Order }) {
       <div className={styles.totalContainer}>
         <TotalDivider price={order?.total_cost} />
       </div>
-    </>
+    </div>
   );
 }
 

@@ -18,12 +18,19 @@ import styles from "./productsCarousel.module.css";
 import { ProductHCard } from "../ProductHCard";
 
 // Destructuring styles for easier access
-const { buttonBackGround, carousel, stepperBackgorund, dot, dotActive } =
-  styles;
+const {
+  buttonBackGround,
+  carousel,
+  stepperBackgorund,
+  dot,
+  dotHidden,
+  dotActive,
+} = styles;
 
 // Props interface for the ProductsCarousel component
 interface Props {
   items: SuggestedItem[];
+  hideDots?: boolean;
 }
 
 /**
@@ -32,7 +39,7 @@ interface Props {
  * @returns JSX.Element.
  */
 function ProductsCarousel(props: Props) {
-  const { items } = props;
+  const { hideDots, items } = props;
   const [currentItem, setCurrentItem] = useState(0);
 
   const goNext = () => {
@@ -44,7 +51,7 @@ function ProductsCarousel(props: Props) {
   };
 
   return (
-    <div id="container" className={carousel}>
+    <div id="products-carousel-container" className={carousel}>
       <div>
         <ContainedIconButton
           backGroundColor={buttonBackGround}
@@ -87,7 +94,7 @@ function ProductsCarousel(props: Props) {
         position="static"
         nextButton={null}
         steps={items.length}
-        classes={{ dot, dotActive }}
+        classes={{ dot: hideDots ? dotHidden : dot, dotActive }}
       />
     </div>
   );

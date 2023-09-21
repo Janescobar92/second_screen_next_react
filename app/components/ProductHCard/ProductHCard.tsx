@@ -117,8 +117,10 @@ function ProductHCard(props: Props) {
         sx={{ border: borderStyle }}
       >
         <>
-          {image && <>{image}</>}
-          {productInfo && <>{productInfo}</>}
+          <div className={styles.imageAndDetailsContainer}>
+            {image && <>{image}</>}
+            {productInfo && <>{productInfo}</>}
+          </div>
           {sellInfo && <>{sellInfo}</>}
         </>
       </Box>

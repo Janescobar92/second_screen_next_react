@@ -6,7 +6,6 @@
     align-items: center;
     overflow-x: hidden;
     padding: 0 1rem;
-
 }
 
 .buttonBackGround {
@@ -19,7 +18,6 @@
     align-items: center;
     width: 100vw;
     overflow: hidden;
-    padding: 0 1rem;
 }
 
 .stepperBackgorund {
@@ -29,6 +27,10 @@
 .dot {
     width: 10px !important;
     height: 10px !important;
+}
+
+.dotHidden {
+    display: none !important;
 }
 
 .dotActive {

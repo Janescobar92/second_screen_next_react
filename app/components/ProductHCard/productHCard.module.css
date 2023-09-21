@@ -1,8 +1,16 @@
 .productHCardContainer {
-    display: grid;
-    grid-template-columns: 0.5fr 3fr 1fr;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     border-radius: var(--border-radius);
     background-color: var(--background-paper);
     margin: 0.5rem 0;
-    max-height: 10rem;
+    height: 10rem;
+    min-width: 50rem;
+    width: 100%;
+}
+
+.imageAndDetailsContainer {
+    display: flex;
+    align-items: center;
 }

@@ -6,11 +6,9 @@ import { ProductsCarousel } from "../ProductsCarousel";
 function SaleDetailBox(props: { order: Order }) {
   const { order } = props;
 
-  console.log({ order });
-
   return (
     <Box>
-      <ProductsCarousel items={order.items} />
+      <ProductsCarousel items={order.items} hideDots />
       <SaleSummaryBox order={order} />
     </Box>
   );

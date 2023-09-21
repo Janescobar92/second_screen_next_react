@@ -11,13 +11,17 @@ import {
   resetState,
   setIncomingMsg,
 } from "@/app/providers/WSProvider/actions";
-import { setTPVLoader } from "@/app/providers/AppContextProvider/actions";
+import {
+  askForFinance,
+  setTPVLoader,
+} from "@/app/providers/AppContextProvider/actions";
 import {
   WSPayload,
   WSPayloadTypes,
 } from "@/app/providers/WSProvider/interfaces";
 
 import { NEW_SALE_MSG, READ_FROM_TPV_MSG } from "./constants";
+import { Order } from "@/app/interfaces";
 
 /**
  * WebSocketComponent is a React component that connects to a WebSocket server.
@@ -113,11 +117,6 @@ function WebSocketComponent(): JSX.Element {
   };
 
   /**
-   * Handles inconig comparative type payload.
-   * @param {WSPayload} payload - The payload to handle.
-
-
-  /**
   * Handles inconig Sale and Comparative type payload.
    * @param {WSPayload} payload - The payload to handle.
 
@@ -151,6 +150,15 @@ function WebSocketComponent(): JSX.Element {
   };
 
   /**
+   * Handles inconig finance request type payload.
+   * @param {WSPayload} payload - The payload to handle.
+   */
+  const handleFinance = (payload: WSPayload) => {
+    console.log({ payload });
+    askForFinance(appDispatch, payload.data as Order);
+  };
+
+  /**
    * Handles inconig ws msg payload.
    * @param {WSPayload} payload - The payload to handle.
    */
@@ -162,6 +170,7 @@ function WebSocketComponent(): JSX.Element {
     if (isSaleProcess) handleSaleProccess(payload);
     if (payload.type === WSPayloadTypes.text) handleText(payload);
     if (payload.type === WSPayloadTypes.loading) handleLoading(payload);
+    if (payload.type === WSPayloadTypes.ask_financing) handleFinance(payload);
   };
 
   /**

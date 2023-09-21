@@ -1,18 +1,25 @@
 "use client";
 import { Button, Dialog, DialogActions, Typography } from "@mui/material";
 import { useAppTheme } from "@/app/Hooks";
+import { AppContext } from "@/app/providers";
+import { askForFinance } from "@/app/providers/AppContextProvider/actions";
 
 import styles from "./financeDialog.module.css";
 
 import { DialogDividedTitle } from "../DialogDividedTitle";
 import { CANCEL_LABEL, MAIN_TITLE_TXT, SUBMIT_LABEL } from "./constants";
 import { PriceTag } from "../PriceTag";
+import { useContext } from "react";
+import { formatCurrency } from "@/app/utils";
 
 function FinanceDialog() {
+  const { state, dispatch } = useContext(AppContext);
   const theme = useAppTheme();
+  const { finance } = state;
+  const totalPrice = formatCurrency(finance?.order_to_finance?.total_cost);
 
   const handleClose = () => {
-    console.log("close");
+    askForFinance(dispatch, undefined, false);
   };
 
   const handleFinance = () => {
@@ -22,11 +29,11 @@ function FinanceDialog() {
   return (
     <Dialog
       id="ask-finance-dialog"
-      open
+      open={!!finance?.show_fianance_dialog}
       onClose={handleClose}
       classes={{ paper: styles.container }}
     >
-      <DialogDividedTitle mainTitleTxt={MAIN_TITLE_TXT} headTitleTxt={""} />
+      <DialogDividedTitle mainTitleTxt={MAIN_TITLE_TXT} />
       <Typography
         component={"div"}
         textAlign={"center"}
@@ -35,7 +42,7 @@ function FinanceDialog() {
       >
         ¿Desea <span className={styles.boldText}>Financiar su compra</span> a 24
         meses, por 10,95€/mes?
-        <PriceTag id="ask-finance-dialog-price-tag" price="+7.98€" />
+        <PriceTag id="ask-finance-dialog-price-tag" price={totalPrice} />
       </Typography>
       <DialogActions className={styles.actionsContainer}>
         <Button

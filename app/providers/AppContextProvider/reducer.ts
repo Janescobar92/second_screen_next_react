@@ -2,6 +2,7 @@ import { ComparativeQuote, Order } from "@/app/interfaces";
 import { CONFIG_ACTIONS, SALE_DETAIL_ACTIONS } from "./actions";
 import { AppState, ActionType, ConfigState } from "./interfaces";
 import { TPV_LOADER_ACTIONS } from "./actions/tpvLoaderActions";
+import { FINANCE_ACTIONS } from "./actions/financeActions/actionTypes";
 
 const reducer = (state: AppState, action: ActionType) => {
   switch (action.type) {
@@ -39,6 +40,22 @@ const reducer = (state: AppState, action: ActionType) => {
         sale_details: {
           ...state.sale_details,
           comparative_quote: action.payload as ComparativeQuote,
+        },
+      };
+    case FINANCE_ACTIONS.SET_ORDER_TO_FINANCE:
+      return {
+        ...state,
+        finance: {
+          ...state.finance,
+          order_to_finance: action.payload as Order,
+        },
+      };
+    case FINANCE_ACTIONS.SET_SHOW_ASK_FOR_FINANCE_DIALOG:
+      return {
+        ...state,
+        finance: {
+          ...state.finance,
+          show_fianance_dialog: action.payload as boolean,
         },
       };
     case TPV_LOADER_ACTIONS.SET_LOADER:

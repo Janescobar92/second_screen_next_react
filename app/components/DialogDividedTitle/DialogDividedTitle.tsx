@@ -5,7 +5,7 @@ import { useAppTheme } from "@/app/Hooks";
 import styles from "./dialogDividedTitle.module.css";
 
 function DialogDividedTitle(props: {
-  headTitleTxt: string;
+  headTitleTxt?: string;
   mainTitleTxt: string;
 }) {
   const { headTitleTxt, mainTitleTxt } = props;

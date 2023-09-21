@@ -18,6 +18,7 @@ import { setConfig } from "./actions";
 const initialState: AppState = {
   config: { company: "", ws_room: "", ws_server_port: "", loading: true },
   tpv_loader: false,
+  finance: { show_fianance_dialog: false },
 };
 
 // Create a context for state and dispatch

@@ -12,10 +12,16 @@ export interface SaleDetailsState {
   comparative_quote: ComparativeQuote;
 }
 
+export interface FinanceState {
+  show_fianance_dialog: boolean;
+  order_to_finance?: Order;
+}
+
 export interface AppState {
   config: ConfigState;
   tpv_loader: boolean;
   sale_details?: SaleDetailsState;
+  finance?: FinanceState;
 }
 
 export interface ActionType {

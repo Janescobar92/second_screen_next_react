@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 
 import {
   Background,
+  FinanceDialog,
   NavBar,
   ServiceWorkerComponent,
   TPVLoader,
@@ -39,6 +40,7 @@ export default function RootLayout({
             <Background />
             <ServiceWorkerComponent />
             <WSProvider>
+              <FinanceDialog />
               <TPVLoader />
               <WebSocketComponent />
               {children}

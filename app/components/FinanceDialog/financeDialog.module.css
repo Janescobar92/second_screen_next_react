@@ -1,5 +1,9 @@
 .container {
     width: 32.688rem;
-    height: 30.25rem;
     padding: 1rem !important;
+}
+
+.actionsContainer {
+    justify-content: space-between !important;
+    margin-top: 0.5rem;
 }

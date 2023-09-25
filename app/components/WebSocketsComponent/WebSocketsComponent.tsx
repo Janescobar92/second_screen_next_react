@@ -20,7 +20,7 @@ import {
   WSPayloadTypes,
 } from "@/app/providers/WSProvider/interfaces";
 
-import { NEW_SALE_MSG, READ_FROM_TPV_MSG } from "./constants";
+import { NEW_SALE_MSG, READ_FROM_SERVER, READ_FROM_TPV_MSG } from "./constants";
 import { Order } from "@/app/interfaces";
 
 /**
@@ -180,6 +180,10 @@ function WebSocketComponent(): JSX.Element {
       ws.current.on(READ_FROM_TPV_MSG, (data) => {
         const payload: WSPayload = JSON.parse(data);
         handleIncoimingMsg(payload);
+      });
+      ws.current.on(READ_FROM_SERVER, (data) => {
+        const payload = JSON.parse(data);
+        console.info("health_check", { payload });
       });
     }
   };

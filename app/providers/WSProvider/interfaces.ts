@@ -36,6 +36,7 @@ export interface WSPayload {
   roomEvent: string;
   trasnmitter: string;
   type: WSPayloadType;
+  timeout?: number;
 }
 
 export interface WSState {

@@ -17,6 +17,7 @@ export const setShowDialog = (
 export const askForFinance = (
   dispatch: Dispatch<ActionType>,
   order: Order | undefined,
+  timeout?: number,
   show = true
 ) => {
   dispatch({
@@ -24,4 +25,8 @@ export const askForFinance = (
     payload: order,
   });
   setShowDialog(show, dispatch);
+  dispatch({
+    type: FINANCE_ACTIONS.SET_DIALOG_TIMEOUT,
+    payload: timeout,
+  });
 };

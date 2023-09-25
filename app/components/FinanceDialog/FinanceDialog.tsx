@@ -1,12 +1,11 @@
 "use client";
+import { useContext, useEffect } from "react";
 import { Button, Dialog, DialogActions, Typography } from "@mui/material";
 import { useAppTheme } from "@/app/Hooks";
 import { AppContext } from "@/app/providers";
 import { askForFinance } from "@/app/providers/AppContextProvider/actions";
 
 import styles from "./financeDialog.module.css";
-
-import { useContext } from "react";
 
 import { formatCurrency } from "@/app/utils";
 import { WSServerContext, submitFinance } from "@/app/providers/WSProvider";
@@ -25,9 +24,10 @@ function FinanceDialog() {
   const order = finance?.order_to_finance;
   const open = !!finance?.show_fianance_dialog;
   const totalPrice = formatCurrency(order?.total_cost);
+  const timeout = finance?.timeout;
 
   const handleClose = () => {
-    askForFinance(dispatch, undefined, false);
+    askForFinance(dispatch, undefined, undefined, false);
   };
 
   const handleCancel = () => {
@@ -39,6 +39,12 @@ function FinanceDialog() {
     if (order) submitFinance(order, wsDispatch);
     handleClose();
   };
+
+  useEffect(() => {
+    if (open && timeout) {
+      setTimeout(handleCancel, timeout);
+    }
+  }, [open, timeout]);
 
   return (
     <Dialog

@@ -15,6 +15,7 @@ export interface SaleDetailsState {
 export interface FinanceState {
   show_fianance_dialog: boolean;
   order_to_finance?: Order;
+  timeout?: number;
 }
 
 export interface AppState {
@@ -30,6 +31,7 @@ export interface ActionType {
     | string
     | undefined
     | boolean
+    | number
     | ConfigState
     | SuggestedItem
     | Order

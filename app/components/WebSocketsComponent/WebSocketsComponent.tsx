@@ -154,8 +154,7 @@ function WebSocketComponent(): JSX.Element {
    * @param {WSPayload} payload - The payload to handle.
    */
   const handleFinance = (payload: WSPayload) => {
-    console.log({ payload });
-    askForFinance(appDispatch, payload.data as Order);
+    askForFinance(appDispatch, payload.data as Order, payload?.timeout);
   };
 
   /**

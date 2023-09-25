@@ -58,6 +58,14 @@ const reducer = (state: AppState, action: ActionType) => {
           show_fianance_dialog: action.payload as boolean,
         },
       };
+    case FINANCE_ACTIONS.SET_DIALOG_TIMEOUT:
+      return {
+        ...state,
+        finance: {
+          ...state.finance,
+          timeout: action.payload as number,
+        },
+      };
     case TPV_LOADER_ACTIONS.SET_LOADER:
       return {
         ...state,

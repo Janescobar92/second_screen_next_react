@@ -170,7 +170,7 @@ function WebSocketComponent(): JSX.Element {
     if (isSaleProcess) handleSaleProccess(payload);
     if (payload.type === WSPayloadTypes.text) handleText(payload);
     if (payload.type === WSPayloadTypes.loading) handleLoading(payload);
-    if (payload.type === WSPayloadTypes.ask_financing) handleFinance(payload);
+    if (payload.type === WSPayloadTypes.finance) handleFinance(payload);
   };
 
   /**

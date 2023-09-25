@@ -79,3 +79,19 @@ export const resetState = (dispatch: Dispatch<ActionType>) =>
   dispatch({
     type: WS_SERVER_ACTIONS.RESET,
   });
+
+export const submitFinance = (
+  order: Order | boolean,
+  dispatch: Dispatch<ActionType>
+) => {
+  setOutgoingMsg(
+    {
+      data: order,
+      room: "TPV",
+      roomEvent: "sscreen_room_answer",
+      trasnmitter: "second_screen",
+      type: WSPayloadTypes.finance,
+    },
+    dispatch
+  );
+};

@@ -6,31 +6,45 @@ import { askForFinance } from "@/app/providers/AppContextProvider/actions";
 
 import styles from "./financeDialog.module.css";
 
-import { DialogDividedTitle } from "../DialogDividedTitle";
-import { CANCEL_LABEL, MAIN_TITLE_TXT, SUBMIT_LABEL } from "./constants";
-import { PriceTag } from "../PriceTag";
 import { useContext } from "react";
+
 import { formatCurrency } from "@/app/utils";
+import { WSServerContext, submitFinance } from "@/app/providers/WSProvider";
+
+import { DialogDividedTitle } from "../DialogDividedTitle";
+import { PriceTag } from "../PriceTag";
+
+import { CANCEL_LABEL, MAIN_TITLE_TXT, SUBMIT_LABEL } from "./constants";
 
 function FinanceDialog() {
-  const { state, dispatch } = useContext(AppContext);
   const theme = useAppTheme();
+  const { state, dispatch } = useContext(AppContext);
+  const { dispatch: wsDispatch } = useContext(WSServerContext);
+
   const { finance } = state;
-  const totalPrice = formatCurrency(finance?.order_to_finance?.total_cost);
+  const order = finance?.order_to_finance;
+  const open = !!finance?.show_fianance_dialog;
+  const totalPrice = formatCurrency(order?.total_cost);
 
   const handleClose = () => {
     askForFinance(dispatch, undefined, false);
   };
 
+  const handleCancel = () => {
+    submitFinance(false, wsDispatch);
+    handleClose();
+  };
+
   const handleFinance = () => {
-    console.log("finance");
+    if (order) submitFinance(order, wsDispatch);
+    handleClose();
   };
 
   return (
     <Dialog
       id="ask-finance-dialog"
-      open={!!finance?.show_fianance_dialog}
-      onClose={handleClose}
+      open={open}
+      onClose={handleCancel}
       classes={{ paper: styles.container }}
     >
       <DialogDividedTitle mainTitleTxt={MAIN_TITLE_TXT} />
@@ -50,7 +64,7 @@ function FinanceDialog() {
           sx={{ color: theme.palette.primary.main }}
           color="primary"
           variant="outlined"
-          onClick={handleClose}
+          onClick={handleCancel}
         >
           {CANCEL_LABEL}
         </Button>

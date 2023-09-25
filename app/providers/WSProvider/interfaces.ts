@@ -3,7 +3,7 @@ import { ComparativeQuote, Order, SuggestedItem } from "@/app/interfaces";
 export enum WSPayloadTypes {
   text = "text",
   sale = "sale",
-  ask_financing = "ask_financing",
+  finance = "finance",
   comparative = "comparative",
   loading = "loading",
 }
@@ -12,7 +12,7 @@ export type WSPayloadType =
   | WSPayloadTypes.text
   | WSPayloadTypes.sale
   | WSPayloadTypes.comparative
-  | WSPayloadTypes.ask_financing
+  | WSPayloadTypes.finance
   | WSPayloadTypes.loading;
 
 export interface ActionType {

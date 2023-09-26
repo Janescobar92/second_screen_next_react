@@ -16,6 +16,7 @@ function CompanyLogo(): JSX.Element {
     <Image
       id="logo-container"
       className={styles.logo}
+      data-test="logo-container"
       src={companyLogo}
       alt="Logo"
       width={180}

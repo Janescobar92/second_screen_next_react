@@ -87,6 +87,7 @@ function SettingsForm(): JSX.Element {
                               !!form.touched[fieldName] &&
                               !!form.errors[fieldName]
                             }
+                            data-test={`${fieldName}-input`}
                             fullWidth
                             id="company-select-input"
                             select
@@ -130,6 +131,7 @@ function SettingsForm(): JSX.Element {
                             !!form.touched[fieldName] &&
                             !!form.errors[fieldName]
                           }
+                          data-test={`${fieldName}-input`}
                           fullWidth
                           helperText={
                             (!!form.touched[fieldName] &&
@@ -159,6 +161,7 @@ function SettingsForm(): JSX.Element {
                 className={styles.button}
                 color="primary"
                 id="submit-settings-button"
+                data-test="submit-settings-button"
                 type="submit"
                 variant="contained"
                 autoFocus

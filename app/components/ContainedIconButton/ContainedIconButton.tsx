@@ -22,6 +22,7 @@ function ContainedIconButton(props: Props): JSX.Element {
     <StyledIconButton
       backGroundColor={backGroundColor}
       id={id}
+      data-test={id}
       hide={hide}
       onClick={onClick}
     >

@@ -14,7 +14,7 @@ function WSMsgHandler() {
   const { data, type } = state.incoming || {};
 
   if (type === WSPayloadTypes.text) {
-    return <MessageBox title={(data || "") as string} />;
+    return <MessageBox id="text-payload-case" title={(data || "") as string} />;
   }
 
   if (type === WSPayloadTypes.comparative) {
@@ -27,7 +27,9 @@ function WSMsgHandler() {
     return <SaleDetailBox order={data as Order} />;
   }
 
-  return <MessageBox title={"Tenemos las MEJORES OPCIONES para ti"} />;
+  return (
+    <MessageBox id="welcome" title={"Tenemos las MEJORES OPCIONES para ti"} />
+  );
 }
 
 export default WSMsgHandler;

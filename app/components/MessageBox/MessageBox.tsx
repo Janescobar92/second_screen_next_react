@@ -5,13 +5,14 @@ import { useAppTheme } from "@/app/Hooks";
 import styles from "./messageBox.module.css";
 
 interface Props {
+  id: string;
   title?: string;
   subTitle?: string;
   content?: string;
 }
 
 function MessageBox(props: Props) {
-  const { title, subTitle, content } = props;
+  const { id, title, subTitle, content } = props;
   const theme = useAppTheme();
   const words = content?.split(" ");
   const firstWord = `${words?.[0]} `;
@@ -21,6 +22,8 @@ function MessageBox(props: Props) {
     <div className={styles.container}>
       {title && (
         <Typography
+          id={`${id}-title`}
+          data-test={`${id}-title`}
           color={theme.palette.secondary.dark}
           className={styles.title}
         >
@@ -28,13 +31,33 @@ function MessageBox(props: Props) {
         </Typography>
       )}
 
-      {subTitle && <Typography className={styles.subtitle}>{subTitle}</Typography>}
+      {subTitle && (
+        <Typography
+          id={`${id}-subTitle`}
+          data-test={`${id}-subTitle`}
+          className={styles.subtitle}
+        >
+          {subTitle}
+        </Typography>
+      )}
       <div>
         {words && (
-          <Typography className={styles.firstWord}>{firstWord}</Typography>
+          <Typography
+            id={`${id}-firts-word`}
+            data-test={`${id}-firts-word`}
+            className={styles.firstWord}
+          >
+            {firstWord}
+          </Typography>
         )}
         {words && (
-          <Typography className={styles.restOfText}>{restOfText}</Typography>
+          <Typography
+            id={`${id}-rest-of-text`}
+            data-test={`${id}-rest-of-text`}
+            className={styles.restOfText}
+          >
+            {restOfText}
+          </Typography>
         )}
       </div>
     </div>

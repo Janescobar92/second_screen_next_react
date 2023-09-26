@@ -39,6 +39,7 @@ function NavBar(): JSX.Element {
       <Toolbar className={styles.toolBar}>
         <ContainedIconButton
           id="go-back-button"
+          data-test="go-back-button"
           hide={pathname === ROUTES.home}
           onClick={handleGoBack}
         >

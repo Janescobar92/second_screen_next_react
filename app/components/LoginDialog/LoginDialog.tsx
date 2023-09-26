@@ -99,6 +99,7 @@ function LoginDialog(props: Props): JSX.Element {
                   return (
                     <TextField
                       autoFocus={f.autofocus}
+                      data-test={`${fieldName}-input`}
                       error={
                         !!form.touched[fieldName] && !!form.errors[fieldName]
                       }
@@ -135,6 +136,7 @@ function LoginDialog(props: Props): JSX.Element {
               className={styles.button}
               color="secondary"
               id="submit-login-button"
+              data-test="submit-login-button"
               type="submit"
               variant="contained"
               autoFocus
@@ -145,6 +147,7 @@ function LoginDialog(props: Props): JSX.Element {
               className={styles.button}
               color="primary"
               id="cancel-login-button"
+              data-test="cancel-login-button"
               variant="contained"
               onClick={handleClose}
             >

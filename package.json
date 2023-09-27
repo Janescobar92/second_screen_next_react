@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prod_start": "node server.js"
+    "prod_start": "node server.js",
+    "cypress_open": "cypress open"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",

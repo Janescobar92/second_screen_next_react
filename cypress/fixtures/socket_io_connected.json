@@ -1,0 +1,16 @@
+{
+    "headers": {
+        "access-control-allow-origin": "*",
+        "content-type": "text/plain; charset=UTF-8",
+        "content-length": "1",
+        "date": "Wed, 27 Sep 2023 10:14:26 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+    },
+    "url": "http://127.0.0.1:8080/socket.io/?EIO=4&transport=polling&t=OhM8Vpy&sid=3YzIQbn5boWzvjNUAAAK",
+    "method": null,
+    "httpVersion": "1.1",
+    "statusCode": 200,
+    "statusMessage": "OK",
+    "body": "6"
+}

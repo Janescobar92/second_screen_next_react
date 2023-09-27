@@ -1,6 +1,9 @@
 describe("Settings tests", () => {
   beforeEach(() => {
     cy.visit("/");
+    cy.intercept("http://127.0.0.1:8080/socket.io/**", {
+      fixture: "socket_io_connected.json",
+    });
   });
 
   it("Go to settings page modify config and go back home", () => {
@@ -25,7 +28,7 @@ describe("Settings tests", () => {
 
     cy.clearInputAndType("WS_ROOM-input", "second_screen_2");
 
-    cy.clearInputAndType("WS_SERVER_PORT-input", "http://127.0.0.1:8082");
+    cy.clearInputAndType("WS_SERVER_PORT-input", "http://127.0.0.1:8080");
 
     cy.getDataTest("submit-settings-button").as("submit-form-button");
 

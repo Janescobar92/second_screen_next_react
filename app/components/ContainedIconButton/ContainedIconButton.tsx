@@ -1,6 +1,7 @@
 "use client";
 import { MouseEvent } from "react";
-import { IconButton, styled } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import { IconButton } from "@mui/material";
 
 interface Props {
   backGroundColor?: string;

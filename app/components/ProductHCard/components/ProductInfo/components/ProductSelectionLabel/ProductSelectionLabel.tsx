@@ -7,7 +7,9 @@ import styles from "./productSelection.module.css";
 
 import ProductContext from "../../../../context";
 
-import { Typography, styled } from "@mui/material";
+import { styled } from "@mui/material/styles";
+
+import { Typography } from "@mui/material";
 
 import { useAppTheme, useBrandAsset } from "@/app/Hooks";
 import { Label } from "@/app/components/ProductHCard/constants";

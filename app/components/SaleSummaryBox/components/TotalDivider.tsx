@@ -1,5 +1,6 @@
 "use client";
-import { Box, Divider, Typography, styled } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import { Box, Divider, Typography } from "@mui/material";
 
 import { formatCurrency } from "@/app/utils";
 

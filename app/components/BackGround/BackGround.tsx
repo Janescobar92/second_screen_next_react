@@ -1,5 +1,5 @@
 "use client";
-import { styled } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 import { useCompanyAssets, useNavigation } from "@/app/Hooks";
 import { ROUTES } from "@/app/constants";

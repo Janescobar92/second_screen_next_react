@@ -1,4 +1,5 @@
-import { Box, Typography, Button, styled } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import { Box, Typography, Button } from "@mui/material";
 
 import styles from "./sellInfoBox.module.css";
 
